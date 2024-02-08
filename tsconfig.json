@@ -2,5 +2,9 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true
-  }
+  },
+  "include": [
+    "src", // Ajoutez ici le répertoire contenant vos fichiers TypeScript
+    "assets" // Ajoutez ici le répertoire contenant vos fichiers d'images
+  ]
 }

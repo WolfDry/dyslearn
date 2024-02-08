@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, Image } from 'react-native';
-import logo from '../../assets/logo/logo.png'
+
+const logo = require('../../assets/logo/logo.png')
 
 const Logo = () => {
   return (
