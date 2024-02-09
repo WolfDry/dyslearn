@@ -13,4 +13,46 @@ export const styles = StyleSheet.create({
     flex_4: {
         flex: 4,
     },
+
+    full: {
+        width: '100%'
+    },
+    center: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    justifyContent: {
+        justifyContent: 'center'
+    },
+    alignItems: {
+        alignItems: 'center'
+    },
+
+    blue: {
+        color: '#29BADA',
+    },
+    orange: {
+        color: '#F56004',
+    },
+    cream: {
+        color: '#FFFAEF',
+    },
+
+    bg_blue: {
+        backgroundColor: '#29BADA',
+    },
+    bg_orange: {
+        backgroundColor: '#F56004',
+    },
+    bg_cream: {
+        backgroundColor: '#FFFAEF',
+    },
+
+    title: {
+        textAlign: 'center',
+        fontSize: 25,
+        fontWeight: '700',
+        color: '#F56004',
+        fontFamily: ''
+    }
 })
