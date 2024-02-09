@@ -7,7 +7,7 @@ const Login = () => {
     <View style={{flex: 1}}>
         <View style={{flex: 2}}>
           <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <View style={{width: '10%', height: '10%', justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{width: '40%', height: '40%', justifyContent: 'center', alignItems: 'center'}}>
               <Logo/>
             </View>
           </View>
