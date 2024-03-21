@@ -13,6 +13,9 @@ export const styles = StyleSheet.create({
     flex_4: {
         flex: 4,
     },
+    flex_5: {
+        flex: 5,
+    },
 
     full: {
         width: '100%'
@@ -48,11 +51,15 @@ export const styles = StyleSheet.create({
         backgroundColor: '#FFFAEF',
     },
 
+    debug: {
+        borderWidth: 1,
+        borderColor: 'red'
+    },
+
     title: {
         textAlign: 'center',
         fontSize: 25,
-        fontWeight: '700',
         color: '#F56004',
-        fontFamily: ''
+        fontFamily: 'glacial-bold'
     }
 })

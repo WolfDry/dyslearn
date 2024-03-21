@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen'
@@ -10,19 +10,22 @@ SplashScreen.preventAutoHideAsync()
 
 export default function App() {
 
-  const [fontsLoaded, fontError] = useFonts({
-    'glacial-regular': require('./assets/fonts/glacial-indifference.regular.otf'),
-    'glacial-bold' : require('./assets/fonts/glacial-indifference.bold.otf'),
+  const [fontsLoaded] = useFonts({
+    'glacial-regular': require('./assets/fonts/glacial-indifference-regular.otf'),
+    'glacial-bold' : require('./assets/fonts/glacial-indifference-bold.otf'),
   })
 
-  const onLayontRootView = useCallback(async () => {
-    if(fontsLoaded || fontError){
-      await SplashScreen.hideAsync()
+  useEffect(() => {
+    async function prepare() {
+      await SplashScreen.preventAutoHideAsync()
     }
-  }, [fontsLoaded, fontError])
+    prepare()
+  }, [])
 
-  if(!fontsLoaded && !fontError){
-    return null
+  if(!fontsLoaded){
+    return undefined
+  } else {
+    SplashScreen.hideAsync()
   }
 
   return (

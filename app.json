@@ -27,10 +27,15 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-font",
-      {
-        "fonts": ["./assets/fonts/glacial-indifference.regular.otf", "./assets/fonts/glacial-indifference.bold.otf"]
-      }
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/glacial-indifference-regular.otf",
+            "./assets/fonts/glacial-indifference-bold.otf"
+          ]
+        }
+      ]
     ]
   }
 }
