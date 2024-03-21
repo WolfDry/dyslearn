@@ -3,7 +3,7 @@ import React from 'react'
 import Input from './Input'
 import { styles } from '../../../assets/style/style'
 
-const FormContainer = () => {
+const Container = () => {
   return (
     <View style={[style.container]}>
         <View style={{height: '45%', justifyContent: 'space-around'}}>
@@ -30,4 +30,4 @@ const style = StyleSheet.create({
     }
 })
 
-export default FormContainer
+export default Container
