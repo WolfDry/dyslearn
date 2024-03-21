@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, TextInput, Pressable } from 'react-native';
+import { Text, View } from 'react-native';
 import Logo from '../components/Logo'
 import Container from '../components/form/Container';
 
