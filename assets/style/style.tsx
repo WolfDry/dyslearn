@@ -1,6 +1,12 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+    flex_05: {
+        flex: 0.5,
+    },
+    flex_075: {
+        flex: 0.75,
+    },
     flex_1: {
         flex: 1,
     },
