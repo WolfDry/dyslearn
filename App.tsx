@@ -5,6 +5,7 @@ import * as SplashScreen from 'expo-splash-screen'
 import { useFonts } from 'expo-font'
 
 import Login from './src/pages/Login'
+import QrCode from './src/pages/QrCode'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -31,6 +32,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Login/>
+      {/* <QrCode/> */}
     </NavigationContainer>
   );
 }
