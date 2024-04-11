@@ -21,12 +21,13 @@ const Button = (props: InputProps) => {
 const style = StyleSheet.create({
 
     button: {
+        width: 210,
         borderRadius: 50,
         paddingVertical: 10,
-        paddingHorizontal: 60,
     },
 
     text: {
+        textAlign: 'center',
         fontSize: 15,
     }
 })

@@ -1,4 +1,4 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import Input from '../Input'
 import { styles } from '../../../../assets/style/style'
@@ -6,8 +6,8 @@ import Button from '../Button'
 
 const LoginContainer = () => {
     return (
-        <View style={[style.container, styles.flex_075]}>
-            <View style={styles.flex_1}>
+        <View style={[style.container, styles.flex_05]}>
+            <View style={styles.flex_05}>
                 <View style={style.inputContainer}>
                     <Input placeholder='Email' password={false} />
                     <Input placeholder='Mot de passe' password={true} />
@@ -16,8 +16,9 @@ const LoginContainer = () => {
                     <Text style={[style.forgotText, styles.blue, styles.glacialRegular]}>Mot de passe oublié ?</Text>
                 </View>
             </View>
-            <View style={[styles.alignItems, styles.flex_1, style.buttonContainer]}>
+            <View style={[styles.alignItems, styles.flex_05, style.buttonContainer]}>
                 <Button text='Se connecter' />
+                <Button text='Connexion par QR code' />
             </View>
         </View>
     )
@@ -43,6 +44,7 @@ const style = StyleSheet.create({
     },
 
     buttonContainer: {
+        justifyContent: 'space-around',
         paddingTop: '10%'
     }
 })
