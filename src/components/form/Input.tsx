@@ -9,7 +9,7 @@ type InputProps = {
 
 const Input = (props: InputProps) => {
     return (
-        <View style={style.inputContainer}>
+        <View style={[style.inputContainer, styles.justifyContent]}>
             <TextInput style={[style.input, styles.glacialBold, styles.cream]} placeholder={props.placeholder} placeholderTextColor={'rgba(255, 250, 239, 0.53)'} secureTextEntry={props.password} />
         </View>
     )
@@ -18,8 +18,8 @@ const Input = (props: InputProps) => {
 const style = StyleSheet.create({
     inputContainer: {
         width: '100%',
-        paddingHorizontal: '5%',
-        paddingVertical: '2%',
+        height: 38,
+        paddingHorizontal: '10%',
         borderTopLeftRadius: 0,
         borderTopRightRadius: 125,
         borderBottomRightRadius: 125,
