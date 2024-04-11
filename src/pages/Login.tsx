@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native';
 import Logo from '../components/Logo'
-import Container from '../components/form/Container';
+import LoginContainer from '../components/form/login/LoginContainer';
 
 import { styles } from '../../assets/style/style'
 
@@ -20,7 +20,7 @@ const Login = () => {
           <Text style={[styles.title]}>Bienvenu.e</Text>
         </View>
         <View style={styles.flex_5}>
-          <Container />
+          <LoginContainer />
         </View>
       </View>
     </View>

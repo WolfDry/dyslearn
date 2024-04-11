@@ -1,10 +1,10 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 import React from 'react'
-import Input from './Input'
-import { styles } from '../../../assets/style/style'
-import Button from './Button'
+import Input from '../Input'
+import { styles } from '../../../../assets/style/style'
+import Button from '../Button'
 
-const Container = () => {
+const LoginContainer = () => {
     return (
         <View style={[style.container, styles.flex_075]}>
             <View style={styles.flex_1}>
@@ -47,4 +47,4 @@ const style = StyleSheet.create({
     }
 })
 
-export default Container
+export default LoginContainer
