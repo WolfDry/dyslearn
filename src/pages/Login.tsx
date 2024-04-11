@@ -18,7 +18,7 @@ const Login = () => {
           </View>
           <View style={styles.flex_2}>
             <View>
-              <Text style={[styles.title]}>Bienvenu.e</Text>
+              <Text style={[styles.title]}>Bienvenue</Text>
             </View>
             <View style={[styles.flex_4]}>
               <LoginContainer />

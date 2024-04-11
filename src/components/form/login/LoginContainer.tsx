@@ -17,7 +17,7 @@ const LoginContainer = () => {
                     <Text style={[style.forgotText, styles.blue, styles.glacialRegular]}>Mot de passe oublié ?</Text>
                 </View>
                 <View style={[styles.flex_05, styles.alignItems, styles.justifyContentAround, style.buttonContainer]}>
-                    <Button text='Se connecter' color='orange' />
+                    <Button text='Se connecter A REVOIR' color='orange' />
                 </View>
             </View>
             <View style={[styles.flex_05, styles.alignItems, styles.justifyContentAround]}>
