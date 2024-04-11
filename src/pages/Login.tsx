@@ -17,10 +17,10 @@ const Login = () => {
             </View>
           </View>
           <View style={styles.flex_2}>
-            <View style={styles.flex_1}>
+            <View>
               <Text style={[styles.title]}>Bienvenu.e</Text>
             </View>
-            <View style={[styles.flex_3]}>
+            <View style={[styles.flex_4]}>
               <LoginContainer />
             </View>
           </View>

@@ -3,13 +3,21 @@ import React from 'react'
 import { styles } from '../../../assets/style/style'
 
 type InputProps = {
-    text: string
+    text: string,
+    color: string,
 }
 
 const Button = (props: InputProps) => {
+    console.log(props.color)
     return (
         <View>
-            <Pressable style={[style.button, styles.bg_orange]}>
+            <Pressable style={[
+                style.button,
+                props.color == 'yellow' ? styles.bg_yellow : 
+                props.color == 'orange' ? styles.bg_orange :
+                props.color == 'blue' ? styles.bg_blue :
+                styles.bg_cream
+            ]}>
                 <Text style={[style.text, styles.cream, styles.glacialBold]}>
                     {props.text}
                 </Text>
@@ -21,12 +29,13 @@ const Button = (props: InputProps) => {
 const style = StyleSheet.create({
 
     button: {
-        width: 210,
         borderRadius: 50,
         paddingVertical: 10,
+        paddingHorizontal: 50,
     },
 
     text: {
+        width: '100%',
         textAlign: 'center',
         fontSize: 15,
     }

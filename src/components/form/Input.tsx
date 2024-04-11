@@ -9,7 +9,7 @@ type InputProps = {
 
 const Input = (props: InputProps) => {
     return (
-        <View style={[style.inputContainer, styles.justifyContent]}>
+        <View style={[style.inputContainer, styles.justifyContentCenter]}>
             <TextInput style={[style.input, styles.glacialBold, styles.cream]} placeholder={props.placeholder} placeholderTextColor={'rgba(255, 250, 239, 0.53)'} secureTextEntry={props.password} />
         </View>
     )

@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+    flex_025: {
+        flex: 0.25,
+    },
     flex_05: {
         flex: 0.5,
     },
@@ -30,8 +33,14 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    justifyContent: {
+    justifyContentCenter: {
         justifyContent: 'center'
+    },
+    justifyContentAround: {
+        justifyContent: 'space-around'
+    },
+    justifyContentBetween: {
+        justifyContent: 'space-between'
     },
     alignItems: {
         alignItems: 'center'
@@ -46,6 +55,9 @@ export const styles = StyleSheet.create({
     cream: {
         color: '#FFFAEF',
     },
+    yellow: {
+        color: '#FCBD25',
+    },
 
     bg_blue: {
         backgroundColor: '#29BADA',
@@ -55,6 +67,9 @@ export const styles = StyleSheet.create({
     },
     bg_cream: {
         backgroundColor: '#FFFAEF',
+    },
+    bg_yellow: {
+        backgroundColor: '#FCBD25',
     },
 
     glacialRegular: {
