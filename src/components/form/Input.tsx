@@ -1,5 +1,6 @@
 import { View, TextInput, StyleSheet } from 'react-native'
 import React from 'react'
+import { styles } from '../../../assets/style/style'
 
 type InputProps = {
     placeholder: string,
@@ -9,7 +10,7 @@ type InputProps = {
 const Input = (props: InputProps) => {
     return (
         <View style={style.inputContainer}>
-            <TextInput style={style.input} placeholder={props.placeholder} placeholderTextColor={'rgba(255, 250, 239, 0.53)'} secureTextEntry={props.password} />
+            <TextInput style={[style.input, styles.glacialBold]} placeholder={props.placeholder} placeholderTextColor={'rgba(255, 250, 239, 0.53)'} secureTextEntry={props.password} />
         </View>
     )
 }

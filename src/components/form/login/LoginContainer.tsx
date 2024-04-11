@@ -13,7 +13,7 @@ const LoginContainer = () => {
                     <Input placeholder='Mot de passe' password={true} />
                 </View>
                 <View style={style.forgotContainer}>
-                    <Text style={[style.forgotText, styles.blue]}>Mot de passe oublié ?</Text>
+                    <Text style={[style.forgotText, styles.blue, styles.glacialRegular]}>Mot de passe oublié ?</Text>
                 </View>
             </View>
             <View style={[styles.alignItems, styles.flex_1, style.buttonContainer]}>
@@ -39,7 +39,7 @@ const style = StyleSheet.create({
     },
 
     forgotText:{
-        fontSize: 12
+        fontSize: 12,
     },
 
     buttonContainer: {

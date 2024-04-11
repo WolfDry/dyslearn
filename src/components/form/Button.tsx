@@ -10,7 +10,7 @@ const Button = (props: InputProps) => {
     return (
         <View>
             <Pressable style={[style.button, styles.bg_orange]}>
-                <Text style={[style.text, styles.cream]}>
+                <Text style={[style.text, styles.cream, styles.glacialBold]}>
                     {props.text}
                 </Text>
             </Pressable>

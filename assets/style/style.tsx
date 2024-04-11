@@ -57,6 +57,13 @@ export const styles = StyleSheet.create({
         backgroundColor: '#FFFAEF',
     },
 
+    glacialRegular: {
+        fontFamily: 'glacial-regular'
+    },
+    glacialBold: {
+        fontFamily: 'glacial-bold',
+    },
+
     debug: {
         borderWidth: 1,
         borderColor: 'red'
