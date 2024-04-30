@@ -8,7 +8,6 @@ type InputProps = {
 }
 
 const Button = (props: InputProps) => {
-    console.log(props.color)
     return (
         <View>
             <Pressable style={[
