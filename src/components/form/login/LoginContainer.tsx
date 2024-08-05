@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, Alert } from 'react-native'
-import { Svg, Path } from 'react-native-svg'
+import { Svg, Path, err } from 'react-native-svg'
 import Input from '../Input'
 import { styles } from '../../../../assets/style/style'
 import Button from '../Button'
 import axios from 'axios'
+import { supabase } from '../../../../supabase'
 
 const LoginContainer = () => {
 
@@ -14,14 +15,11 @@ const LoginContainer = () => {
     const handleLogin = async () => {
         try {
             console.log({ email, password })
-            const response = await axios.post('https://dyslearn-api.onrender.com/api/login', {
-                "email": "benjamindeltour@dyslearn.fr",
-                "password": "password"
-            });
-            const token = response.data.token;
-            console.log(token)
-            // Stockez le token localement (par exemple, dans AsyncStorage)
-            // Redirigez l'utilisateur vers la page d'accueil ou une autre page sécurisée
+            let { data, error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password
+            })
+            console.log(data)
         } catch (error) {
             Alert.alert('Erreur', 'Identifiants invalides');
         }
@@ -38,7 +36,7 @@ const LoginContainer = () => {
                     <Text style={[style.forgotText, styles.blue, styles.glacialRegular]}>Mot de passe oublié ?</Text>
                 </View>
                 <View style={[styles.flex_075, styles.alignItems, styles.justifyContentAround, style.buttonContainer]}>
-                    <Button text='Se connecter' color='orange' action={handleLogin}/>
+                    <Button text='Se connecter' color='orange' action={handleLogin} />
                 </View>
             </View>
             <View style={[styles.flex_05, styles.alignItems, styles.justifyContentAround]}>
