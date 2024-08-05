@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen'
 import { useFonts } from 'expo-font'
 
+import { AuthProvider } from './src/context/AuthContext'
 import Login from './src/pages/Login'
 import QrCode from './src/pages/QrCode'
 
@@ -13,7 +14,7 @@ export default function App() {
 
   const [fontsLoaded] = useFonts({
     'glacial-regular': require('./assets/fonts/glacial-indifference-regular.otf'),
-    'glacial-bold' : require('./assets/fonts/glacial-indifference-bold.otf'),
+    'glacial-bold': require('./assets/fonts/glacial-indifference-bold.otf'),
   })
 
   useEffect(() => {
@@ -23,16 +24,18 @@ export default function App() {
     prepare()
   }, [])
 
-  if(!fontsLoaded){
+  if (!fontsLoaded) {
     return undefined
   } else {
     SplashScreen.hideAsync()
   }
 
   return (
-    <NavigationContainer>
-      <Login/>
-      {/* <QrCode/> */}
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer>
+        <Login />
+        {/* <QrCode/> */}
+      </NavigationContainer>
+    </AuthProvider>
   );
 }
