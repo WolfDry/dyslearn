@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, Alert } from 'react-native'
-import { Svg, Path, err } from 'react-native-svg'
+import { Svg, Path } from 'react-native-svg'
 import Input from '../Input'
 import { styles } from '../../../../assets/style/style'
 import Button from '../Button'
@@ -8,20 +8,33 @@ import axios from 'axios'
 import { supabase } from '../../../../supabase'
 
 const LoginContainer = () => {
-
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [error, setError] = useState<string | null>(null);
 
     const handleLogin = async () => {
+        // Reset error state
+        setError(null);
+
+        // Basic validation
+        if (!email || !password) {
+            setError('Veuillez remplir tous les champs.');
+            return;
+        }
+
         try {
-            console.log({ email, password })
             let { data, error } = await supabase.auth.signInWithPassword({
                 email: email,
                 password: password
-            })
-            console.log(data)
+            });
+
+            if (error) {
+                setError(error.message);
+            } else {
+                console.log(data);
+            }
         } catch (error) {
-            Alert.alert('Erreur', 'Identifiants invalides');
+            setError('Une erreur inattendue s\'est produite. Veuillez réessayer.');
         }
     };
 
@@ -32,10 +45,11 @@ const LoginContainer = () => {
                     <Input placeholder='Email' password={false} setValue={setEmail} />
                     <Input placeholder='Mot de passe' password={true} setValue={setPassword} />
                 </View>
+                {error && <Text style={style.errorText}>{error}</Text>}
                 <View style={style.forgotContainer}>
                     <Text style={[style.forgotText, styles.blue, styles.glacialRegular]}>Mot de passe oublié ?</Text>
                 </View>
-                <View style={[styles.flex_075, styles.alignItems, styles.justifyContentAround, style.buttonContainer]}>
+                <View style={[styles.flex_075, styles.alignItems, styles.justifyContentAround]}>
                     <Button text='Se connecter' color='orange' action={handleLogin} />
                 </View>
             </View>
@@ -71,9 +85,11 @@ const style = StyleSheet.create({
         fontSize: 12,
     },
 
-    buttonContainer: {
-        // justifyContent: 'space-around',
-    }
+    errorText: {
+        color: 'red',
+        textAlign: 'center',
+        marginVertical: 10,
+    },
 })
 
 export default LoginContainer
