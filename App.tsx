@@ -33,8 +33,8 @@ export default function App() {
   return (
     <AuthProvider>
       <NavigationContainer>
-        <Login />
-        {/* <QrCode/> */}
+        {/* <Login /> */}
+        <QrCode/>
       </NavigationContainer>
     </AuthProvider>
   );

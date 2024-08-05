@@ -7,8 +7,8 @@ import { styles } from '../../assets/style/style'
 
 const Login = () => {
   return (
-    <KeyboardAvoidingView style={[styles.flex_1, styles.bg_cream]} wbehavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <ScrollView contentContainerStyle={style.container} keyboardShouldPersistTaps="handled">
+    <KeyboardAvoidingView style={[styles.flex_1, styles.bg_cream]}>
+      <ScrollView contentContainerStyle={style.container}>
           <View style={[styles.flex_2, styles.center]}>
               <View style={[styles.center, { width: '50%', height: '50%', marginTop: '10%' }]}>
                 <Logo />
