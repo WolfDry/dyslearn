@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
 import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
+import { useAuth } from '../context/AuthContext';
 
 const ScanQRPage: React.FC = () => {
   const [facing, setFacing] = useState<CameraType>('back');
   const [permission, requestPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
+  const { error, login } = useAuth()
 
   if (!permission) {
     return <View />;
@@ -24,15 +26,17 @@ const ScanQRPage: React.FC = () => {
     setFacing(current => (current === 'back' ? 'front' : 'back'));
   }
 
-  const handleBarCodeScan = ({type, data}: {type: string, data: string}) =>{
-    console.log('type : ', type)
-    console.log('data : ', data)
-    console.log('qr scan')
+  const handleBarCodeScan = async ({ type, data }: { type: string, data: string }) => {
+    setScanned(true);
+    if (!scanned) {
+      const {email, password} = JSON.parse(data)
+      await login(email, password)      
+    }
   }
 
   return (
     <View style={styles.container}>
-      <CameraView style={styles.camera} facing={facing} autofocus='on' barcodeScannerSettings={{barcodeTypes: ['qr']}} onBarcodeScanned={handleBarCodeScan}>
+      <CameraView style={styles.camera} facing={facing} autofocus='on' barcodeScannerSettings={{ barcodeTypes: ['qr'] }} onBarcodeScanned={handleBarCodeScan}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
             <Text style={styles.text}>Flip Camera</Text>
@@ -70,7 +74,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'white',
+    color: 'blue',
   },
 });
 
