@@ -4,7 +4,7 @@ import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
 import { useAuth } from '../context/AuthContext';
 import JWT from 'expo-jwt'
 
-const ScanQRPage: React.FC = () => {
+const ScanQR: React.FC = () => {
   const [permission, requestPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
   const { error, login } = useAuth()
@@ -88,4 +88,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScanQRPage
+export default ScanQR

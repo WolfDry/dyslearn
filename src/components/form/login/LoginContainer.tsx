@@ -5,11 +5,21 @@ import Input from '../Input';
 import { styles } from '../../../../assets/style/style';
 import Button from '../Button';
 import { useAuth } from '../../../context/AuthContext'; // Assurez-vous que le chemin vers AuthContext est correct
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../navigation/Navigator'
+
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
 
 const LoginContainer = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const { error, login } = useAuth();
+    const navigation = useNavigation<LoginScreenNavigationProp>()
+
+    const navigateToQrCode = async () => {
+        navigation.navigate('QrCode');
+    };
 
     const handleLogin = async () => {
         await login(email, password);
@@ -37,7 +47,7 @@ const LoginContainer = () => {
                     </Svg>
                 </View>
                 <View>
-                    <Button text='Connexion par QR code' color='yellow'></Button>
+                    <Button text='Connexion par QR code' color='yellow' action={navigateToQrCode}/>
                 </View>
             </View>
         </View>

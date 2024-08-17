@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 
-import { NavigationContainer } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen'
 import { useFonts } from 'expo-font'
 
 import { AuthProvider } from './src/context/AuthContext'
-import Login from './src/pages/Login'
-import QrCode from './src/pages/QrCode'
+import Navigator from './src/components/navigation/Navigator'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -32,10 +30,7 @@ export default function App() {
 
   return (
     <AuthProvider>
-      <NavigationContainer>
-        {/* <Login /> */}
-        <QrCode/>
-      </NavigationContainer>
+      <Navigator/>
     </AuthProvider>
   );
 }
