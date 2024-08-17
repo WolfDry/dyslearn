@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
 import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
 import { useAuth } from '../context/AuthContext';
+import JWT from 'expo-jwt'
 
 const ScanQRPage: React.FC = () => {
-  const [facing, setFacing] = useState<CameraType>('back');
   const [permission, requestPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
   const { error, login } = useAuth()
@@ -16,30 +16,40 @@ const ScanQRPage: React.FC = () => {
   if (!permission.granted) {
     return (
       <View style={styles.container}>
-        <Text style={styles.message}>We need your permission to show the camera</Text>
-        <Button onPress={requestPermission} title="grant permission" />
+        <Text style={styles.message}>Nous avons besoins de votre permission pour ustiliser la caméra</Text>
+        <Button onPress={requestPermission} title="Donné l'accès" />
       </View>
     );
   }
 
-  function toggleCameraFacing() {
-    setFacing(current => (current === 'back' ? 'front' : 'back'));
+  function rescan() {
+    setScanned(false)
   }
 
-  const handleBarCodeScan = async ({ type, data }: { type: string, data: string }) => {
+  const handleBarCodeScan = async ({ data }: { type: string, data: string }) => {
+    console.log('scan')
     setScanned(true);
     if (!scanned) {
-      const {email, password} = JSON.parse(data)
-      await login(email, password)      
+      const jsonToken = data
+      const secretKey = 'r/E2q-6S9iuL^P4~q9D92d)p4;Qg5zN}(EMd2J4Ayqx!5*?7Y@'
+
+      try {
+        const decoded = JWT.decode(jsonToken, secretKey)
+        console.log(decoded)
+        const loginResult = await login(decoded.email, decoded.password)    
+        console.log(loginResult)
+      } catch (error) {
+        console.error('erreur de déchiffrement', error)
+      }
     }
   }
 
   return (
     <View style={styles.container}>
-      <CameraView style={styles.camera} facing={facing} autofocus='on' barcodeScannerSettings={{ barcodeTypes: ['qr'] }} onBarcodeScanned={handleBarCodeScan}>
+      <CameraView style={styles.camera} facing={'back'} autofocus='on' barcodeScannerSettings={{ barcodeTypes: ['qr'] }} onBarcodeScanned={handleBarCodeScan}>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
-            <Text style={styles.text}>Flip Camera</Text>
+          <TouchableOpacity style={styles.button} onPress={rescan}>
+            <Text style={styles.text}>Rescanner le QrCode</Text>
           </TouchableOpacity>
         </View>
       </CameraView>
