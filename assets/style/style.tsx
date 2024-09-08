@@ -1,5 +1,12 @@
 import { StyleSheet } from "react-native";
 
+export const blue = '#29BADA'
+export const orange = '#F56004'
+export const cream = '#FFFAEF'
+export const yellow = '#FCBD25'
+const glacialRegular = 'glacial-regular'
+const glacialBold = 'glacial-bold'
+
 export const styles = StyleSheet.create({
     flex_025: {
         flex: 0.25,
@@ -47,36 +54,36 @@ export const styles = StyleSheet.create({
     },
 
     blue: {
-        color: '#29BADA',
+        color: blue,
     },
     orange: {
-        color: '#F56004',
+        color: orange,
     },
     cream: {
-        color: '#FFFAEF',
+        color: cream,
     },
     yellow: {
-        color: '#FCBD25',
+        color: yellow,
     },
 
     bg_blue: {
-        backgroundColor: '#29BADA',
+        backgroundColor: blue,
     },
     bg_orange: {
-        backgroundColor: '#F56004',
+        backgroundColor: orange,
     },
     bg_cream: {
-        backgroundColor: '#FFFAEF',
+        backgroundColor: cream,
     },
     bg_yellow: {
-        backgroundColor: '#FCBD25',
+        backgroundColor: yellow,
     },
 
     glacialRegular: {
-        fontFamily: 'glacial-regular'
+        fontFamily: glacialRegular
     },
     glacialBold: {
-        fontFamily: 'glacial-bold',
+        fontFamily: glacialBold,
     },
 
     debug: {
@@ -87,7 +94,7 @@ export const styles = StyleSheet.create({
     title: {
         textAlign: 'center',
         fontSize: 25,
-        color: '#F56004',
-        fontFamily: 'glacial-bold'
+        color: orange,
+        fontFamily: glacialBold
     }
 })
