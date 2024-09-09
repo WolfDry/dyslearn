@@ -8,7 +8,7 @@ import { Svg, Path } from 'react-native-svg';
 import { blue } from '../../assets/style/style';
 
 
-const ScanQR: React.FC = () => {
+const ScanQR = () => {
   const [permission, requestPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
   const { error, login } = useAuth()

@@ -16,13 +16,19 @@ const LoginContainer = () => {
     const [password, setPassword] = useState<string>('');
     const { error, login } = useAuth();
     const navigation = useNavigation<LoginScreenNavigationProp>()
+    const [localError, setLocalError] = useState<string | null>(null);
 
     const navigateToQrCode = async () => {
         navigation.navigate('QrCode');
     };
 
     const handleLogin = async () => {
-        await login(email, password);
+        setLocalError(null)
+        try {
+            await login(email, password)
+        } catch (error: any) {
+            setLocalError(error.message || "Une erreur est survenue lors de la connexion")
+        }
     };
 
     return (
@@ -32,11 +38,11 @@ const LoginContainer = () => {
                     <Input placeholder='Email' password={false} setValue={setEmail} />
                     <Input placeholder='Mot de passe' password={true} setValue={setPassword} />
                 </View>
-                {error && <Text style={style.errorText}>{error}</Text>}
+                {(error || localError) && <Text style={style.errorText}>{error || localError}</Text>}
                 <View style={style.forgotContainer}>
                     <Text style={[style.forgotText, styles.blue, styles.glacialRegular]}>Mot de passe oublié ?</Text>
                 </View>
-                <View style={[styles.flex_075, styles.alignItems, styles.justifyContentAround, style.buttonContainer]}>
+                <View style={[styles.flex_075, styles.alignItems, styles.justifyContentAround]}>
                     <Button text='Se connecter' color='orange' action={handleLogin} />
                 </View>
             </View>
@@ -72,10 +78,6 @@ const style = StyleSheet.create({
 
     forgotText: {
         fontSize: 12,
-    },
-
-    buttonContainer: {
-        // justifyContent: 'space-around',
     },
 
     errorText: {
