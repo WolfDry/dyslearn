@@ -5,6 +5,7 @@ import LoadingNavigator from './LoadingNavigator'
 import LoginNavigator from './LoginNavigator'
 import { Text, View } from 'react-native'
 import { styles } from '../../../assets/style/style'
+import ConnectedNavigator from './ConnectedNavigator'
 
 const Navigator = () => {
 
@@ -22,10 +23,8 @@ const Navigator = () => {
 
     if(user)
         return(
-            <View style={[styles.center, styles.flex_1]}>
-                <Text>Coucou</Text>
-            </View>
-            )
+            <ConnectedNavigator/>
+        )
 };
 
 export default Navigator;

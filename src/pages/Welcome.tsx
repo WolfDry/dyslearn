@@ -5,15 +5,12 @@ import { styles } from '../../assets/style/style'
 
 const Welcome = () => {
   return (
-    <View>
+    <View style={[styles.flex_1, styles.center]}>
         <Text>
-            Coucou
+            Bravo tu es connecté
         </Text>
     </View>
   )
 }
-
-const style = StyleSheet.create({
-})
 
 export default Welcome
