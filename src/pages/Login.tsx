@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, KeyboardAvoidingView, ScrollView, StyleSheet, Platform } from 'react-native';
+import { Text, View, KeyboardAvoidingView, ScrollView, StyleSheet } from 'react-native';
 import Logo from '../components/Logo'
 import LoginContainer from '../components/form/login/LoginContainer';
 

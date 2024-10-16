@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Text, Button } from 'react-native';
-import { CameraView, useCameraPermissions } from 'expo-camera';
-import { useAuth } from '../context/AuthContext';
+import React, { useState } from 'react'
+import { View, StyleSheet, Text, Button } from 'react-native'
+import { CameraView, useCameraPermissions } from 'expo-camera'
+import { Svg, Path } from 'react-native-svg'
 import JWT from 'expo-jwt'
-import { styles } from '../../assets/style/style';
-import { Svg, Path } from 'react-native-svg';
-import { blue } from '../../assets/style/style';
+import { JWT_SECRET } from '@env'
+
+import { styles } from '../../assets/style/style'
+
+import { blue } from '../../assets/style/style'
 
 
 const ScanQR = () => {
-  const [permission, requestPermission] = useCameraPermissions();
-  const [scanned, setScanned] = useState(false);
-  const { error, login } = useAuth()
+  const [permission, requestPermission] = useCameraPermissions()
+  const [scanned, setScanned] = useState(false)
 
   if (!permission) {
     return <View />;
@@ -21,7 +22,7 @@ const ScanQR = () => {
     return (
       <View style={style.container}>
         <Text style={style.message}>Nous avons besoins de votre permission pour ustiliser la caméra</Text>
-        <Button onPress={requestPermission} title="Donné l'accès" />
+        <Button onPress={requestPermission} title="Donner l'accès" />
       </View>
     );
   }
@@ -31,13 +32,13 @@ const ScanQR = () => {
     setScanned(true);
     if (!scanned) {
       const jsonToken = data
-      const secretKey = 'r/E2q-6S9iuL^P4~q9D92d)p4;Qg5zN}(EMd2J4Ayqx!5*?7Y@'
+      const secretKey = JWT_SECRET
 
       try {
         const decoded = JWT.decode(jsonToken, secretKey)
         console.log(decoded)
-        const loginResult = await login(decoded.email, decoded.password)
-        console.log(loginResult)
+        // TODO LOGIN
+        // console.log(loginResult)
       } catch (error) {
         console.error('erreur de déchiffrement', error)
       }

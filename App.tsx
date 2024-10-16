@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
 
 import * as SplashScreen from 'expo-splash-screen'
 import { useFonts } from 'expo-font'
+import { Provider } from 'react-redux'
+import { store } from './src/store/store'
 
-import { AuthProvider } from './src/context/AuthContext'
 import Navigator from './src/components/navigation/Navigator'
 
 SplashScreen.preventAutoHideAsync()
@@ -29,8 +30,8 @@ export default function App() {
   }
 
   return (
-    <AuthProvider>
+    <Provider store={store}>
       <Navigator/>
-    </AuthProvider>
+    </Provider>
   );
-}
+} 

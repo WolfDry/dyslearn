@@ -1,35 +1,42 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
-import { Svg, Path } from 'react-native-svg';
-import Input from '../Input';
-import { styles } from '../../../../assets/style/style';
-import Button from '../Button';
-import { useAuth } from '../../../context/AuthContext'; // Assurez-vous que le chemin vers AuthContext est correct
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../../navigation/Navigator'
+import React, { useEffect, useState } from 'react'
+import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { RootStackParamList } from '../../navigation/LoginNavigator'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { useSelector, useDispatch } from 'react-redux'
+import { login } from '../../../store/thunks/authThunks'
+import { RootState, AppDispatch } from '../../../store/type'
 
-type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
+import { Svg, Path } from 'react-native-svg'
+import { styles } from '../../../../assets/style/style'
+
+import Input from '../Input'
+import Button from '../Button'
+
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>
 
 const LoginContainer = () => {
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const { error, login } = useAuth();
+    const [email, setEmail] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
     const navigation = useNavigation<LoginScreenNavigationProp>()
-    const [localError, setLocalError] = useState<string | null>(null);
+    const { user, error, loading } = useSelector((state: RootState) => state.auth)
+    const dispatch: AppDispatch = useDispatch()
 
     const navigateToQrCode = async () => {
-        navigation.navigate('QrCode');
-    };
+        navigation.navigate('QrCode')
+    }
 
     const handleLogin = async () => {
-        setLocalError(null)
-        try {
-            await login(email, password)
-        } catch (error: any) {
-            setLocalError(error.message || "Une erreur est survenue lors de la connexion")
-        }
-    };
+        dispatch(login(email, password))
+    }
+
+    useEffect(() =>{
+        console.log('user : ', user)
+    }, [user])
+
+    useEffect(() =>{
+        console.log('loading : ', loading)
+    }, [loading])
 
     return (
         <View style={[style.container, styles.flex_075]}>
@@ -38,7 +45,7 @@ const LoginContainer = () => {
                     <Input placeholder='Email' password={false} setValue={setEmail} />
                     <Input placeholder='Mot de passe' password={true} setValue={setPassword} />
                 </View>
-                {(error || localError) && <Text style={style.errorText}>{error || localError}</Text>}
+                {error && <View><Text>{error}</Text></View>}
                 <View style={style.forgotContainer}>
                     <Text style={[style.forgotText, styles.blue, styles.glacialRegular]}>Mot de passe oublié ?</Text>
                 </View>

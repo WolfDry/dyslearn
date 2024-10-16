@@ -1,28 +1,28 @@
-import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-import ScanQR from '../../pages/ScanQR';
-import Login from '../../pages/Login';
-import Welcome from '../../pages/Welcome';
-
-export type RootStackParamList = {
-    Login: undefined
-    QrCode: undefined
-    Welcome: undefined
-};
-
-const Stack = createStackNavigator<RootStackParamList>();
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store/type'
+import LoadingNavigator from './LoadingNavigator'
+import LoginNavigator from './LoginNavigator'
+import { Text } from 'react-native'
 
 const Navigator = () => {
-    return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
-                <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="QrCode" component={ScanQR} />
-                <Stack.Screen name="Welcome" component={Welcome} />
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
+
+    const {user, loading} = useSelector((state: RootState) => state.auth)
+
+    if(loading)
+        return (
+            <LoadingNavigator/>
+        )
+
+    if(!user)
+        return(
+            <LoginNavigator/>
+        )
+
+    if(user)
+        return(
+    <Text>Coucou</Text>
+            )
 };
 
 export default Navigator;
