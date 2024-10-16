@@ -4,18 +4,22 @@ import { CameraView, useCameraPermissions } from 'expo-camera'
 import { Svg, Path } from 'react-native-svg'
 import JWT from 'expo-jwt'
 import { JWT_SECRET } from '@env'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../store/type'
+import { login } from '../store/thunks/authThunks'
 
 import { styles } from '../../assets/style/style'
-
 import { blue } from '../../assets/style/style'
 
 
 const ScanQR = () => {
   const [permission, requestPermission] = useCameraPermissions()
   const [scanned, setScanned] = useState(false)
+  const { error } = useSelector((state: RootState) => state.auth)
+  const dispatch: AppDispatch = useDispatch()
 
   if (!permission) {
-    return <View />;
+    return <View />
   }
 
   if (!permission.granted) {
@@ -24,12 +28,12 @@ const ScanQR = () => {
         <Text style={style.message}>Nous avons besoins de votre permission pour ustiliser la caméra</Text>
         <Button onPress={requestPermission} title="Donner l'accès" />
       </View>
-    );
+    )
   }
 
   const handleBarCodeScan = async ({ data }: { type: string, data: string }) => {
     console.log('scan')
-    setScanned(true);
+    setScanned(true)
     if (!scanned) {
       const jsonToken = data
       const secretKey = JWT_SECRET
@@ -37,8 +41,7 @@ const ScanQR = () => {
       try {
         const decoded = JWT.decode(jsonToken, secretKey)
         console.log(decoded)
-        // TODO LOGIN
-        // console.log(loginResult)
+        dispatch(login(decoded.email, decoded.password))
       } catch (error) {
         console.error('erreur de déchiffrement', error)
       }
@@ -72,6 +75,7 @@ const ScanQR = () => {
           </View>
           <CameraView style={style.camera} facing={'back'} autofocus='on' barcodeScannerSettings={{ barcodeTypes: ['qr'] }} onBarcodeScanned={handleBarCodeScan} />
         </View>
+        {error && <Text>{error}</Text>}
       </View>
     </View>
   )
@@ -137,6 +141,6 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     color: 'blue',
   },
-});
+})
 
 export default ScanQR

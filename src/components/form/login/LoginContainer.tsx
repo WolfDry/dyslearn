@@ -19,7 +19,7 @@ const LoginContainer = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const navigation = useNavigation<LoginScreenNavigationProp>()
-    const { user, error, loading } = useSelector((state: RootState) => state.auth)
+    const { error } = useSelector((state: RootState) => state.auth)
     const dispatch: AppDispatch = useDispatch()
 
     const navigateToQrCode = async () => {
@@ -29,14 +29,6 @@ const LoginContainer = () => {
     const handleLogin = async () => {
         dispatch(login(email, password))
     }
-
-    useEffect(() =>{
-        console.log('user : ', user)
-    }, [user])
-
-    useEffect(() =>{
-        console.log('loading : ', loading)
-    }, [loading])
 
     return (
         <View style={[style.container, styles.flex_075]}>
