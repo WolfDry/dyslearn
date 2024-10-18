@@ -10,7 +10,7 @@ const initialState: AuthState = {
   user: null,
   error: null,
   loading: false,
-};
+}
 
 export const authReducer = (state = initialState, action: any) => {
   switch (action.type) {
@@ -25,4 +25,4 @@ export const authReducer = (state = initialState, action: any) => {
     default:
       return state
   }
-};
+}
