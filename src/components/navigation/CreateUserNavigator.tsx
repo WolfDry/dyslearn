@@ -9,7 +9,7 @@ export type RootStackParamList = {
 
 const Stack = createStackNavigator<RootStackParamList>()
 
-const ConnectedNavigator = () => {
+const CreateUserNavigator = () => {
     return (
       <NavigationContainer>
       <Stack.Navigator initialRouteName="Welcome" screenOptions={{headerShown: false}}>
@@ -19,4 +19,4 @@ const ConnectedNavigator = () => {
     )
 }
 
-export default ConnectedNavigator
+export default CreateUserNavigator

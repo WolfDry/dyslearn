@@ -3,28 +3,26 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../../store/type'
 import LoadingNavigator from './LoadingNavigator'
 import LoginNavigator from './LoginNavigator'
-import { Text, View } from 'react-native'
-import { styles } from '../../../assets/style/style'
-import ConnectedNavigator from './ConnectedNavigator'
+import CreateUserNavigator from './CreateUserNavigator'
 
 const Navigator = () => {
 
-    const {user, loading} = useSelector((state: RootState) => state.auth)
+	const { user, loading } = useSelector((state: RootState) => state.auth)
 
-    if(loading)
-        return (
-            <LoadingNavigator/>
-        )
+	if (loading)
+		return (
+			<LoadingNavigator />
+		)
 
-    if(!user)
-        return(
-            <LoginNavigator/>
-        )
+	if (!user)
+		return (
+			<LoginNavigator />
+		)
 
-    if(user)
-        return(
-            <ConnectedNavigator/>
-        )
+	if (user)
+		return (
+			<CreateUserNavigator />
+		)
 };
 
 export default Navigator;

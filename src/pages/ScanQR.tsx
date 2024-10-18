@@ -32,7 +32,6 @@ const ScanQR = () => {
   }
 
   const handleBarCodeScan = async ({ data }: { type: string, data: string }) => {
-    console.log('scan')
     setScanned(true)
     if (!scanned) {
       const jsonToken = data
@@ -40,7 +39,6 @@ const ScanQR = () => {
 
       try {
         const decoded = JWT.decode(jsonToken, secretKey)
-        console.log(decoded)
         dispatch(login(decoded.email, decoded.password))
       } catch (error) {
         console.error('erreur de déchiffrement', error)
