@@ -10,13 +10,13 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>()
 
 const CreateUserNavigator = () => {
-    return (
-      <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome" screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Welcome" component={Welcome} />
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Welcome" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Welcome" component={Welcome} />
       </Stack.Navigator>
-  </NavigationContainer>
-    )
+    </NavigationContainer>
+  )
 }
 
 export default CreateUserNavigator

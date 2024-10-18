@@ -5,8 +5,8 @@ const logo = require('../../assets/logo/logo.png')
 
 const Logo = () => {
   return (
-    <View style={{width: '100%', height: '100%'}}>
-        <Image source={logo} style={{width: '100%', height: '100%'}} resizeMode='contain' />
+    <View style={{ width: '100%', height: '100%' }}>
+      <Image source={logo} style={{ width: '100%', height: '100%' }} resizeMode='contain' />
     </View>
   )
 }

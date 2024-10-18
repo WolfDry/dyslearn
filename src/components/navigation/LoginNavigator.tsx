@@ -14,15 +14,15 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>()
 
 const LoginNavigator = () => {
-    return (
-      <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="QrCode" component={ScanQR} />
-          <Stack.Screen name="Welcome" component={Welcome} />
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="QrCode" component={ScanQR} />
+        <Stack.Screen name="Welcome" component={Welcome} />
       </Stack.Navigator>
-  </NavigationContainer>
-    )
+    </NavigationContainer>
+  )
 }
 
 export default LoginNavigator

@@ -7,22 +7,22 @@ import CreateUserNavigator from './CreateUserNavigator'
 
 const Navigator = () => {
 
-	const { user, loading } = useSelector((state: RootState) => state.auth)
+  const { user, loading } = useSelector((state: RootState) => state.auth)
 
-	if (loading)
-		return (
-			<LoadingNavigator />
-		)
+  if (loading)
+    return (
+      <LoadingNavigator />
+    )
 
-	if (!user)
-		return (
-			<LoginNavigator />
-		)
+  if (!user)
+    return (
+      <LoginNavigator />
+    )
 
-	if (user)
-		return (
-			<CreateUserNavigator />
-		)
+  if (user)
+    return (
+      <CreateUserNavigator />
+    )
 };
 
 export default Navigator;
