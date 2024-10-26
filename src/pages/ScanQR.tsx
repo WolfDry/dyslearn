@@ -7,6 +7,7 @@ import { JWT_SECRET } from '@env'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../store/type'
 import { login } from '../store/thunks/authThunks'
+import { getParentByEmail } from '../store/thunks/parentThunks'
 
 import { styles } from '../../assets/style/style'
 import { blue } from '../../assets/style/style'
@@ -39,6 +40,7 @@ const ScanQR = () => {
 
       try {
         const decoded = JWT.decode(jsonToken, secretKey)
+        dispatch(getParentByEmail(decoded.email))
         dispatch(login(decoded.email, decoded.password))
       } catch (error) {
         console.error('erreur de déchiffrement', error)

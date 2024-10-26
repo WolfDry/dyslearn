@@ -5,6 +5,7 @@ import { RootStackParamList } from '../../navigation/LoginNavigator'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../../../store/thunks/authThunks'
+import { getParentByEmail } from '../../../store/thunks/parentThunks'
 import { RootState, AppDispatch } from '../../../store/type'
 
 import { Svg, Path } from 'react-native-svg'
@@ -27,6 +28,7 @@ const LoginContainer = () => {
   }
 
   const handleLogin = async () => {
+    dispatch(getParentByEmail(email))
     dispatch(login(email, password))
   }
 

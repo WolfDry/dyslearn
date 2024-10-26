@@ -7,8 +7,6 @@ export const getParent = () => async (dispatch: any) => {
     const { data, error } = await supabase
       .from('parents')
       .select()
-    console.log('parent data : ', data)
-    console.log('error : ', error)
     if (error) throw error
     dispatch(getSuccess(data))
   } catch (error: any) {
@@ -23,8 +21,6 @@ export const getParentByEmail = (email: string) => async (dispatch: any) => {
       .from('parents')
       .select()
       .eq('email', email)
-    console.log('parent data : ', data)
-    console.log('error : ', error)
     if (error) throw error
     dispatch(getSuccess(data))
   } catch (error: any) {
