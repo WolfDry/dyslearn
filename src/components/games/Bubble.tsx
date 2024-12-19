@@ -7,7 +7,6 @@ import Animated, {
   withRepeat,
   withDelay,
   Easing,
-  runOnJS,
 } from 'react-native-reanimated';
 
 const { width, height } = Dimensions.get('window')
@@ -18,20 +17,15 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const Bubble = () => {
   const [result, setResult] = useState(0)
   const [symbole, setSymbole] = useState('addition')
-  const [secondNumber, setSecondNumber] = useState(Math.floor(Math.random() * 10))
+  const [secondNumber, setSecondNumber] = useState(Math.floor(Math.random() * (10 - 1) + 1))
   // Shared values pour la position Y et X de chaque bulle
-  const bubbles = Array.from({ length: 5 }, () => ({
+  const bubbles = Array.from({ length: 6 }, () => ({
     y: useSharedValue(0),
     x: useSharedValue(Math.random() * (width - 70)),
   }));
 
-  const updatePositionX = (bubble: { x: Animated.SharedValue<number> }) => {
-    // Met à jour la position X avec une nouvelle valeur aléatoire
-    bubble.x.value = Math.random() * (width - 70);
-  };
-
   useEffect(() => {
-    const correctNumber = Math.floor(Math.random() * 4) + 1
+    const correctNumber = Math.floor(Math.random() * (6 - 1) + 1)
     setResult(correctNumber + secondNumber)
   }, [])
 
@@ -45,10 +39,6 @@ const Bubble = () => {
             {
               duration: 4000,
               easing: Easing.linear,
-            },
-            () => {
-              // Met à jour la position X après chaque cycle
-              runOnJS(updatePositionX)(bubble);
             }
           ),
           -1, // Répétition infinie
@@ -56,17 +46,17 @@ const Bubble = () => {
         )
       );
     });
-  }, [bubbles]);
+  }, []);
 
   const handleBubblePress = (index: number) => {
-    console.log(`Bubble ${index + 1} touched!`);
     switch (symbole) {
       case 'addition':
-        if ((index + 1) + secondNumber === result)
+        if ((index + 1) + secondNumber === result) {
           alert('Bravo tu as réussi')
+          resetCalcul()
+        }
         else
           alert('Perdu recommence')
-        console.log((index + 1) + secondNumber)
         break;
 
       default:
@@ -74,6 +64,13 @@ const Bubble = () => {
     }
     // Déclencher une action ici
   };
+
+  const resetCalcul = () => {
+    const sndNumber = Math.floor(Math.random() * (10 - 1) + 1)
+    setSecondNumber(sndNumber)
+    const correctNumber = Math.floor(Math.random() * (6 - 1) + 1)
+    setResult(correctNumber + sndNumber)
+  }
 
   return (
     <View style={styles.container}>
