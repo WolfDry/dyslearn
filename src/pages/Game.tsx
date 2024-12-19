@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import { styles } from '../../assets/style/style'
+import Bubble from '../components/games/Bubble'
 
 const Game = () => {
   const gameLabel = 'addition'
@@ -8,11 +9,7 @@ const Game = () => {
   switch (gameLabel) {
     case 'addition':
       return (
-        <View style={[styles.center, styles.flex_1]}>
-          <Text>
-            Addition games page
-          </Text>
-        </View>
+        <Bubble />
       )
     default:
       return (
