@@ -1,11 +1,15 @@
 import React from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, Pressable } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { useSelector } from 'react-redux'
+import { RootState } from '../store/type'
+
 import Logo from '../components/Logo'
 import Face from '../components/Face'
 
 import { blue, orange, styles, yellow } from '../../assets/style/style'
-import { useSelector } from 'react-redux'
-import { RootState } from '../store/type'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { RootStackParamList } from '../components/navigation/CreateUserNavigator'
 
 interface child {
   id: number,
@@ -17,14 +21,26 @@ interface child {
   first_name: string,
 }
 
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>
+
 const Welcome = () => {
 
-  const { parent, error } = useSelector((state: RootState) => state.parent)
+  const navigation = useNavigation<HomeScreenNavigationProp>()
+  const { parent, error }: { parent: { children: child[] }[]; error: string | null } = useSelector((state: RootState) => state.parent)
 
-  if (error)
+  const handleNavigation = () => {
+    console.log('coucou')
+    navigation.navigate('Home')
+  }
+
+  if (error) {
     return (
-      <Text>{error}</Text>
+      <View style={[styles.center, styles.flex_1]}>
+        <Text>{error}</Text>
+      </View>
     )
+  }
+
 
   return (
     <View style={[styles.flex_1, styles.bg_cream, styles.padding_60]}>
@@ -46,14 +62,20 @@ const Welcome = () => {
           <Face border={yellow} bg={blue} />
           <Text>Parents</Text>
         </View>
-        {parent[0].children.map((child: child, key: number) => {
-          return (
-            <View key={key} style={[style.faceContainer, styles.alignItems]}>
-              <Face border={orange} bg={blue} />
-              <Text>{child.first_name}</Text>
-            </View>
-          )
-        })}
+        {!parent || parent.length === 0 ? (
+          <Text>Aucun profil disponible</Text>
+        ) : (
+          parent[0]?.children?.map((child, key: number) => {
+            return (
+              <Pressable key={key} onPress={() => handleNavigation()}>
+                <View style={[style.faceContainer, styles.alignItems]}>
+                  <Face border={orange} bg={blue} />
+                  <Text>{child.first_name}</Text>
+                </View>
+              </Pressable>
+            )
+          })
+        )}
       </View>
     </View>
   )
