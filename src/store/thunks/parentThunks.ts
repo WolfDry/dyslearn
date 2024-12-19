@@ -6,7 +6,7 @@ export const getParent = () => async (dispatch: any) => {
   try {
     const { data, error } = await supabase
       .from('parents')
-      .select()
+      .select('*, children(*)')
     if (error) throw error
     dispatch(getSuccess(data))
   } catch (error: any) {
@@ -19,7 +19,7 @@ export const getParentByEmail = (email: string) => async (dispatch: any) => {
   try {
     const { data, error } = await supabase
       .from('parents')
-      .select()
+      .select('*, children(*)')
       .eq('email', email)
     if (error) throw error
     dispatch(getSuccess(data))
