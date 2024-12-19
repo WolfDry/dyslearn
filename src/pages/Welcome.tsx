@@ -29,7 +29,6 @@ const Welcome = () => {
   const { parent, error }: { parent: { children: child[] }[]; error: string | null } = useSelector((state: RootState) => state.parent)
 
   const handleNavigation = () => {
-    console.log('coucou')
     navigation.navigate('Home')
   }
 

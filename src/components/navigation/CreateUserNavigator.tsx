@@ -3,10 +3,12 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import Welcome from '../../pages/Welcome'
 import Home from '../../pages/Home'
+import Game from '../../pages/Game'
 
 export type RootStackParamList = {
   Welcome: undefined,
-  Home: undefined
+  Home: undefined,
+  Game: undefined
 }
 
 const Stack = createStackNavigator<RootStackParamList>()
@@ -17,6 +19,7 @@ const CreateUserNavigator = () => {
       <Stack.Navigator initialRouteName="Welcome" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Game" component={Game} />
       </Stack.Navigator>
     </NavigationContainer>
   )
