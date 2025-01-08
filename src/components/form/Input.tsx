@@ -1,24 +1,23 @@
-import React, { useState } from 'react'
-import { View, TextInput, StyleSheet } from 'react-native'
-import { styles } from '../../../assets/style/style'
-import Icon from 'react-native-vector-icons/Ionicons'
+import React, { useState } from 'react';
+import { View, TextInput, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { black, styles, white } from '../../../assets/style/style';
 
 type InputProps = {
   placeholder: string,
   password: boolean,
-  setValue: (value: string) => void
-}
+  setValue: (value: string) => void,
+};
 
 const Input = (props: InputProps) => {
-
-  const [hidePassword, setHidePassword] = useState(props.password)
+  const [hidePassword, setHidePassword] = useState(props.password);
 
   return (
-    <View style={[style.inputContainer, styles.justifyContentCenter, styles.bg_blue, styles.alignItems]}>
+    <View style={[style.inputContainer, styles.center]}>
       <TextInput
-        style={[style.input, styles.glacialBold, styles.cream, styles.flex_1]}
+        style={[style.input, styles.full_w]}
         placeholder={props.placeholder}
-        placeholderTextColor={'rgba(255, 250, 239, 0.53)'}
+        placeholderTextColor={black}
         secureTextEntry={hidePassword}
         onChangeText={props.setValue}
       />
@@ -26,35 +25,36 @@ const Input = (props: InputProps) => {
         <Icon
           style={style.icon}
           onPress={() => {
-            setHidePassword(!hidePassword)
+            setHidePassword(!hidePassword);
           }}
-          name={hidePassword ? "eye-outline" : "eye-off-outline"}
+          name={hidePassword ? 'eye-outline' : 'eye-off-outline'}
         />
       )}
     </View>
-  )
-}
+  );
+};
 
 const style = StyleSheet.create({
   inputContainer: {
-    flexDirection: 'row',
-    width: '100%',
-    height: 38,
-    paddingHorizontal: '10%',
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 125,
-    borderBottomRightRadius: 125,
-    borderBottomLeftRadius: 150,
+    height: 100,
+    paddingHorizontal: 40,
+    gap: 10,
+    alignSelf: 'stretch',
+    borderRadius: 50,
+    backgroundColor: white,
+    borderWidth: 1,
+    borderColor: black
   },
-
   input: {
-    fontSize: 15,
+    fontSize: 24,
+    letterSpacing: 0.48
   },
-
   icon: {
+    position: 'absolute',
+    right: 10,
     fontSize: 20,
-    color: 'rgba(255, 250, 239, 0.53)',
-  }
-})
+    color: 'black',
+  },
+});
 
-export default Input
+export default Input;

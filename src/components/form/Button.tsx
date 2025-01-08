@@ -1,30 +1,34 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native'
+import { Text, Pressable, StyleSheet } from 'react-native'
 import React from 'react'
 import { styles } from '../../../assets/style/style'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 type InputProps = {
   text: string,
   color: string,
+  iconName: string,
   action?: () => Promise<void>
 }
 
 const Button = (props: InputProps) => {
   return (
-    <View>
-      <Pressable style={[
-        style.button,
-        props.color == 'yellow' ? styles.bg_yellow :
-          props.color == 'orange' ? styles.bg_orange :
-            props.color == 'blue' ? styles.bg_blue :
-              styles.bg_cream
-      ]}
-        onPress={props.action}
-      >
-        <Text style={[style.text, styles.cream, styles.glacialBold]}>
-          {props.text}
-        </Text>
-      </Pressable>
-    </View>
+    <Pressable style={[
+      style.button,
+      styles.flexRow,
+      styles.alignItems,
+      styles.justifyContentBetween,
+      props.color == 'lightBlue' ? styles.bg_lightBlue :
+        props.color == 'orange' ? styles.bg_orange :
+          props.color == 'darkBlue' ? styles.bg_darkBlue :
+            styles.bg_cream
+    ]}
+      onPress={props.action}
+    >
+      <Text style={[style.text, styles.cream, styles.glacialBold, styles.black]}>
+        {props.text}
+      </Text>
+      <Icon style={style.icon} name={props.iconName} />
+    </Pressable>
   )
 }
 
@@ -32,14 +36,20 @@ const style = StyleSheet.create({
 
   button: {
     borderRadius: 50,
-    paddingVertical: 10,
-    paddingHorizontal: 50,
+    paddingVertical: 35,
+    paddingHorizontal: 100,
+    gap: 20,
   },
 
   text: {
-    width: '100%',
     textAlign: 'center',
-    fontSize: 15,
+    fontSize: 25,
+    fontWeight: 700,
+  },
+
+  icon: {
+    fontSize: 40,
+    color: 'white',
   }
 })
 

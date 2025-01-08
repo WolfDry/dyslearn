@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
-import { RootStackParamList } from '../../navigation/LoginNavigator'
-import { StackNavigationProp } from '@react-navigation/stack'
+// import { useNavigation } from '@react-navigation/native'
+// import { RootStackParamList } from '../../navigation/LoginNavigator'
+// import { StackNavigationProp } from '@react-navigation/stack'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../../../store/thunks/authThunks'
 import { getParentByEmail } from '../../../store/thunks/parentThunks'
 import { RootState, AppDispatch } from '../../../store/type'
 
-import { Svg, Path } from 'react-native-svg'
+// import { Svg, Path } from 'react-native-svg'
 import { styles } from '../../../../assets/style/style'
 
 import Input from '../Input'
 import Button from '../Button'
 
-type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>
+// type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>
 
 const LoginContainer = () => {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const navigation = useNavigation<LoginScreenNavigationProp>()
+  // const navigation = useNavigation<LoginScreenNavigationProp>()
   const { error } = useSelector((state: RootState) => state.auth)
   const dispatch: AppDispatch = useDispatch()
 
-  const navigateToQrCode = async () => {
-    navigation.navigate('QrCode')
-  }
+  // const navigateToQrCode = async () => {
+  //   navigation.navigate('QrCode')
+  // }
 
   const handleLogin = async () => {
     dispatch(getParentByEmail(email))
@@ -33,21 +33,18 @@ const LoginContainer = () => {
   }
 
   return (
-    <View style={[style.container, styles.flex_075]}>
-      <View style={[styles.flex_075]}>
-        <View style={style.inputContainer}>
-          <Input placeholder='Email' password={false} setValue={setEmail} />
-          <Input placeholder='Mot de passe' password={true} setValue={setPassword} />
-        </View>
-        {error && <View><Text>{error}</Text></View>}
-        <View style={style.forgotContainer}>
-          <Text style={[style.forgotText, styles.blue, styles.glacialRegular]}>Mot de passe oublié ?</Text>
-        </View>
-        <View style={[styles.flex_075, styles.alignItems, styles.justifyContentAround]}>
-          <Button text='Se connecter' color='orange' action={handleLogin} />
-        </View>
+    <View style={[style.container, styles.full_w]}>
+      <View style={[style.inputContainer, styles.full_w]}>
+        <Input placeholder='Email' password={false} setValue={setEmail} />
+        <Input placeholder='Mot de passe' password={true} setValue={setPassword} />
+        <Text style={[style.forgotText, styles.black, styles.glacialRegular]}>Mot de passe oublié ?</Text>
       </View>
-      <TouchableHighlight style={[styles.flex_05, styles.alignItems, styles.justifyContentAround]} onPress={navigateToQrCode} underlayColor="transparent">
+      {error && <Text>{error}</Text>}
+      <View style={[style.buttonContainer, styles.flexRow, styles.justifyContentAround, styles.alignItems]}>
+        <Button text='Je me connecte' color='orange' iconName='checkmark-circle' action={handleLogin} />
+        <Button text="Je n'ai pas de compte" color='lightBlue' iconName='' action={handleLogin} />
+      </View>
+      {/* <TouchableHighlight style={[styles.flex_05, styles.alignItems, styles.justifyContentAround]} onPress={navigateToQrCode} underlayColor="transparent">
         <View>
           <View>
             <Svg width="94" height="93" viewBox="0 0 94 93" fill="none">
@@ -58,19 +55,22 @@ const LoginContainer = () => {
             <Button text='Connexion par QR code' color='yellow' action={navigateToQrCode} />
           </View>
         </View>
-      </TouchableHighlight>
+      </TouchableHighlight> */}
     </View>
   );
 }
 
 const style = StyleSheet.create({
+
   container: {
-    paddingHorizontal: '10%',
+    gap: 75,
+    alignSelf: 'stretch',
   },
 
   inputContainer: {
-    height: '50%',
-    justifyContent: 'space-around',
+    alignItems: 'flex-end',
+    alignSelf: 'stretch',
+    gap: 20,
   },
 
   forgotContainer: {
@@ -78,7 +78,9 @@ const style = StyleSheet.create({
   },
 
   forgotText: {
-    fontSize: 12,
+    fontSize: 24,
+    textDecorationLine: 'underline',
+    textDecorationStyle: 'solid',
   },
 
   errorText: {
@@ -86,6 +88,10 @@ const style = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 10,
   },
+
+  buttonContainer: {
+    gap: 140,
+  }
 })
 
 export default LoginContainer;

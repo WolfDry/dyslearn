@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
 
-export const blue = '#29BADA'
-export const orange = '#F56004'
+export const lightBlue = '#34BDE8'
+export const darkBlue = '#201726'
+export const orange = '#FD9830'
 export const cream = '#FFFAEF'
-export const yellow = '#FCBD25'
-export const green = '#023436'
+export const white = '#fff'
+export const black = '#000'
 const glacialRegular = 'glacial-regular'
 const glacialBold = 'glacial-bold'
 
@@ -65,8 +66,11 @@ export const styles = StyleSheet.create({
     padding: 100
   },
 
-  full: {
-    width: '100%'
+  full_w: {
+    width: '100%',
+  },
+  full_h: {
+    height: '100%',
   },
   center: {
     alignItems: 'center',
@@ -91,8 +95,11 @@ export const styles = StyleSheet.create({
     flexDirection: 'row'
   },
 
-  blue: {
-    color: blue,
+  lightBlue: {
+    color: lightBlue,
+  },
+  darkBlue: {
+    color: darkBlue,
   },
   orange: {
     color: orange,
@@ -100,24 +107,24 @@ export const styles = StyleSheet.create({
   cream: {
     color: cream,
   },
-  yellow: {
-    color: yellow,
+  white: {
+    color: white,
   },
-  green: {
-    color: green
+  black: {
+    color: black,
   },
 
-  bg_blue: {
-    backgroundColor: blue,
+  bg_lightBlue: {
+    backgroundColor: lightBlue,
+  },
+  bg_darkBlue: {
+    backgroundColor: darkBlue,
   },
   bg_orange: {
     backgroundColor: orange,
   },
   bg_cream: {
     backgroundColor: cream,
-  },
-  bg_yellow: {
-    backgroundColor: yellow,
   },
 
   glacialRegular: {
@@ -134,8 +141,10 @@ export const styles = StyleSheet.create({
 
   title: {
     textAlign: 'center',
-    fontSize: 25,
-    color: orange,
+    fontSize: 36,
+    fontWeight: 700,
+    letterSpacing: 1.8,
+    color: darkBlue,
     fontFamily: glacialBold
   },
   textAlign: {

@@ -10,7 +10,7 @@ import { login } from '../store/thunks/authThunks'
 import { getParentByEmail } from '../store/thunks/parentThunks'
 
 import { styles } from '../../assets/style/style'
-import { blue } from '../../assets/style/style'
+import { lightBlue } from '../../assets/style/style'
 
 
 const ScanQR = () => {
@@ -52,25 +52,25 @@ const ScanQR = () => {
     <View style={[styles.justifyContentCenter, styles.flex_1, styles.center]}>
       <View style={[styles.center, style.container]}>
         <Text style={styles.title}>Scanner le QR code</Text>
-        <View style={[styles.flex_1, styles.full, style.cameraContainer]}>
+        <View style={[styles.flex_1, styles.full_w, style.cameraContainer]}>
           <View style={[style.blueBorderTopLeft]} >
             <Svg width="50" height="50" viewBox="0 0 50 50" fill="none">
-              <Path d="M47.5 2.5H2.5V47.5" stroke={blue} strokeWidth={5} strokeLinecap={"round"} strokeLinejoin={"round"} />
+              <Path d="M47.5 2.5H2.5V47.5" stroke={lightBlue} strokeWidth={5} strokeLinecap={"round"} strokeLinejoin={"round"} />
             </Svg>
           </View>
           <View style={[style.blueBorderTopRight]} >
             <Svg width="50" height="50" viewBox="0 0 50 50" fill="none">
-              <Path d="M2.5 2.5H47.5V47.5" stroke={blue} strokeWidth={5} strokeLinecap={"round"} strokeLinejoin={"round"} />
+              <Path d="M2.5 2.5H47.5V47.5" stroke={lightBlue} strokeWidth={5} strokeLinecap={"round"} strokeLinejoin={"round"} />
             </Svg>
           </View>
           <View style={[style.blueBorderBottomLeft]} >
             <Svg width="50" height="50" viewBox="0 0 50 50" fill="none">
-              <Path d="M47.5 47.5H2.5V2.5" stroke={blue} strokeWidth={5} strokeLinecap={"round"} strokeLinejoin={"round"} />
+              <Path d="M47.5 47.5H2.5V2.5" stroke={lightBlue} strokeWidth={5} strokeLinecap={"round"} strokeLinejoin={"round"} />
             </Svg>
           </View>
           <View style={[style.blueBorderBottomRight]} >
             <Svg width="50" height="50" viewBox="0 0 50 50" fill="none">
-              <Path d="M2.5 47.5H47.5V2.5" stroke={blue} strokeWidth={5} strokeLinecap={"round"} strokeLinejoin={"round"} />
+              <Path d="M2.5 47.5H47.5V2.5" stroke={lightBlue} strokeWidth={5} strokeLinecap={"round"} strokeLinejoin={"round"} />
             </Svg>
           </View>
           <CameraView style={style.camera} facing={'back'} autofocus='on' barcodeScannerSettings={{ barcodeTypes: ['qr'] }} onBarcodeScanned={handleBarCodeScan} />

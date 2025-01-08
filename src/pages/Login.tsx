@@ -7,21 +7,13 @@ import { styles } from '../../assets/style/style'
 
 const Login = () => {
   return (
-    <KeyboardAvoidingView style={[styles.flex_1, styles.bg_cream]}>
-      <ScrollView contentContainerStyle={style.container}>
-        <View style={[styles.flex_2, styles.center]}>
-          <View style={[styles.center, { width: '50%', height: '50%', marginTop: '10%' }]}>
-            <Logo />
-          </View>
+    <KeyboardAvoidingView style={[styles.bg_cream]}>
+      <ScrollView contentContainerStyle={[style.container, styles.alignItems]}>
+        <View style={[style.logoContainer, styles.center]}>
+          <Logo />
         </View>
-        <View style={styles.flex_2}>
-          <View style={styles.flex_025}>
-            <Text style={[styles.title]}>Bienvenue</Text>
-          </View>
-          <View style={[styles.flex_4]}>
-            <LoginContainer />
-          </View>
-        </View>
+        <Text style={[styles.title, styles.full_w]}>Connexion</Text>
+        <LoginContainer />
       </ScrollView>
     </KeyboardAvoidingView>
   )
@@ -29,11 +21,14 @@ const Login = () => {
 
 const style = StyleSheet.create({
   container: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingHorizontal: 102,
+    paddingVertical: 55,
   },
+
+  logoContainer: {
+    width: 360,
+    height: 280
+  }
 })
 
 export default Login
