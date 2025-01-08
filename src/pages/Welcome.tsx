@@ -56,7 +56,7 @@ const Welcome = () => {
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem
         </Text>
       </View>
-      <View style={[styles.flex_2, styles.flexWrap, styles.flexRow, styles.alignItems, styles.debug]}>
+      <View style={[styles.flex_2, styles.flexWrap, styles.flexRow, styles.alignItems]}>
         <View style={[style.faceContainer, styles.alignItems]}>
           <Face border={yellow} bg={blue} />
           <Text>Parents</Text>
