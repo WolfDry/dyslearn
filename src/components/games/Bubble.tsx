@@ -1,5 +1,7 @@
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react'
-import { Dimensions, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Button, Dimensions, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -8,16 +10,20 @@ import Animated, {
   withDelay,
   Easing,
 } from 'react-native-reanimated';
+import { RootStackParamList } from '../navigation/CreateUserNavigator';
 
 const { width, height } = Dimensions.get('window')
 
 // Créer une version animée de Pressable
-const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
+
+type BubbleScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Game'>;
 
 const Bubble = () => {
   const [result, setResult] = useState(0)
   const [symbole, setSymbole] = useState('addition')
   const [secondNumber, setSecondNumber] = useState(Math.floor(Math.random() * (10 - 1) + 1))
+  const navigation = useNavigation<BubbleScreenNavigationProp>()
   // Shared values pour la position Y et X de chaque bulle
   const bubbles = Array.from({ length: 6 }, () => ({
     y: useSharedValue(0),
@@ -62,7 +68,6 @@ const Bubble = () => {
       default:
         break;
     }
-    // Déclencher une action ici
   };
 
   const resetCalcul = () => {
@@ -74,6 +79,7 @@ const Bubble = () => {
 
   return (
     <View style={styles.container}>
+      <Button onPress={() => { navigation.goBack() }} title='Retour'></Button>
       <View>
         <Text style={{ color: 'white', fontSize: 25 }}>Calcul : {secondNumber} + ... = {result}</Text>
       </View>
