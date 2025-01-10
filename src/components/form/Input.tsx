@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { black, styles, white } from '../../../assets/style/style';
+import { black, darkBlue, styles, white } from '../../../assets/style/style';
 
 type InputProps = {
   placeholder: string,
@@ -36,14 +36,13 @@ const Input = (props: InputProps) => {
 
 const style = StyleSheet.create({
   inputContainer: {
-    height: 100,
-    paddingHorizontal: 40,
-    gap: 10,
+    paddingHorizontal: 50,
+    paddingVertical: 35.5,
     alignSelf: 'stretch',
-    borderRadius: 50,
+    borderRadius: 15,
     backgroundColor: white,
     borderWidth: 1,
-    borderColor: black
+    borderColor: darkBlue
   },
   input: {
     fontSize: 24,

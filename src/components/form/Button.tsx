@@ -1,7 +1,6 @@
 import { Text, Pressable, StyleSheet } from 'react-native'
 import React from 'react'
-import { styles } from '../../../assets/style/style'
-import Icon from 'react-native-vector-icons/Ionicons'
+import { darkBlue, styles } from '../../../assets/style/style'
 
 type InputProps = {
   text: string,
@@ -14,9 +13,7 @@ const Button = (props: InputProps) => {
   return (
     <Pressable style={[
       style.button,
-      styles.flexRow,
-      styles.alignItems,
-      styles.justifyContentBetween,
+      styles.center,
       props.color == 'lightBlue' ? styles.bg_lightBlue :
         props.color == 'orange' ? styles.bg_orange :
           props.color == 'darkBlue' ? styles.bg_darkBlue :
@@ -27,7 +24,6 @@ const Button = (props: InputProps) => {
       <Text style={[style.text, styles.cream, styles.glacialBold, styles.black]}>
         {props.text}
       </Text>
-      <Icon style={style.icon} name={props.iconName} />
     </Pressable>
   )
 }
@@ -35,16 +31,23 @@ const Button = (props: InputProps) => {
 const style = StyleSheet.create({
 
   button: {
-    borderRadius: 50,
-    paddingVertical: 35,
-    paddingHorizontal: 100,
-    gap: 20,
+    flexGrow: 1,
+    height: 110,
+    borderRadius: 30,
+    paddingHorizontal: 40,
+    gap: 40,
+    shadowColor: darkBlue,
+    shadowOffset: { width: 10, height: 10 },
+    shadowOpacity: 1,
+    shadowRadius: 15,
+    elevation: 5
   },
 
   text: {
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: 700,
+    letterSpacing: 1.2,
   },
 
   icon: {

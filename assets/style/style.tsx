@@ -145,7 +145,8 @@ export const styles = StyleSheet.create({
     fontWeight: 700,
     letterSpacing: 1.8,
     color: darkBlue,
-    fontFamily: glacialBold
+    fontFamily: glacialBold,
+    alignSelf: 'stretch',
   },
   textAlign: {
     textAlign: 'center',

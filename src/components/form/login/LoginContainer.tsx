@@ -33,14 +33,14 @@ const LoginContainer = () => {
   }
 
   return (
-    <View style={[style.container, styles.full_w]}>
-      <View style={[style.inputContainer, styles.full_w]}>
+    <View style={[style.container]}>
+      <View style={[style.inputContainer]}>
         <Input placeholder='Email' password={false} setValue={setEmail} />
         <Input placeholder='Mot de passe' password={true} setValue={setPassword} />
         <Text style={[style.forgotText, styles.black, styles.glacialRegular]}>Mot de passe oublié ?</Text>
       </View>
       {error && <Text>{error}</Text>}
-      <View style={[style.buttonContainer, styles.flexRow, styles.justifyContentAround, styles.alignItems]}>
+      <View style={[style.buttonContainer, styles.flexRow, styles.center]}>
         <Button text='Je me connecte' color='orange' iconName='checkmark-circle' action={handleLogin} />
         <Button text="Je n'ai pas de compte" color='lightBlue' iconName='' action={handleLogin} />
       </View>
@@ -63,8 +63,9 @@ const LoginContainer = () => {
 const style = StyleSheet.create({
 
   container: {
-    gap: 75,
+    gap: 20,
     alignSelf: 'stretch',
+    alignItems: 'stretch',
   },
 
   inputContainer: {
@@ -79,6 +80,7 @@ const style = StyleSheet.create({
 
   forgotText: {
     fontSize: 24,
+    letterSpacing: 0.48,
     textDecorationLine: 'underline',
     textDecorationStyle: 'solid',
   },
@@ -90,7 +92,8 @@ const style = StyleSheet.create({
   },
 
   buttonContainer: {
-    gap: 140,
+    gap: 50,
+    alignSelf: 'stretch'
   }
 })
 
