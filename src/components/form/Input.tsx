@@ -45,6 +45,7 @@ const style = StyleSheet.create({
     borderColor: darkBlue
   },
   input: {
+    textAlign: 'center',
     fontSize: 24,
     letterSpacing: 0.48
   },
