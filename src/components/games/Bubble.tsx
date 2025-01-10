@@ -24,9 +24,12 @@ const Bubble = () => {
   const [secondNumber, setSecondNumber] = useState(Math.floor(Math.random() * 9) + 1);
   const navigation = useNavigation<BubbleScreenNavigationProp>();
 
-  const bubbles = Array.from({ length: 6 }, () => ({
+  const numBubbles = 6;
+  const bubbleSpacing = width / numBubbles; // Divisez la largeur par le nombre de bulles
+
+  const bubbles = Array.from({ length: numBubbles }, (_, index) => ({
     y: useSharedValue(0),
-    x: useSharedValue(Math.random() * (width - 70)),
+    x: useSharedValue(0), // Initialisez la position `x` ici
   }));
 
   useEffect(() => {
@@ -35,18 +38,16 @@ const Bubble = () => {
   }, [secondNumber]);
 
   useEffect(() => {
-    bubbles.forEach((bubble, index) => {
-      bubble.y.value = withDelay(
-        index * 800,
+    bubbles.forEach((bubble) => {
+      bubble.y.value =
         withRepeat(
           withTiming(height, {
-            duration: 1000,
+            duration: Math.floor(Math.random() * (6000 - 2000 + 1)) + 2000,
             easing: Easing.linear,
           }),
           -1,
           false
-        )
-      );
+        );
     });
   }, [bubbles]);
 
@@ -68,9 +69,20 @@ const Bubble = () => {
   };
 
   const resetBubbles = () => {
-    bubbles.forEach(bubble => {
+    // Créez une liste de positions `x` possibles
+    let possibleXPositions = [];
+    for (let i = 0; i < numBubbles; i++) {
+      let xPos = bubbleSpacing * i + Math.random() * 30 - 15; // Décalage aléatoire
+      possibleXPositions.push(xPos);
+    }
+
+    // Mélangez les positions pour les rendre aléatoires
+    possibleXPositions = possibleXPositions.sort(() => Math.random() - 0.5);
+
+    // Attribuez les positions `x` à chaque bulle
+    bubbles.forEach((bubble, index) => {
       bubble.y.value = 0;
-      bubble.x.value = Math.random() * (width - 70);
+      bubble.x.value = possibleXPositions[index]; // Utilisez les positions mélangées
     });
   };
 
