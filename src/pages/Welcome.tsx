@@ -7,7 +7,7 @@ import { RootState } from '../store/type'
 import Logo from '../components/Logo'
 import Face from '../components/Face'
 
-import { blue, orange, styles, yellow } from '../../assets/style/style'
+import { lightBlue, orange, styles } from '../../assets/style/style'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamList } from '../components/navigation/CreateUserNavigator'
 
@@ -49,16 +49,16 @@ const Welcome = () => {
         </View>
       </View>
       <View style={[styles.flex_1]}>
-        <Text style={[styles.title, styles.green]}>
+        <Text style={[styles.title, styles.darkBlue]}>
           Choisis ton profil
         </Text>
-        <Text style={[styles.green, styles.alignItems, styles.textAlign]}>
+        <Text style={[styles.darkBlue, styles.alignItems, styles.textAlign]}>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem
         </Text>
       </View>
       <View style={[styles.flex_2, styles.flexWrap, styles.flexRow, styles.alignItems]}>
         <View style={[style.faceContainer, styles.alignItems]}>
-          <Face border={yellow} bg={blue} />
+          <Face border={orange} bg={lightBlue} />
           <Text>Parents</Text>
         </View>
         {!parent || parent.length === 0 ? (
@@ -68,7 +68,7 @@ const Welcome = () => {
             return (
               <Pressable key={key} onPress={() => handleNavigation()}>
                 <View style={[style.faceContainer, styles.alignItems]}>
-                  <Face border={orange} bg={blue} />
+                  <Face border={orange} bg={lightBlue} />
                   <Text>{child.first_name}</Text>
                 </View>
               </Pressable>

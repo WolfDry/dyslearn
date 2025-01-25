@@ -16,13 +16,13 @@ const Home = () => {
 
   const navigation = useNavigation<HomeScreenNavigationProp>()
 
-  const handleNavigation = () => {
-    navigation.navigate('Game')
+  const handleNavigation = (direction) => {
+    navigation.navigate('Theme', direction)
   }
 
   return (
     <View style={[styles.flex_1, styles.center, styles.flexRow, styles.padding_40, style.container]}>
-      <Pressable style={[styles.flex_1, styles.bg_lightBlue, style.card]} onPress={() => handleNavigation()}>
+      <Pressable style={[styles.flex_1, styles.bg_lightBlue, style.card]} onPress={() => handleNavigation('game')}>
         <View style={[styles.center, styles.flexRow, style.containerContent]}>
           <Text style={[styles.textAlign, style.textCard]}>
             Jeux
@@ -40,7 +40,7 @@ const Home = () => {
         </View>
         <Image style={style.image} source={chill} resizeMode='contain' />
       </Pressable>
-      <Pressable style={[styles.flex_1, styles.bg_orange, styles.alignItems, style.card]}>
+      <Pressable style={[styles.flex_1, styles.bg_orange, styles.alignItems, style.card]} onPress={() => handleNavigation('lesson')}>
         <View style={[styles.center, styles.flexRow, style.containerContent]}>
           <Text style={[styles.textAlign, style.textCard]}>
             Leçons

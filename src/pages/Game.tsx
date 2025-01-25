@@ -2,14 +2,18 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { styles } from '../../assets/style/style'
 import Bubble from '../components/games/Bubble'
+import Duel from '../components/games/Duel'
 
-const Game = () => {
-  const gameLabel = 'addition'
+const Game = ({ route }) => {
 
-  switch (gameLabel) {
-    case 'addition':
+  switch (route.params) {
+    case 'bubble':
       return (
         <Bubble />
+      )
+    case 'duel':
+      return (
+        <Duel />
       )
     default:
       return (
