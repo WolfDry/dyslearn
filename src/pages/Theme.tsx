@@ -18,10 +18,13 @@ const Theme = ({ route }) => {
   return (
     <View style={[styles.center, styles.full_h]}>
       <Pressable onPress={() => handleNavigate('bubble')}>
-        <Text>bulles</Text>
+        <Text>Bulles</Text>
       </Pressable>
       <Pressable onPress={() => handleNavigate('duel')}>
-        <Text>duel</Text>
+        <Text>Duel</Text>
+      </Pressable>
+      <Pressable onPress={() => handleNavigate('frieze')}>
+        <Text>Frise</Text>
       </Pressable>
     </View>
   )

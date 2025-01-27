@@ -3,6 +3,7 @@ import { Text, View } from 'react-native'
 import { styles } from '../../assets/style/style'
 import Bubble from '../components/games/Bubble'
 import Duel from '../components/games/Duel'
+import Frieze from '../components/games/Frieze'
 
 const Game = ({ route }) => {
 
@@ -14,6 +15,10 @@ const Game = ({ route }) => {
     case 'duel':
       return (
         <Duel />
+      )
+    case 'frieze':
+      return (
+        <Frieze />
       )
     default:
       return (
