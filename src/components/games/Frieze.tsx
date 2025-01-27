@@ -9,6 +9,10 @@ const Frieze = () => {
   const [findableNumber, setFindableNumber] = useState<number>(0)
 
   useEffect(() => {
+    resetGame()
+  }, [friezeWidth])
+
+  const resetGame = () => {
     if (friezeWidth > 0) {
       const newNumbers = []
       for (let index = 0; index <= 10; index++) {
@@ -18,29 +22,38 @@ const Frieze = () => {
           isFindable: true
         })
       }
-      const random = Math.floor(Math.random() * 11)
-      setFindableNumber(random)
-      newNumbers[random].isFindable = false
+      let newFindableNumber;
+      do {
+        newFindableNumber = Math.floor(Math.random() * 11);
+      } while (newFindableNumber === findableNumber)
+      setFindableNumber(newFindableNumber)
+      newNumbers[newFindableNumber].isFindable = false
       setNumberArray(newNumbers)
       const valueArray = newNumbers.map(item => item.index)
-      valueArray.splice(random, 1)
-      const newPropositions = [random]
+      valueArray.splice(newFindableNumber, 1)
+      const newPropositions = [newFindableNumber]
       for (let index = 0; index < 2; index++) {
         const newNumber = valueArray.splice(Math.floor(Math.random() * valueArray.length))[0]
         newPropositions.push(newNumber)
       }
+
+      for (var i = newPropositions.length - 1; i >= 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = newPropositions[i];
+        newPropositions[i] = newPropositions[j];
+        newPropositions[j] = temp;
+      }
       setPropositions(newPropositions)
     }
-  }, [friezeWidth])
+  }
 
   const handlePress = (value) => {
     if (value === findableNumber)
       alert('Bravo tu as réussi !')
     else
       alert('Désolé tu as raté !')
+    resetGame()
   }
-
-  console.log(propositions)
 
   return (
     <View style={[styles.full_h, styles.center, styles.padding_50]}>
