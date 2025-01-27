@@ -66,6 +66,37 @@ export const styles = StyleSheet.create({
     padding: 100
   },
 
+  margin_10: {
+    margin: 10
+  },
+  margin_20: {
+    margin: 20
+  },
+  margin_30: {
+    margin: 30
+  },
+  margin_40: {
+    margin: 40
+  },
+  margin_50: {
+    margin: 50
+  },
+  margin_60: {
+    margin: 60
+  },
+  margin_70: {
+    margin: 70
+  },
+  margin_80: {
+    margin: 80
+  },
+  margin_90: {
+    margin: 90
+  },
+  margin_100: {
+    margin: 100
+  },
+
   full_w: {
     width: '100%',
   },

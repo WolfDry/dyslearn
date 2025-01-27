@@ -1,38 +1,70 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { black, styles } from '../../../assets/style/style'
 
 const Frieze = () => {
   const [numberArray, setNumberArray] = useState<object[]>([])
+  const [propositions, setPropositions] = useState<number[]>([])
   const [friezeWidth, setFriezeWidth] = useState<number>(0)
+  const [findableNumber, setFindableNumber] = useState<number>(0)
 
   useEffect(() => {
     if (friezeWidth > 0) {
-      const newArray = []
+      const newNumbers = []
       for (let index = 0; index <= 10; index++) {
-        newArray.push({
+        newNumbers.push({
           index,
           left: (index / 10) * friezeWidth,
+          isFindable: true
         })
       }
-      setNumberArray(newArray)
+      const random = Math.floor(Math.random() * 11)
+      setFindableNumber(random)
+      newNumbers[random].isFindable = false
+      setNumberArray(newNumbers)
+      const valueArray = newNumbers.map(item => item.index)
+      valueArray.splice(random, 1)
+      const newPropositions = [random]
+      for (let index = 0; index < 2; index++) {
+        const newNumber = valueArray.splice(Math.floor(Math.random() * valueArray.length))[0]
+        newPropositions.push(newNumber)
+      }
+      setPropositions(newPropositions)
     }
   }, [friezeWidth])
+
+  const handlePress = (value) => {
+    if (value === findableNumber)
+      alert('Bravo tu as réussi !')
+    else
+      alert('Désolé tu as raté !')
+  }
+
+  console.log(propositions)
 
   return (
     <View style={[styles.full_h, styles.center, styles.padding_50]}>
       <View
-        style={[style.frieze, styles.full_w]}
+        style={[style.frieze, styles.full_w, styles.margin_100]}
         onLayout={(event) => {
           const { width } = event.nativeEvent.layout
           setFriezeWidth(width)
         }}
       >
-        {numberArray.map((item: { index: number, left: number }, index) => (
+        {numberArray.map((item: { index: number, left: number, isFindable: boolean }, index) => (
           <View key={index} style={[style.tag, { left: item.left }]}>
-            <Text style={[style.tagText, styles.textAlign]}>{item.index}</Text>
+            <Text style={[style.tagText, styles.textAlign]}>{item.isFindable ? item.index : null}</Text>
           </View>
         ))}
+      </View>
+      <View style={[styles.center, styles.flexRow]}>
+        {
+          propositions.map((item, index) => (
+            <Pressable key={index} style={[style.button]} onPress={() => handlePress(item)}>
+              <Text style={styles.textAlign}>{item}</Text>
+            </Pressable>
+          ))
+        }
       </View>
     </View>
   )
@@ -61,4 +93,10 @@ const style = StyleSheet.create({
     top: 15,
     left: -12
   },
+  button: {
+    width: 30,
+    paddingVertical: 10,
+    fontSize: 12,
+    borderWidth: 1
+  }
 })
