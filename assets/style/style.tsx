@@ -4,6 +4,10 @@ export const lightBlue = '#34BDE8'
 export const darkBlue = '#201726'
 export const orange = '#FD9830'
 export const cream = '#FFFAEF'
+export const yellow = '#FCBD25'
+export const darkOrange = '#F56004'
+export const pink = '#F493CC'
+export const green = '#34AD6A'
 export const white = '#fff'
 export const black = '#000'
 const glacialRegular = 'glacial-regular'
@@ -138,6 +142,18 @@ export const styles = StyleSheet.create({
   cream: {
     color: cream,
   },
+  yellow: {
+    color: yellow,
+  },
+  darkOrange: {
+    color: darkOrange,
+  },
+  pink: {
+    color: pink,
+  },
+  green: {
+    color: green,
+  },
   white: {
     color: white,
   },
@@ -156,6 +172,43 @@ export const styles = StyleSheet.create({
   },
   bg_cream: {
     backgroundColor: cream,
+  },
+  bg_yellow: {
+    backgroundColor: yellow,
+  },
+  bg_darkOrange: {
+    backgroundColor: darkOrange,
+  },
+  bg_pink: {
+    backgroundColor: pink,
+  },
+  bg_green: {
+    backgroundColor: green,
+  },
+
+  border_orange: {
+    borderColor: orange
+  },
+  border_lightBlue: {
+    borderColor: lightBlue
+  },
+  border_darkBlue: {
+    borderColor: darkBlue
+  },
+  border_cream: {
+    borderColor: cream
+  },
+  border_yellow: {
+    borderColor: yellow
+  },
+  border_darkOrange: {
+    borderColor: darkOrange
+  },
+  border_pink: {
+    borderColor: pink
+  },
+  border_green: {
+    borderColor: green
   },
 
   glacialRegular: {
