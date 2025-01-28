@@ -5,6 +5,7 @@ import { styles } from '../../assets/style/style'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamList } from '../components/navigation/CreateUserNavigator'
 import Svg, { Path } from 'react-native-svg'
+import Card from '../components/Card'
 
 type ThemeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Theme'>
 
@@ -14,9 +15,9 @@ const Theme = ({ route }) => {
 
   const navigation = useNavigation<ThemeScreenNavigationProp>()
 
-  // const handleNavigate = (game) => {
-  //   navigation.navigate('Game', game)
-  // }
+  const handleNavigation = (direction) => {
+    navigation.navigate('Game', direction)
+  }
 
   return (
     <View style={[styles.padding_50, styles.alignItems, styles.bg_cream, styles.flexRow, style.container]}>
@@ -38,68 +39,14 @@ const Theme = ({ route }) => {
       </View>
       <View style={[styles.alignItems, styles.flexRow, style.buttonsContainer]}>
         <View style={[styles.center, style.buttonContainer]}>
-          <Pressable style={[styles.center, styles.bg_yellow, styles.border_yellow, style.card]} onPress={() => navigation.navigate('Game')}>
-            <View style={[styles.alignItems, style.cardContent]}>
-              <Svg width="51" height="51" viewBox="0 0 51 51" fill="none">
-                <Path d="M25.5 0.833496C27.7917 0.833496 30.0052 1.12863 32.1406 1.71891C34.276 2.30919 36.2639 3.1512 38.1042 4.24495C39.9444 5.3387 41.6285 6.64079 43.1562 8.1512C44.684 9.66162 45.9861 11.3456 47.0625 13.2033C48.1389 15.0609 48.9809 17.0575 49.5885 19.1929C50.1962 21.3283 50.5 23.5418 50.5 25.8335C50.5 28.1252 50.2049 30.3387 49.6146 32.4741C49.0243 34.6095 48.1823 36.5974 47.0885 38.4377C45.9948 40.2779 44.6927 41.962 43.1823 43.4897C41.6719 45.0175 39.9878 46.3196 38.1302 47.396C36.2726 48.4724 34.276 49.3144 32.1406 49.922C30.0052 50.5297 27.7917 50.8335 25.5 50.8335C23.2083 50.8335 20.9948 50.5384 18.8594 49.9481C16.724 49.3578 14.7361 48.5158 12.8958 47.422C11.0556 46.3283 9.37153 45.0262 7.84375 43.5158C6.31597 42.0054 5.01389 40.3213 3.9375 38.4637C2.86111 36.6061 2.0191 34.6182 1.41146 32.5002C0.803819 30.3821 0.5 28.1599 0.5 25.8335C0.5 23.5418 0.795139 21.3283 1.38542 19.1929C1.97569 17.0575 2.81771 15.0696 3.91146 13.2293C5.00521 11.3891 6.30729 9.70502 7.81771 8.17725C9.32812 6.64947 11.0122 5.34738 12.8698 4.271C14.7274 3.19461 16.7153 2.35259 18.8333 1.74495C20.9514 1.13732 23.1736 0.833496 25.5 0.833496ZM40.5 24.1668H27.1667V10.8335H23.8333V24.1668H10.5V27.5002H23.8333V40.8335H27.1667V27.5002H40.5V24.1668Z" fill="white" />
-              </Svg>
-              <Text style={[styles.darkBlue, style.title]}>
-                Additions
-              </Text>
-            </View>
-          </Pressable>
-          <Pressable style={[styles.center, styles.bg_lightBlue, styles.border_lightBlue, style.card]} onPress={() => navigation.navigate('Game')}>
-            <View style={[styles.alignItems, style.cardContent]}>
-              <Svg width="51" height="51" viewBox="0 0 51 51" fill="none">
-                <Path d="M25.5 0.5C27.7917 0.5 30.0052 0.795139 32.1406 1.38542C34.276 1.97569 36.2639 2.81771 38.1042 3.91146C39.9444 5.00521 41.6285 6.30729 43.1562 7.81771C44.684 9.32812 45.9861 11.0122 47.0625 12.8698C48.1389 14.7274 48.9809 16.724 49.5885 18.8594C50.1962 20.9948 50.5 23.2083 50.5 25.5C50.5 27.7917 50.2049 30.0052 49.6146 32.1406C49.0243 34.276 48.1823 36.2639 47.0885 38.1042C45.9948 39.9444 44.6927 41.6285 43.1823 43.1562C41.6719 44.684 39.9878 45.9861 38.1302 47.0625C36.2726 48.1389 34.276 48.9809 32.1406 49.5885C30.0052 50.1962 27.7917 50.5 25.5 50.5C23.2083 50.5 20.9948 50.2049 18.8594 49.6146C16.724 49.0243 14.7361 48.1823 12.8958 47.0885C11.0556 45.9948 9.37153 44.6927 7.84375 43.1823C6.31597 41.6719 5.01389 39.9878 3.9375 38.1302C2.86111 36.2726 2.0191 34.2847 1.41146 32.1667C0.803819 30.0486 0.5 27.8264 0.5 25.5C0.5 23.2083 0.795139 20.9948 1.38542 18.8594C1.97569 16.724 2.81771 14.7361 3.91146 12.8958C5.00521 11.0556 6.30729 9.37153 7.81771 7.84375C9.32812 6.31597 11.0122 5.01389 12.8698 3.9375C14.7274 2.86111 16.7153 2.0191 18.8333 1.41146C20.9514 0.803819 23.1736 0.5 25.5 0.5ZM40.5 23.8333H27.1667H23.8333H10.5V27.1667H23.8333H27.1667H40.5V23.8333Z" fill="white" />
-              </Svg>
-              <Text style={[styles.darkBlue, style.title]}>
-                Soustractions
-              </Text>
-            </View>
-          </Pressable>
-          <Pressable style={[styles.center, styles.bg_orange, styles.border_orange, style.card]} onPress={() => navigation.navigate('Game')}>
-            <View style={[styles.alignItems, style.cardContent]}>
-              <Svg width="51" height="51" viewBox="0 0 51 51" fill="none">
-                <Path d="M25.5 0.166992C11.6929 0.166992 0.5 11.3599 0.5 25.167C0.5 38.9741 11.6929 50.167 25.5 50.167C39.3071 50.167 50.5 38.9741 50.5 25.167C50.5 11.3599 39.3071 0.166992 25.5 0.166992ZM33.9109 7.97633C34.6438 7.98212 35.3553 8.25245 35.8929 8.79003L40.0533 12.9488C41.2033 14.0988 41.1245 16.0365 39.8806 17.2832C38.6338 18.5301 36.693 18.6042 35.5462 17.4574L31.3874 13.2987C30.2374 12.1518 30.3178 10.208 31.5616 8.9642C32.2224 8.30174 33.0803 7.96978 33.9109 7.97633ZM27.0562 13.4712L35.3753 21.7887L21.8558 35.305L13.5367 26.986L27.0562 13.4712ZM11.3773 28.5611L20.1523 37.3362L9.18004 39.5335L11.3773 28.5611Z" fill="white" />
-              </Svg>
-              <Text style={[styles.darkBlue, style.title]}>
-                Ecriture des maths
-              </Text>
-            </View>
-          </Pressable>
+          <Card action={handleNavigation} label={'addition'} />
+          <Card action={handleNavigation} label={'subtraction'} />
+          <Card action={handleNavigation} label={'writing'} />
         </View>
         <View style={[styles.center, style.buttonContainer]}>
-          <Pressable style={[styles.center, styles.bg_darkOrange, styles.border_darkOrange, style.card]} onPress={() => navigation.navigate('Game')}>
-            <View style={[styles.alignItems, style.cardContent]}>
-              <Svg width="51" height="51" viewBox="0 0 51 51" fill="none">
-                <Path d="M43.1777 8.1557C44.7981 9.77615 46.1546 11.5501 47.2472 13.4774C48.3398 15.4048 49.15 17.4058 49.6779 19.4805C50.2058 21.5551 50.4758 23.6666 50.4881 25.815C50.5004 27.9633 50.2303 30.0748 49.6779 32.1494C49.1255 34.2241 48.3091 36.2313 47.2288 38.1709C46.1485 40.1105 44.7981 41.8906 43.1777 43.511C41.5572 45.1315 39.7833 46.488 37.856 47.5806C35.9286 48.6732 33.9276 49.4834 31.8529 50.0113C29.7782 50.5391 27.6667 50.8092 25.5184 50.8215C23.3701 50.8338 21.2586 50.5637 19.1839 50.0113C17.1092 49.4588 15.1021 48.6425 13.1625 47.5622C11.2228 46.4819 9.44278 45.1315 7.82233 43.511C6.20188 41.8906 4.84536 40.1167 3.75278 38.1893C2.66021 36.262 1.84998 34.2609 1.32211 32.1863C0.794231 30.1116 0.524155 28.0001 0.51188 25.8518C0.499605 23.7034 0.769678 21.592 1.32211 19.5173C1.87453 17.4426 2.68476 15.4416 3.75278 13.5142C4.82081 11.5869 6.17733 9.8007 7.82233 8.1557C9.44278 6.53524 11.2167 5.17873 13.144 4.08615C15.0714 2.99357 17.0724 2.18334 19.1471 1.65547C21.2218 1.1276 23.3333 0.85752 25.4816 0.845244C27.6299 0.832968 29.7414 1.10304 31.8161 1.65547C33.8908 2.2079 35.8918 3.01812 37.8191 4.08615C39.7465 5.15417 41.5327 6.51069 43.1777 8.1557ZM37.2851 35.2615L27.857 25.8334L37.2851 16.4053L34.9281 14.0483L25.5 23.4763L16.0719 14.0483L13.7149 16.4053L23.143 25.8334L13.7149 35.2615L16.0719 37.6185L25.5 28.1904L34.9281 37.6185L37.2851 35.2615Z" fill="white" />
-              </Svg>
-              <Text style={[styles.darkBlue, style.title]}>
-                Multiplications
-              </Text>
-            </View>
-          </Pressable>
-          <Pressable style={[styles.center, styles.bg_pink, styles.border_pink, style.card]} onPress={() => navigation.navigate('Game')}>
-            <View style={[styles.alignItems, style.cardContent]}>
-              <Svg width="51" height="51" viewBox="0 0 51 51" fill="none">
-                <Path d="M25.5 50.5C39.3071 50.5 50.5 39.3071 50.5 25.5C50.5 11.6929 39.3071 0.5 25.5 0.5C11.6929 0.5 0.5 11.6929 0.5 25.5C0.5 39.3071 11.6929 50.5 25.5 50.5Z" fill="white" />
-              </Svg>
-              <Text style={[styles.darkBlue, style.title]}>
-                Divisions
-              </Text>
-            </View>
-          </Pressable>
-          <Pressable style={[styles.center, styles.bg_orange, styles.border_orange, style.card]} onPress={() => navigation.navigate('Game')}>
-            <View style={[styles.alignItems, style.cardContent]}>
-              <Svg width="51" height="51" viewBox="0 0 51 51" fill="none">
-                <Path d="M25.5 0.166992C27.7917 0.166992 30.0052 0.462131 32.1406 1.05241C34.276 1.64269 36.2639 2.4847 38.1042 3.57845C39.9444 4.6722 41.6285 5.97428 43.1562 7.4847C44.684 8.99512 45.9861 10.6791 47.0625 12.5368C48.1389 14.3944 48.9809 16.391 49.5885 18.5264C50.1962 20.6618 50.5 22.8753 50.5 25.167C50.5 27.4587 50.2049 29.6722 49.6146 31.8076C49.0243 33.943 48.1823 35.9309 47.0885 37.7712C45.9948 39.6114 44.6927 41.2955 43.1823 42.8232C41.6719 44.351 39.9878 45.6531 38.1302 46.7295C36.2726 47.8059 34.276 48.6479 32.1406 49.2555C30.0052 49.8632 27.7917 50.167 25.5 50.167C23.2083 50.167 20.9948 49.8719 18.8594 49.2816C16.724 48.6913 14.7361 47.8493 12.8958 46.7555C11.0556 45.6618 9.37153 44.3597 7.84375 42.8493C6.31597 41.3389 5.01389 39.6548 3.9375 37.7972C2.86111 35.9396 2.0191 33.9517 1.41146 31.8337C0.803819 29.7156 0.5 27.4934 0.5 25.167C0.5 22.8753 0.795139 20.6618 1.38542 18.5264C1.97569 16.391 2.81771 14.4031 3.91146 12.5628C5.00521 10.7225 6.30729 9.03852 7.81771 7.51074C9.32812 5.98296 11.0122 4.68088 12.8698 3.60449C14.7274 2.5281 16.7153 1.68609 18.8333 1.07845C20.9514 0.470812 23.1736 0.166992 25.5 0.166992Z" fill="white" />
-              </Svg>
-              <Text style={[styles.darkBlue, style.title]}>
-                Géométrie
-              </Text>
-            </View>
-          </Pressable>
+          <Card action={handleNavigation} label={'multiplication'} />
+          <Card action={handleNavigation} label={'division'} />
+          <Card action={handleNavigation} label={'geometry'} />
         </View>
       </View>
     </View>

@@ -5,7 +5,6 @@ export const login = (email: string, password: string) => async (dispatch: any) 
   dispatch(loginRequest())
   try {
     const { data, error } = await supabase.auth.signInWithPassword({ email, password })
-    console.log('error', error)
     if (error) throw error
     dispatch(loginSuccess(data.user))
   } catch (error: any) {
