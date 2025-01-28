@@ -20,14 +20,14 @@ const Home = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>()
   const dispatch: AppDispatch = useDispatch()
 
-  const handleNavigation = (type) => {
-    dispatch(updatePath({ type: type }))
+  const handleNavigation = (type, img) => {
+    dispatch(updatePath({ type: type, image: img }))
     navigation.navigate('Theme')
   }
 
   return (
     <View style={[styles.flex_1, styles.center, styles.flexRow, styles.padding_40, style.container]}>
-      <Pressable style={[styles.flex_1, styles.bg_lightBlue, style.card]} onPress={() => handleNavigation('Jeux')}>
+      <Pressable style={[styles.flex_1, styles.bg_lightBlue, style.card]} onPress={() => handleNavigation('Jeux', chill)}>
         <View style={[styles.center, styles.flexRow, style.containerContent]}>
           <Text style={[styles.textAlign, style.textCard]}>
             Jeux
@@ -45,7 +45,7 @@ const Home = () => {
         </View>
         <Image style={style.image} source={chill} resizeMode='contain' />
       </Pressable>
-      <Pressable style={[styles.flex_1, styles.bg_orange, styles.alignItems, style.card]} onPress={() => handleNavigation('Leçons')}>
+      <Pressable style={[styles.flex_1, styles.bg_orange, styles.alignItems, style.card]} onPress={() => handleNavigation('Leçons', school)}>
         <View style={[styles.center, styles.flexRow, style.containerContent]}>
           <Text style={[styles.textAlign, style.textCard]}>
             Leçons

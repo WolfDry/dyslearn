@@ -10,8 +10,6 @@ import { useSelector } from 'react-redux'
 
 type ThemeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Theme'>
 
-const chill = require('../../assets/images/character/chill.png')
-
 const Theme = ({ route }) => {
 
   const navigation = useNavigation<ThemeScreenNavigationProp>()
@@ -37,7 +35,7 @@ const Theme = ({ route }) => {
             </Svg>
           </View>
         </View>
-        <Image style={[styles.alignItems, style.reddContainer]} source={chill} resizeMode='contain' />
+        <Image style={[styles.alignItems, style.reddContainer]} source={path.image} resizeMode='contain' />
       </View>
       <View style={[styles.alignItems, styles.flexRow, style.buttonsContainer]}>
         <View style={[styles.center, style.buttonContainer]}>
