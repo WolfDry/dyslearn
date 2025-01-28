@@ -1,4 +1,4 @@
-import { GET_REQUEST, GET_SUCCESS, GET_FAILURE } from "../actions/pathActions"
+import { GET_REQUEST, GET_SUCCESS, GET_FAILURE, UPDATE_PATH } from "../actions/pathActions"
 
 interface PathState {
   path: any
@@ -20,6 +20,8 @@ export const pathReducer = (state = initialState, action: any) => {
       return { ...state, path: action.payload, loading: false }
     case GET_FAILURE:
       return { ...state, error: action.payload, loading: false }
+    case UPDATE_PATH:
+      return { ...state, path: action.payload }
     default:
       return state
   }

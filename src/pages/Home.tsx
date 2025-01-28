@@ -6,6 +6,9 @@ import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamList } from '../components/navigation/CreateUserNavigator'
 import Svg, { Path } from 'react-native-svg'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from '../store/type'
+import { updatePath } from '../store/actions/pathActions'
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>
 
@@ -15,14 +18,16 @@ const school = require('../../assets/images/character/school.png')
 const Home = () => {
 
   const navigation = useNavigation<HomeScreenNavigationProp>()
+  const dispatch: AppDispatch = useDispatch()
 
-  const handleNavigation = (direction) => {
-    navigation.navigate('Theme', direction)
+  const handleNavigation = (type) => {
+    dispatch(updatePath({ type: type }))
+    navigation.navigate('Theme')
   }
 
   return (
     <View style={[styles.flex_1, styles.center, styles.flexRow, styles.padding_40, style.container]}>
-      <Pressable style={[styles.flex_1, styles.bg_lightBlue, style.card]} onPress={() => handleNavigation('game')}>
+      <Pressable style={[styles.flex_1, styles.bg_lightBlue, style.card]} onPress={() => handleNavigation('Jeux')}>
         <View style={[styles.center, styles.flexRow, style.containerContent]}>
           <Text style={[styles.textAlign, style.textCard]}>
             Jeux
@@ -40,7 +45,7 @@ const Home = () => {
         </View>
         <Image style={style.image} source={chill} resizeMode='contain' />
       </Pressable>
-      <Pressable style={[styles.flex_1, styles.bg_orange, styles.alignItems, style.card]} onPress={() => handleNavigation('lesson')}>
+      <Pressable style={[styles.flex_1, styles.bg_orange, styles.alignItems, style.card]} onPress={() => handleNavigation('Leçons')}>
         <View style={[styles.center, styles.flexRow, style.containerContent]}>
           <Text style={[styles.textAlign, style.textCard]}>
             Leçons

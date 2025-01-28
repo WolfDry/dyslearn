@@ -6,6 +6,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamList } from '../components/navigation/CreateUserNavigator'
 import Svg, { Path } from 'react-native-svg'
 import Card from '../components/Card'
+import { useSelector } from 'react-redux'
 
 type ThemeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Theme'>
 
@@ -14,6 +15,7 @@ const chill = require('../../assets/images/character/chill.png')
 const Theme = ({ route }) => {
 
   const navigation = useNavigation<ThemeScreenNavigationProp>()
+  const path = useSelector((state: any) => state.path.path)
 
   const handleNavigation = (direction) => {
     navigation.navigate('Game', direction)
@@ -23,7 +25,7 @@ const Theme = ({ route }) => {
     <View style={[styles.padding_50, styles.alignItems, styles.bg_cream, styles.flexRow, style.container]}>
       <View style={[styles.center, style.reddContainer]}>
         <View style={[styles.center, styles.flexRow, style.titleContainer]}>
-          <Text style={[styles.darkBlue, style.title]}>Jeux</Text>
+          <Text style={[styles.darkBlue, style.title]}>{path.type}</Text>
           <View style={[styles.center, style.diceIcon]}>
             <Svg width="72" height="77" viewBox="0 0 72 77" fill="none">
               <Path d="M30.2529 1.72256L4.7681 12.723C2.15691 13.8901 0.712891 16.8485 0.712891 19.8422V55.2374C0.712891 59.3466 2.19491 62.8642 5.7534 64.4384L30.9586 75.4144C32.5436 76.1267 34.2615 76.4949 35.9992 76.4949C37.7368 76.4949 39.4547 76.1267 41.0397 75.4144L66.2449 61.7161C69.8007 60.1364 71.2854 59.3466 71.2854 55.2374V19.8422C71.2854 16.8485 70.1183 13.8928 67.5044 12.723L41.7454 1.72256C39.9369 0.916542 37.9791 0.5 35.9992 0.5C34.0192 0.5 32.0614 0.916542 30.2529 1.72256Z" fill="#F3EEF8" />

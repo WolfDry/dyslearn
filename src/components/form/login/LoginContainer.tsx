@@ -28,8 +28,8 @@ const LoginContainer = () => {
   // }
 
   const handleLogin = async () => {
-    dispatch(getParentByEmail(email))
     dispatch(login(email, password))
+    dispatch(getParentByEmail(email))
   }
 
   return (
