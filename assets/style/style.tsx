@@ -185,6 +185,9 @@ export const styles = StyleSheet.create({
   bg_green: {
     backgroundColor: green,
   },
+  bg_white: {
+    backgroundColor: white,
+  },
 
   border_orange: {
     borderColor: orange

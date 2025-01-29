@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
-// import { useNavigation } from '@react-navigation/native'
-// import { RootStackParamList } from '../../navigation/LoginNavigator'
-// import { StackNavigationProp } from '@react-navigation/stack'
+import { useNavigation } from '@react-navigation/native'
+import { RootStackParamList } from '../../navigation/LoginNavigator'
+import { StackNavigationProp } from '@react-navigation/stack'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../../../store/thunks/authThunks'
 import { getParentByEmail } from '../../../store/thunks/parentThunks'
@@ -14,12 +14,12 @@ import { styles } from '../../../../assets/style/style'
 import Input from '../Input'
 import Button from '../Button'
 
-// type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>
 
 const LoginContainer = () => {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  // const navigation = useNavigation<LoginScreenNavigationProp>()
+  const navigation = useNavigation<LoginScreenNavigationProp>()
   const { error } = useSelector((state: RootState) => state.auth)
   const dispatch: AppDispatch = useDispatch()
 
@@ -32,6 +32,10 @@ const LoginContainer = () => {
     dispatch(getParentByEmail(email))
   }
 
+  const handleRegister = () => {
+    navigation.navigate('Register')
+  }
+
   return (
     <View style={[style.container]}>
       <View style={[style.inputContainer]}>
@@ -41,8 +45,8 @@ const LoginContainer = () => {
       </View>
       {error && <Text>{error}</Text>}
       <View style={[style.buttonContainer, styles.flexRow, styles.center]}>
-        <Button text='Je me connecte' color='orange' iconName='checkmark-circle' action={handleLogin} />
-        <Button text="Je n'ai pas de compte" color='lightBlue' iconName='' action={handleLogin} />
+        <Button text='Je me connecte' color='orange' action={handleLogin} />
+        <Button text="Je n'ai pas de compte" color='lightBlue' action={handleRegister} />
       </View>
       {/* <TouchableHighlight style={[styles.flex_05, styles.alignItems, styles.justifyContentAround]} onPress={navigateToQrCode} underlayColor="transparent">
         <View>
