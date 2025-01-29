@@ -1,25 +1,34 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { styles } from '../../../../assets/style/style'
 import Input from '../Input'
 import Button from '../Button'
 
 const HealthPro = ({ handleInputChange, handleChangeView, value }) => {
+
+  const [isVisible, setIsVisible] = useState(false)
+
   return (
     <>
       <View style={[styles.flex_1, styles.center, styles.flexRow, style.container]}>
-        <View style={[styles.center, styles.flex_1, styles.bg_orange, style.card]}>
+        <Pressable onPress={() => setIsVisible(true)} style={[styles.center, styles.flex_1, styles.bg_orange, style.card]}>
           <Text style={[styles.darkBlue, style.title]}>Oui</Text>
-        </View>
-        <View style={[styles.center, styles.flex_1, styles.bg_lightBlue, style.card]}>
+        </Pressable>
+        <Pressable onPress={() => handleChangeView()} style={[styles.center, styles.flex_1, styles.bg_lightBlue, style.card]}>
           <Text style={[styles.darkBlue, style.title]}>Non</Text>
-        </View>
+        </Pressable>
       </View>
-      <Text style={[styles.darkBlue, styles.textAlign, style.title, { alignSelf: 'stretch' }]}>
-        Comment s'appelle t-il/elle
-      </Text>
-      <Input placeholder='Exemple : Marion Pelletier' password={false} setValue={handleInputChange} value={value} />
-      <Button text='Je confirme ma réponse' color='orange' action={handleChangeView} />
+      {/* En rajoutant une view vide quand oui pas séléctionner peut régler le problème de bouton trop grand */}
+      {
+        isVisible &&
+        <>
+          <Text style={[styles.darkBlue, styles.textAlign, style.title, { alignSelf: 'stretch' }]}>
+            Comment s'appelle t-il/elle
+          </Text>
+          <Input placeholder='Exemple : Marion Pelletier' password={false} setValue={handleInputChange} value={value} />
+          <Button text='Je confirme ma réponse' color='orange' action={handleChangeView} />
+        </>
+      }
     </>
   )
 }

@@ -8,6 +8,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamList } from '../components/navigation/LoginNavigator'
 import Form from '../components/form/register/Form'
 import HealthPro from '../components/form/register/HealthPro'
+import Security from '../components/form/register/Security'
 
 type RegisterScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Register'>
 
@@ -23,24 +24,28 @@ const Register = () => {
     email: '',
     password: '',
     confirmPassword: '',
-    proName: ''
+    proName: '',
+    securityData: '',
+    confirmSecurityData: '',
   })
 
   useEffect(() => {
     switch (title.label) {
       case 'inscription':
         setContent(<Form data={formData} handleInputChange={handleInputChange} handleChangeView={() => handleChangeView()} />)
-        break;
+        break
       case 'healthPro':
         setContent(<HealthPro handleInputChange={handleInputChange} handleChangeView={handleChangeView} value={formData.proName} />)
-        break;
+        break
+      case 'security':
+        setContent(<Security handleInputChange={handleInputChange} data={formData} />)
+        break
       default:
-        break;
+        break
     }
   }, [title, formData])
 
   const handleInputChange = (field, value) => {
-    console.log(field, value)
     setFormData((prev) => ({ ...prev, [field]: value }));
   }
 
@@ -52,6 +57,9 @@ const Register = () => {
       case 'healthPro':
         setTitle({ value: 'Inscription', label: 'inscription' })
         break
+      case 'security':
+        setTitle({ value: 'Êtes-vous accompagnés par un professionnel de santé ?', label: 'healthPro' })
+        break
 
       default:
         break
@@ -59,18 +67,26 @@ const Register = () => {
   }
 
   const handleChangeView = () => {
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.password || !formData.confirmPassword) {
-      alert('Erreur champ vide')
-      return
-    }
+    switch (title.label) {
+      case 'inscription':
+        if (!formData.firstName || !formData.lastName || !formData.email || !formData.password || !formData.confirmPassword) {
+          alert('Erreur champ vide')
+          return
+        }
 
-    if (formData.password !== formData.confirmPassword) {
-      alert('Erreur mot de passe différent');
-      return
-    }
+        if (formData.password !== formData.confirmPassword) {
+          alert('Erreur mot de passe différent');
+          return
+        }
 
-    // Si toutes les vérifications passent, tu peux changer de vue
-    setTitle({ value: 'Êtes-vous accompagnés par un professionnel de santé ?', label: 'healthPro' })
+        setTitle({ value: 'Êtes-vous accompagnés par un professionnel de santé ?', label: 'healthPro' })
+        break
+      case 'healthPro':
+        setTitle({ value: 'Sécurité parentale', label: 'security' })
+        break
+      default:
+        break
+    }
   }
 
   return (
