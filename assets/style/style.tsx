@@ -129,6 +129,9 @@ export const styles = StyleSheet.create({
   flexRow: {
     flexDirection: 'row'
   },
+  alignSelfStrech: {
+    alignSelf: 'stretch'
+  },
 
   lightBlue: {
     color: lightBlue,

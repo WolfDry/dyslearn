@@ -17,13 +17,21 @@ export const getParent = () => async (dispatch: any) => {
 export const getParentByEmail = (email: string) => async (dispatch: any) => {
   dispatch(getRequest())
   try {
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from('parents')
       .select('*, children(*)')
       .eq('email', email)
-    if (error) throw error
     dispatch(getSuccess(data))
   } catch (error: any) {
     dispatch(getFailure(error.message))
+  }
+}
+
+export const insertParent = (data: object) => async (dispatch: any) => {
+  dispatch(getRequest())
+  try {
+
+  } catch (error) {
+
   }
 }

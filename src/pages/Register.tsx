@@ -9,6 +9,9 @@ import { RootStackParamList } from '../components/navigation/LoginNavigator'
 import Form from '../components/form/register/Form'
 import HealthPro from '../components/form/register/HealthPro'
 import Security from '../components/form/register/Security'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from '../store/type'
+import { register } from '../store/thunks/authThunks'
 
 type RegisterScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Register'>
 
@@ -16,7 +19,9 @@ const Register = () => {
 
   const navigation = useNavigation<RegisterScreenNavigationProp>()
 
-  const [title, setTitle] = useState({ value: 'Êtes-vous accompagnés par un professionnel de santé ?', label: 'healthPro' })
+  const dispatch: AppDispatch = useDispatch()
+
+  const [title, setTitle] = useState({ value: 'Inscription', label: 'inscription' })
   const [content, setContent] = useState(<></>)
   const [formData, setFormData] = useState({
     firstName: '',
@@ -25,20 +30,20 @@ const Register = () => {
     password: '',
     confirmPassword: '',
     proName: '',
-    securityData: '',
-    confirmSecurityData: '',
+    securityPassword: '',
+    confirmSecurityPassword: '',
   })
 
   useEffect(() => {
     switch (title.label) {
       case 'inscription':
-        setContent(<Form data={formData} handleInputChange={handleInputChange} handleChangeView={() => handleChangeView()} />)
+        setContent(<Form data={formData} handleInputChange={handleInputChange} handleChangeView={handleChangeView} />)
         break
       case 'healthPro':
         setContent(<HealthPro handleInputChange={handleInputChange} handleChangeView={handleChangeView} value={formData.proName} />)
         break
       case 'security':
-        setContent(<Security handleInputChange={handleInputChange} data={formData} />)
+        setContent(<Security handleInputChange={handleInputChange} data={formData} handleRegistration={handleRegistration} />)
         break
       default:
         break
@@ -66,6 +71,18 @@ const Register = () => {
     }
   }
 
+  const handleRegistration = () => {
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.password || !formData.confirmPassword) {
+      alert('Erreur champ(s) vide')
+      return
+    }
+    if (!formData.securityPassword || !formData.confirmSecurityPassword) {
+      alert('Erreur champ(s) code de sécurité vide')
+      return
+    }
+    dispatch(register(formData))
+  }
+
   const handleChangeView = () => {
     switch (title.label) {
       case 'inscription':
@@ -73,12 +90,10 @@ const Register = () => {
           alert('Erreur champ vide')
           return
         }
-
         if (formData.password !== formData.confirmPassword) {
-          alert('Erreur mot de passe différent');
+          alert('Erreur mot de passe différent')
           return
         }
-
         setTitle({ value: 'Êtes-vous accompagnés par un professionnel de santé ?', label: 'healthPro' })
         break
       case 'healthPro':
@@ -91,7 +106,7 @@ const Register = () => {
 
   return (
     <KeyboardAvoidingView style={[styles.bg_cream, styles.flex_1]}>
-      <ScrollView contentContainerStyle={[styles.justifyContentBetween, style.container]}>
+      <ScrollView contentContainerStyle={[styles.justifyContentBetween, styles.flex_1, style.container]}>
         <View style={[styles.alignItems, styles.flexRow, style.titleContainer]}>
           <Button text='Retour' color='white' isReturn action={handleGoBack} />
           <Text style={[styles.textAlign, style.title]}>{title.value}</Text>
@@ -106,7 +121,6 @@ export default Register
 
 const style = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 50,
     alignItems: 'flex-start',
   },

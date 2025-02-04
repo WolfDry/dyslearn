@@ -19,16 +19,18 @@ const HealthPro = ({ handleInputChange, handleChangeView, value }) => {
         </Pressable>
       </View>
       {/* En rajoutant une view vide quand oui pas séléctionner peut régler le problème de bouton trop grand */}
-      {
-        isVisible &&
-        <>
-          <Text style={[styles.darkBlue, styles.textAlign, style.title, { alignSelf: 'stretch' }]}>
-            Comment s'appelle t-il/elle
-          </Text>
-          <Input placeholder='Exemple : Marion Pelletier' password={false} setValue={handleInputChange} value={value} />
-          <Button text='Je confirme ma réponse' color='orange' action={handleChangeView} />
-        </>
-      }
+      <View style={[styles.alignSelfStrech, styles.flex_1]}>
+        {
+          isVisible &&
+          <>
+            <Text style={[styles.darkBlue, styles.textAlign, style.title, { alignSelf: 'stretch' }]}>
+              Comment s'appelle t-il/elle
+            </Text>
+            <Input placeholder='Exemple : Marion Pelletier' password={false} setValue={(value) => handleInputChange('proName', value)} value={value} />
+            <Button text='Je confirme ma réponse' color='orange' action={handleChangeView} />
+          </>
+        }
+      </View>
     </>
   )
 }

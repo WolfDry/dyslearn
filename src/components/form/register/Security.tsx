@@ -4,7 +4,7 @@ import { styles } from '../../../../assets/style/style'
 import Input from '../Input'
 import Button from '../Button'
 
-const Security = ({ handleInputChange, data }) => {
+const Security = ({ handleInputChange, data, handleRegistration }) => {
   return (
     <>
       <View style={[style.titleContainer]}>
@@ -14,11 +14,11 @@ const Security = ({ handleInputChange, data }) => {
       <View style={[style.inputContainer]}>
         <Text style={[styles.darkBlue, style.label]}>Mot de passe</Text>
         <View style={style.inputsContainer}>
-          <Input placeholder='Mon mot de passe' value={data.securityPassword} setValue={(value) => handleInputChange('firstName', value)} password />
-          <Input placeholder='Confirmation du mot de passe' value={data.confirmSecurityPasswordsecurityPassword} setValue={(value) => handleInputChange('firstName', value)} password />
+          <Input placeholder='Mon mot de passe' value={data.securityPassword} setValue={(value) => handleInputChange('securityPassword', value)} password />
+          <Input placeholder='Confirmation du mot de passe' value={data.confirmSecurityPasswordsecurityPassword} setValue={(value) => handleInputChange('confirmSecurityPassword', value)} password />
         </View>
       </View>
-      <Button text='Valider' color='orange' />
+      <Button text='Valider' color='orange' action={() => handleRegistration()} />
     </>
   )
 }
