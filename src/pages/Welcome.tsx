@@ -62,7 +62,7 @@ const Welcome = () => {
           <Text>Parents</Text>
         </View>
         {!parent || parent.length === 0 ? (
-          <Text>Aucun profil disponible</Text>
+          <Text>Aucun profil enfant disponible</Text>
         ) : (
           parent[0]?.children?.map((child, key: number) => {
             return (
