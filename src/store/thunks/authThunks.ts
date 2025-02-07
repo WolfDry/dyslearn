@@ -24,7 +24,15 @@ export const login = (email: string, password: string) => async (dispatch: any) 
       dispatch(loginFailure(error.message))
       throw error
     }
-    dispatch(loginSuccess(data.user))
+    const userData = await supabase
+      .from('parents')
+      .select('*, children(*)')
+      .eq('id', data.user.id)
+    if (userData.error) {
+      dispatch(registerFailure(error.message))
+      throw userData.error
+    }
+    dispatch(loginSuccess(userData.data))
   } catch (error: any) {
     dispatch(loginFailure(error.message))
     throw error
@@ -52,7 +60,16 @@ export const register = (formData: FormData) => async (dispatch: any) => {
       dispatch(registerFailure(error.message))
       throw error
     }
-    dispatch(registerSuccess(data.user))
+    const userData = await supabase
+      .from('parents')
+      .select('*, children(*)')
+      .eq('id', data.user.id)
+    if (userData.error) {
+      dispatch(registerFailure(error.message))
+      throw userData.error
+    }
+    console.log('userData : ', userData.data)
+    dispatch(registerSuccess(userData.data))
   } catch (error: any) {
     dispatch(registerFailure(error.message))
     throw error

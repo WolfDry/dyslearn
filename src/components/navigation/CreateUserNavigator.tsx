@@ -5,12 +5,14 @@ import Welcome from '../../pages/Welcome'
 import Home from '../../pages/Home'
 import Game from '../../pages/Game'
 import Theme from '../../pages/Theme'
+import CreateChild from '../../pages/CreateChild'
 
 export type RootStackParamList = {
-  Welcome: undefined,
-  Home: undefined,
-  Game: undefined,
-  Theme: undefined
+  CreateChild: undefined
+  // Welcome: undefined,
+  // Home: undefined,
+  // Game: undefined,
+  // Theme: undefined
 }
 
 const Stack = createStackNavigator<RootStackParamList>()
@@ -18,11 +20,12 @@ const Stack = createStackNavigator<RootStackParamList>()
 const CreateUserNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Welcome" component={Welcome} />
+      <Stack.Navigator initialRouteName="CreateChild" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="CreateChild" component={CreateChild} />
+        {/* <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Game" component={Game} />
-        <Stack.Screen name="Theme" component={Theme} />
+        <Stack.Screen name="Theme" component={Theme} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   )

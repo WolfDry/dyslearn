@@ -232,7 +232,6 @@ export const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     fontSize: 36,
-    fontWeight: 700,
     letterSpacing: 1.8,
     color: darkBlue,
     fontFamily: glacialBold,
