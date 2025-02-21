@@ -11,6 +11,7 @@ import Security from '../components/form/register/Security'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../store/type'
 import { register } from '../store/thunks/authThunks'
+import CustomText from '../components/CustomText'
 
 type RegisterScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Register'>
 
@@ -107,8 +108,8 @@ const Register = () => {
     <KeyboardAvoidingView style={[styles.bg_cream, styles.flex_1]}>
       <ScrollView contentContainerStyle={[styles.justifyContentBetween, styles.flex_1, style.container]}>
         <View style={[styles.alignItems, styles.flexRow, style.titleContainer]}>
-          <Button text='Retour' color='white' isReturn action={handleGoBack} />
-          <Text style={[styles.textAlign, style.title]}>{title.value}</Text>
+          <Button isStrech={false} text='Retour' color='white' isReturn action={handleGoBack} />
+          <CustomText style={[styles.textAlign, style.title]}>{title.value}</CustomText>
         </View>
         {content}
       </ScrollView>

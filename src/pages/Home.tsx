@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Pressable, Image } from 'react-native'
+import { View, StyleSheet, Pressable, Image } from 'react-native'
 
 import { styles, white } from '../../assets/style/style'
 import { useNavigation } from '@react-navigation/native'
@@ -9,6 +9,7 @@ import Svg, { Path } from 'react-native-svg'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../store/type'
 import { updatePath } from '../store/actions/pathActions'
+import CustomText from '../components/CustomText'
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>
 
@@ -29,9 +30,9 @@ const Home = () => {
     <View style={[styles.flex_1, styles.center, styles.flexRow, styles.padding_40, style.container]}>
       <Pressable style={[styles.flex_1, styles.bg_lightBlue, style.card]} onPress={() => handleNavigation('Jeux', chill)}>
         <View style={[styles.center, styles.flexRow, style.containerContent]}>
-          <Text style={[styles.textAlign, style.textCard]}>
+          <CustomText style={[styles.textAlign, style.textCard]}>
             Jeux
-          </Text>
+          </CustomText>
           <View style={[style.svgContainer, styles.center]}>
             <Svg width="31" height="33" viewBox="0 0 89 96" fill="none">
               <Path d="M37.425 2.02831L5.56901 15.7798C2.30503 17.2387 0.5 20.937 0.5 24.6794V68.9263C0.5 74.0632 2.35253 78.4604 6.80063 80.4283L38.3072 94.1492C40.2884 95.0396 42.4358 95.5 44.6078 95.5C46.7799 95.5 48.9273 95.0396 50.9085 94.1492L82.415 77.0252C86.8597 75.0505 88.7157 74.0632 88.7157 68.9263V24.6794C88.7157 20.937 87.2567 17.2421 83.9893 15.7798L51.7906 2.02831C49.5301 1.02071 47.0828 0.5 44.6078 0.5C42.1329 0.5 39.6856 1.02071 37.425 2.02831Z" fill="#F3EEF8" />
@@ -47,9 +48,9 @@ const Home = () => {
       </Pressable>
       <Pressable style={[styles.flex_1, styles.bg_orange, styles.alignItems, style.card]} onPress={() => handleNavigation('Leçons', school)}>
         <View style={[styles.center, styles.flexRow, style.containerContent]}>
-          <Text style={[styles.textAlign, style.textCard]}>
+          <CustomText style={[styles.textAlign, style.textCard]}>
             Leçons
-          </Text>
+          </CustomText>
           <View style={[style.svgContainer, styles.center]}>
             <Svg width="41" height="41" viewBox="0 0 101 101" fill="none">
               <Path d="M92.7109 80.4375L56.9765 96.5938C54.7734 97.6328 52.4765 97.5312 50.3671 96.3125L5.25772 73.4063C3.96866 72.5781 3.58585 71.3672 3.66397 70.5234C3.7421 69.6797 3.93741 68.7656 6.20304 68.1094L9.54679 66.875L54.7968 91.5391L86.953 78.3984L92.7109 80.4375Z" fill="#01579B" />

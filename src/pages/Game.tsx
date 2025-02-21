@@ -4,6 +4,7 @@ import { styles } from '../../assets/style/style'
 import Bubble from '../components/games/Bubble'
 import Duel from '../components/games/Duel'
 import Frieze from '../components/games/Frieze'
+import CustomText from '../components/CustomText'
 
 const Game = ({ route }) => {
 
@@ -23,9 +24,9 @@ const Game = ({ route }) => {
     default:
       return (
         <View style={[styles.center, styles.flex_1]}>
-          <Text>
+          <CustomText style={null}>
             No game page
-          </Text>
+          </CustomText>
         </View>
       )
   }

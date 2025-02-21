@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { black, styles } from '../../../assets/style/style'
+import CustomText from '../CustomText'
 
 const Frieze = () => {
   const [numberArray, setNumberArray] = useState<object[]>([])
@@ -66,7 +67,7 @@ const Frieze = () => {
       >
         {numberArray.map((item: { index: number, left: number, isFindable: boolean }, index) => (
           <View key={index} style={[style.tag, { left: item.left }]}>
-            <Text style={[style.tagText, styles.textAlign]}>{item.isFindable ? item.index : null}</Text>
+            <CustomText style={[style.tagText, styles.textAlign]}>{item.isFindable ? item.index : null}</CustomText>
           </View>
         ))}
       </View>
@@ -74,7 +75,7 @@ const Frieze = () => {
         {
           propositions.map((item, index) => (
             <Pressable key={index} style={[style.button]} onPress={() => handlePress(item)}>
-              <Text style={styles.textAlign}>{item}</Text>
+              <CustomText style={styles.textAlign}>{item}</CustomText>
             </Pressable>
           ))
         }

@@ -10,6 +10,7 @@ import Face from '../components/Face'
 import { lightBlue, orange, styles } from '../../assets/style/style'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamList } from '../components/navigation/CreateUserNavigator'
+import CustomText from '../components/CustomText'
 
 interface child {
   id: number,
@@ -26,7 +27,7 @@ type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>
 const Welcome = () => {
 
   const navigation = useNavigation<HomeScreenNavigationProp>()
-  const { parent, error }: { parent: { children: child[] }[]; error: string | null } = useSelector((state: RootState) => state.parent)
+  const { user, error }: { user: { children: child[] }[]; error: string | null } = useSelector((state: RootState) => state.auth)
 
   const handleNavigation = () => {
     navigation.navigate('Home')
@@ -35,7 +36,7 @@ const Welcome = () => {
   if (error) {
     return (
       <View style={[styles.center, styles.flex_1]}>
-        <Text>{error}</Text>
+        <CustomText style={styles.darkBlue}>{error}</CustomText>
       </View>
     )
   }
@@ -49,27 +50,27 @@ const Welcome = () => {
         </View>
       </View>
       <View style={[styles.flex_1]}>
-        <Text style={[styles.title, styles.darkBlue]}>
+        <CustomText style={[styles.title, styles.darkBlue]}>
           Choisis ton profil
-        </Text>
-        <Text style={[styles.darkBlue, styles.alignItems, styles.textAlign]}>
+        </CustomText>
+        <CustomText style={[styles.darkBlue, styles.alignItems, styles.textAlign]}>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem
-        </Text>
+        </CustomText>
       </View>
       <View style={[styles.flex_2, styles.flexWrap, styles.flexRow, styles.alignItems]}>
         <View style={[style.faceContainer, styles.alignItems]}>
           <Face border={orange} bg={lightBlue} />
-          <Text>Parents</Text>
+          <CustomText style={styles.darkBlue}>Parents</CustomText>
         </View>
-        {!parent || parent.length === 0 ? (
-          <Text>Aucun profil enfant disponible</Text>
+        {!user || user.length === 0 ? (
+          <CustomText style={styles.darkBlue}>Aucun profil enfant disponible</CustomText>
         ) : (
-          parent[0]?.children?.map((child, key: number) => {
+          user[0]?.children?.map((child, key: number) => {
             return (
               <Pressable key={key} onPress={() => handleNavigation()}>
                 <View style={[style.faceContainer, styles.alignItems]}>
                   <Face border={orange} bg={lightBlue} />
-                  <Text>{child.first_name}</Text>
+                  <CustomText style={styles.darkBlue}>{child.first_name}</CustomText>
                 </View>
               </Pressable>
             )

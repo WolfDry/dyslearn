@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, View } from 'react-native'
 import Svg, { Path } from 'react-native-svg'
 import { styles } from '../../assets/style/style'
+import CustomText from './CustomText'
 
 const Card = ({ action, label }) => {
 
@@ -94,9 +95,9 @@ const Card = ({ action, label }) => {
         {
           icon
         }
-        <Text style={[styles.darkBlue, style.title]}>
+        <CustomText style={[styles.darkBlue, style.title]}>
           {title}
-        </Text>
+        </CustomText>
       </View>
     </Pressable>
   )

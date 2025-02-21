@@ -35,8 +35,19 @@
         "expo-font",
         {
           "fonts": [
-            "./assets/fonts/glacial-indifference-regular.otf",
-            "./assets/fonts/glacial-indifference-bold.otf"
+            "./assets/fonts/Verdana/Verdana.ttf",
+            "./assets/fonts/Verdana/Verdana Bold.ttf",
+            "./assets/fonts/Verdana/Verdana Italic.ttf",
+            "./assets/fonts/Verdana/Verdana Bold Italic.ttf",
+            "./assets/fonts/OpenDyslexic/OpenDyslexic-Bold.otf",
+            "./assets/fonts/OpenDyslexic/OpenDyslexic-BoldItalic.otf",
+            "./assets/fonts/OpenDyslexic/OpenDyslexic-Italic.otf",
+            "./assets/fonts/OpenDyslexic/OpenDyslexic-Regular.otf",
+            "./assets/fonts/OpenDyslexic/OpenDyslexicAlta-Regular.otf",
+            "./assets/fonts/OpenDyslexic/OpenDyslexicAlta-Bold.otf",
+            "./assets/fonts/OpenDyslexic/OpenDyslexicAlta-BoldItalic.otf",
+            "./assets/fonts/OpenDyslexic/OpenDyslexicAlta-Italic.otf",
+            "./assets/fonts/OpenDyslexic/OpenDyslexicMono-Regular.otf"
           ]
         }
       ],

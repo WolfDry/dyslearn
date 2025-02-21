@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Pressable, Text, View } from 'react-native'
 
 import { styles } from '../../../assets/style/style'
+import CustomText from '../CustomText'
 
 const Duel = () => {
 
@@ -39,14 +40,14 @@ const Duel = () => {
 
   return (
     <View style={styles.center}>
-      <Text>Quel chiffre est le plus petit ?</Text>
+      <CustomText style={null}>Quel chiffre est le plus petit ?</CustomText>
       <View style={[styles.center, styles.flexRow]}>
         <Pressable onPress={() => handlePress(values[0])}>
-          <Text>{values[0]}</Text>
+          <CustomText style={null}>{values[0]}</CustomText>
         </Pressable>
-        <Text> ou </Text>
+        <CustomText style={null}> ou </CustomText>
         <Pressable onPress={() => handlePress(values[1])}>
-          <Text>{values[1]}</Text>
+          <CustomText style={null}>{values[1]}</CustomText>
         </Pressable>
       </View>
     </View>

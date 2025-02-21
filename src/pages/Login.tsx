@@ -4,6 +4,7 @@ import Logo from '../components/Logo'
 import LoginContainer from '../components/form/login/LoginContainer';
 
 import { styles } from '../../assets/style/style'
+import CustomText from '../components/CustomText';
 
 const Login = () => {
   return (
@@ -12,7 +13,7 @@ const Login = () => {
         <View style={[style.logoContainer]}>
           <Logo />
         </View>
-        <Text style={[styles.title]}>Connexion</Text>
+        <CustomText style={styles.title}>Connexion</CustomText>
         <LoginContainer />
       </ScrollView>
     </KeyboardAvoidingView>

@@ -12,8 +12,19 @@ SplashScreen.preventAutoHideAsync()
 export default function App() {
 
   const [fontsLoaded] = useFonts({
-    'glacial-regular': require('./assets/fonts/glacial-indifference-regular.otf'),
-    'glacial-bold': require('./assets/fonts/glacial-indifference-bold.otf'),
+    'Verdana': require('./assets/fonts/Verdana/Verdana.ttf'),
+    'Verdana Bold': require('./assets/fonts/Verdana/Verdana Bold.ttf'),
+    'Verdana Italic': require('./assets/fonts/Verdana/Verdana Italic.ttf'),
+    'Verdana Bold Italic': require('./assets/fonts/Verdana/Verdana Bold Italic.ttf'),
+    'OpenDyslexic': require('./assets/fonts/OpenDyslexic/OpenDyslexic-Regular.otf'),
+    'OpenDyslexic-Bold': require('./assets/fonts/OpenDyslexic/OpenDyslexic-Bold.otf'),
+    'OpenDyslexic-Bold-Italic': require('./assets/fonts/OpenDyslexic/OpenDyslexic-BoldItalic.otf'),
+    'OpenDyslexic-Italic': require('./assets/fonts/OpenDyslexic/OpenDyslexic-Italic.otf'),
+    'OpenDyslexic-Alta-Regular': require('./assets/fonts/OpenDyslexic/OpenDyslexicAlta-Regular.otf'),
+    'OpenDyslexic-Alta-Bold': require('./assets/fonts/OpenDyslexic/OpenDyslexicAlta-Bold.otf'),
+    'OpenDyslexic-Alta-Bold-Italic': require('./assets/fonts/OpenDyslexic/OpenDyslexicAlta-BoldItalic.otf'),
+    'OpenDyslexic-Alta-Italic': require('./assets/fonts/OpenDyslexic/OpenDyslexicAlta-Italic.otf'),
+    'OpenDyslexic-Mono-Regular': require('./assets/fonts/OpenDyslexic/OpenDyslexicMono-Regular.otf'),
   })
 
   useEffect(() => {

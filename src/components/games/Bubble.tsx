@@ -11,6 +11,7 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated'
 import { RootStackParamList } from '../navigation/CreateUserNavigator'
+import CustomText from '../CustomText'
 
 const { width, height } = Dimensions.get('window')
 
@@ -92,9 +93,9 @@ const Bubble = () => {
     <View style={styles.container}>
       <Button onPress={() => navigation.goBack()} title="Retour" />
       <View>
-        <Text style={{ color: 'white', fontSize: 25 }}>
+        <CustomText style={{ color: 'white', fontSize: 25 }}>
           Calcul : {secondNumber} + ... = {result}
-        </Text>
+        </CustomText>
       </View>
       {bubbles.map((bubble, index) => {
         const animatedStyle = useAnimatedStyle(() => ({
@@ -107,7 +108,7 @@ const Bubble = () => {
             onPress={() => handleBubblePress(index)}
             style={[styles.bubble, animatedStyle]}
           >
-            <Text style={styles.bubbleText}>{index + 1}</Text>
+            <CustomText style={styles.bubbleText}>{index + 1}</CustomText>
           </AnimatedPressable>
         )
       })}

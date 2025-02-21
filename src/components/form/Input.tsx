@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { black, darkBlue, styles, white } from '../../../assets/style/style';
+import CustomText from '../CustomText';
 
 type InputProps = {
   placeholder: string
@@ -37,7 +38,7 @@ const Input = (props: InputProps) => {
       </View>
       {props.error && (
         <View style={{ marginTop: 5 }}>
-          <Text style={{ color: 'red', fontSize: 14 }}>{props.error}</Text>
+          <CustomText style={{ color: 'red', fontSize: 14 }}>{props.error}</CustomText>
         </View>
       )}
     </View>

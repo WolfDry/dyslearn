@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from "react-native"
 
 export const lightBlue = '#34BDE8'
 export const darkBlue = '#201726'
@@ -10,8 +10,6 @@ export const pink = '#F493CC'
 export const green = '#34AD6A'
 export const white = '#fff'
 export const black = '#000'
-const glacialRegular = 'glacial-regular'
-const glacialBold = 'glacial-bold'
 
 export const styles = StyleSheet.create({
   flex_025: {
@@ -101,6 +99,37 @@ export const styles = StyleSheet.create({
     margin: 100
   },
 
+  gap_10: {
+    gap: 10
+  },
+  gap_20: {
+    gap: 20
+  },
+  gap_30: {
+    gap: 30
+  },
+  gap_40: {
+    gap: 40
+  },
+  gap_50: {
+    gap: 50
+  },
+  gap_60: {
+    gap: 60
+  },
+  gap_70: {
+    gap: 70
+  },
+  gap_80: {
+    gap: 80
+  },
+  gap_90: {
+    gap: 90
+  },
+  gap_100: {
+    margin: 100
+  },
+
   full_w: {
     width: '100%',
   },
@@ -122,6 +151,9 @@ export const styles = StyleSheet.create({
   },
   alignItems: {
     alignItems: 'center'
+  },
+  alignItemsStart: {
+    alignItems: 'flex-start'
   },
   flexWrap: {
     flexWrap: 'wrap'
@@ -217,13 +249,6 @@ export const styles = StyleSheet.create({
     borderColor: green
   },
 
-  glacialRegular: {
-    fontFamily: glacialRegular
-  },
-  glacialBold: {
-    fontFamily: glacialBold,
-  },
-
   debug: {
     borderWidth: 1,
     borderColor: 'red'
@@ -234,7 +259,7 @@ export const styles = StyleSheet.create({
     fontSize: 36,
     letterSpacing: 1.8,
     color: darkBlue,
-    fontFamily: glacialBold,
+    fontWeight: 700,
     alignSelf: 'stretch',
   },
   textAlign: {

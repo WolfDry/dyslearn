@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { styles } from '../../../../assets/style/style'
 import Input from '../Input'
 import Button from '../Button'
+import CustomText from '../../CustomText'
 
 const HealthPro = ({ handleInputChange, handleChangeView, value }) => {
 
@@ -12,10 +13,10 @@ const HealthPro = ({ handleInputChange, handleChangeView, value }) => {
     <>
       <View style={[styles.flex_1, styles.center, styles.flexRow, style.container]}>
         <Pressable onPress={() => setIsVisible(true)} style={[styles.center, styles.flex_1, styles.bg_orange, style.card]}>
-          <Text style={[styles.darkBlue, style.title]}>Oui</Text>
+          <CustomText style={[styles.darkBlue, style.title]}>Oui</CustomText>
         </Pressable>
         <Pressable onPress={() => handleChangeView()} style={[styles.center, styles.flex_1, styles.bg_lightBlue, style.card]}>
-          <Text style={[styles.darkBlue, style.title]}>Non</Text>
+          <CustomText style={[styles.darkBlue, style.title]}>Non</CustomText>
         </Pressable>
       </View>
       {/* En rajoutant une view vide quand oui pas séléctionner peut régler le problème de bouton trop grand */}
@@ -23,11 +24,11 @@ const HealthPro = ({ handleInputChange, handleChangeView, value }) => {
         {
           isVisible &&
           <>
-            <Text style={[styles.darkBlue, styles.textAlign, style.title, { alignSelf: 'stretch' }]}>
+            <CustomText style={[styles.darkBlue, styles.textAlign, style.title, { alignSelf: 'stretch' }]}>
               Comment s'appelle t-il/elle
-            </Text>
+            </CustomText>
             <Input placeholder='Exemple : Marion Pelletier' password={false} setValue={(value) => handleInputChange('proName', value)} value={value} />
-            <Button text='Je confirme ma réponse' color='orange' action={handleChangeView} />
+            <Button isStrech text='Je confirme ma réponse' color='orange' action={handleChangeView} />
           </>
         }
       </View>

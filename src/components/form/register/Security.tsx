@@ -3,22 +3,23 @@ import { StyleSheet, Text, View } from 'react-native'
 import { styles } from '../../../../assets/style/style'
 import Input from '../Input'
 import Button from '../Button'
+import CustomText from '../../CustomText'
 
 const Security = ({ handleInputChange, data, handleRegistration }) => {
   return (
     <>
       <View style={[style.titleContainer]}>
-        <Text style={[styles.textAlign, style.title]}>Ce code servira à sécuriser votre profil parent</Text>
-        <Text style={[styles.textAlign, style.paragraphe]}>A partir de votre profil parent, vous pourrez accéder à vos informations personnelles, aux statistiques de votre enfants et à la gestion des différents paramètres de l’application, dont la limite du temps de jeu.</Text>
+        <CustomText style={[styles.textAlign, style.title]}>Ce code servira à sécuriser votre profil parent</CustomText>
+        <CustomText style={[styles.textAlign, style.paragraphe]}>A partir de votre profil parent, vous pourrez accéder à vos informations personnelles, aux statistiques de votre enfants et à la gestion des différents paramètres de l’application, dont la limite du temps de jeu.</CustomText>
       </View>
       <View style={[style.inputContainer]}>
-        <Text style={[styles.darkBlue, style.label]}>Mot de passe</Text>
+        <CustomText style={[styles.darkBlue, style.label]}>Mot de passe</CustomText>
         <View style={style.inputsContainer}>
           <Input placeholder='Mon mot de passe' value={data.securityPassword} setValue={(value) => handleInputChange('securityPassword', value)} password />
           <Input placeholder='Confirmation du mot de passe' value={data.confirmSecurityPasswordsecurityPassword} setValue={(value) => handleInputChange('confirmSecurityPassword', value)} password />
         </View>
       </View>
-      <Button text='Valider' color='orange' action={() => handleRegistration()} />
+      <Button isStrech text='Valider' color='orange' action={() => handleRegistration()} />
     </>
   )
 }

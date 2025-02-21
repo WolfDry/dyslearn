@@ -13,6 +13,7 @@ import { styles } from '../../../../assets/style/style'
 
 import Input from '../Input'
 import Button from '../Button'
+import CustomText from '../../CustomText'
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>
 
@@ -39,14 +40,14 @@ const LoginContainer = () => {
   return (
     <View style={[style.container]}>
       <View style={[style.inputContainer]}>
-        <Input placeholder='Email' password={false} setValue={setEmail} />
-        <Input placeholder='Mot de passe' password={true} setValue={setPassword} />
-        <Text style={[style.forgotText, styles.black, styles.glacialRegular]}>Mot de passe oublié ?</Text>
+        <Input placeholder='Email' password={false} setValue={setEmail} value={email} />
+        <Input placeholder='Mot de passe' password={true} setValue={setPassword} value={password} />
+        <CustomText style={[style.forgotText, styles.black]}>Mot de passe oublié ?</CustomText>
       </View>
-      {error && <Text>{error}</Text>}
+      {error && <CustomText style={styles.darkBlue}>{error}</CustomText>}
       <View style={[style.buttonContainer, styles.flexRow, styles.center]}>
-        <Button text='Je me connecte' color='orange' action={handleLogin} />
-        <Button text="Je n'ai pas de compte" color='lightBlue' action={handleRegister} />
+        <Button isStrech={false} text='Je me connecte' color='orange' action={handleLogin} />
+        <Button isStrech={false} text="Je n'ai pas de compte" color='lightBlue' action={handleRegister} />
       </View>
       {/* <TouchableHighlight style={[styles.flex_05, styles.alignItems, styles.justifyContentAround]} onPress={navigateToQrCode} underlayColor="transparent">
         <View>
