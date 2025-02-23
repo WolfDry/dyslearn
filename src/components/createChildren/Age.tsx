@@ -4,14 +4,33 @@ import { darkBlue, styles } from '../../../assets/style/style'
 import Button from '../form/Button'
 import CustomText from '../CustomText'
 import Input from '../form/Input'
+import Svg, { Circle, G, Path } from 'react-native-svg'
 const { width, height } = Dimensions.get('window');
 
 const bg = require('../../../assets/images/background/illustration-salle-de-jeu.png')
 const redd = require('../../../assets/images/character/t-shirt.png')
 
-const Name = ({ setStep }) => {
+const Age = ({ setStep }) => {
 
-  const [name, setName] = useState('')
+  const [age, setAge] = useState('6')
+
+  const handleChangeAge = (opp) => {
+    const intAge = parseInt(age)
+    let updatedAge = intAge
+    switch (opp) {
+      case 'minus':
+        updatedAge -= 1
+        break
+      case 'plus':
+        updatedAge += 1
+        break
+    }
+    if (updatedAge < 6)
+      updatedAge = 12
+    if (updatedAge > 12)
+      updatedAge = 6
+    setAge(updatedAge.toString())
+  }
 
   return (
     <ImageBackground source={bg} style={[styles.justifyContentCenter, styles.alignItems, style.bg]}>
@@ -24,22 +43,42 @@ const Name = ({ setStep }) => {
             </View>
             <View style={[styles.padding_50, styles.alignItems, styles.gap_50, styles.bg_cream, style.bulle]}>
               <View style={[styles.alignItems, styles.alignSelfStrech, styles.gap_50]}>
-                <CustomText style={[styles.darkBlue, styles.title]}>Quel est ton nom ?</CustomText>
+                <CustomText style={[styles.darkBlue, styles.title]}>Quel âge as-tu ?</CustomText>
               </View>
               <CustomText style={[styles.darkBlue, style.text]}>
-                Au fait, je ne connais pas ton prénom ! Comment est-ce que tu t’appelles ?
+                Ici à Numéria, on peut partir à l’aventure à tout âge ! Moi par exemple j’ai 10 ans et toi ?
               </CustomText>
-              <Input value={name} setValue={setName} placeholder='Exemple : Jean' password={false} />
+              <View style={[styles.center, styles.gap_20, styles.flexRow, styles.alignSelfStrech]}>
+                <Pressable onPress={() => handleChangeAge('minus')}>
+                  <Svg width="80" height="80" viewBox="0 0 111 111" fill="none">
+                    <G filter="url(#filter0_d_2340_1371)">
+                      <Circle cx="45.5" cy="43.9814" r="23" fill="white" />
+                      <Path d="M5.5 45.9814C5.5 68.0614 23.42 85.9814 45.5 85.9814C67.58 85.9814 85.5 68.0614 85.5 45.9814C85.5 23.9014 67.58 5.98145 45.5 5.98145C23.42 5.98145 5.5 23.9014 5.5 45.9814ZM45.5 41.9814H61.5V49.9814H45.5V61.9814L29.5 45.9814L45.5 29.9814V41.9814Z" fill="#FD9830" />
+                    </G>
+                  </Svg>
+                </Pressable>
+                <View style={[styles.center, styles.gap_10, styles.bg_white, style.inputAge, styles.flex_1]}>
+                  <CustomText style={[styles.darkBlue, style.textTypo]}>{age}</CustomText>
+                </View>
+                <Pressable onPress={() => handleChangeAge('plus')}>
+                  <Svg width="80" height="80" viewBox="0 0 111 111" fill="none">
+                    <G>
+                      <Path d="M68.5 46.9814C68.5 59.684 58.2025 69.9814 45.5 69.9814C32.7975 69.9814 22.5 59.684 22.5 46.9814C22.5 34.2789 32.7975 23.9814 45.5 23.9814C58.2025 23.9814 68.5 34.2789 68.5 46.9814Z" fill="white" />
+                      <Path d="M85.5 45.9814C85.5 23.9014 67.58 5.98145 45.5 5.98145C23.42 5.98145 5.5 23.9014 5.5 45.9814C5.5 68.0614 23.42 85.9814 45.5 85.9814C67.58 85.9814 85.5 68.0614 85.5 45.9814ZM45.5 49.9814H29.5V41.9814H45.5V29.9814L61.5 45.9814L45.5 61.9814V49.9814Z" fill="#FD9830" />
+                    </G>
+                  </Svg>
+                </Pressable>
+              </View>
             </View>
           </View>
-          <Button isStrech={false} text="Ravi de faire ta connaissance" color='orange' action={() => setStep('age')} />
+          <Button isStrech={false} text="Je suis prêt à partir" color='orange' action={() => setStep('name')} />
         </View>
       </View>
     </ImageBackground>
   )
 }
 
-export default Name
+export default Age
 
 const style = StyleSheet.create({
   bg: {
@@ -99,10 +138,12 @@ const style = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'flex-end'
   },
-  inputTypo: {
+  inputAge: {
+    flexDirection: 'column',
     paddingHorizontal: 50,
+    paddingVertical: 20,
     borderRadius: 15,
-    borderWidth: 1
+    borderWidth: 1,
   },
   textTypo: {
     fontSize: 36,
