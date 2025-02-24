@@ -3,39 +3,35 @@ import { Dimensions, Image, ImageBackground, Pressable, StyleSheet, View } from 
 import { darkBlue, styles } from '../../../assets/style/style'
 import Button from '../form/Button'
 import CustomText from '../CustomText'
-import Input from '../form/Input'
 import Svg, { Circle, G, Path } from 'react-native-svg'
+import { svgs } from '../../../assets/svg/Avatar'
 const { width, height } = Dimensions.get('window');
 
 const bg = require('../../../assets/images/background/illustration-salle-de-jeu.png')
 const redd = require('../../../assets/images/character/t-shirt.png')
 
-const Age = ({ setStep }) => {
+const Avatar = ({ setStep }) => {
 
-  const [age, setAge] = useState('6')
+  const avatarKeys = Object.keys(svgs)
+  const [avatarKey, setAvatarKey] = useState(avatarKeys[0])
 
-  const handleChangeAge = (opp) => {
-    const intAge = parseInt(age)
-    let updatedAge = intAge
-    switch (opp) {
-      case 'minus':
-        updatedAge -= 1
-        break
-      case 'plus':
-        updatedAge += 1
-        break
-    }
-    if (updatedAge < 6)
-      updatedAge = 12
-    if (updatedAge > 12)
-      updatedAge = 6
-    setAge(updatedAge.toString())
+
+  const handleChangeAvatar = (direction) => {
+    setAvatarKey((prevKey) => {
+      const currentIndex = avatarKeys.indexOf(prevKey)
+      let newIndex = direction === 'plus' ? currentIndex + 1 : currentIndex - 1
+
+      if (newIndex >= avatarKeys.length) newIndex = 0
+      if (newIndex < 0) newIndex = avatarKeys.length - 1
+
+      return avatarKeys[newIndex]
+    })
   }
 
   return (
     <ImageBackground source={bg} style={[styles.justifyContentCenter, styles.alignItems, style.bg]}>
       <View style={[styles.full_h, styles.full_w, styles.justifyContentBetween, styles.padding_50]}>
-        <Button isStrech={false} text='Retour' isReturn action={() => setStep('typo')} />
+        <Button isStrech={false} text='Retour' isReturn action={() => setStep('age')} />
         <View style={[styles.alignSelfStrech, style.container]}>
           <View style={[styles.flexRow, styles.justifyContentCenter, styles.alignSelfStrech, styles.alignItemsStart]}>
             <View style={[styles.alignItems, styles.gap_20]}>
@@ -43,13 +39,13 @@ const Age = ({ setStep }) => {
             </View>
             <View style={[styles.padding_50, styles.alignItems, styles.gap_50, styles.bg_cream, style.bulle]}>
               <View style={[styles.alignItems, styles.alignSelfStrech, styles.gap_50]}>
-                <CustomText style={[styles.darkBlue, styles.title]}>Quel âge as-tu ?</CustomText>
+                <CustomText style={[styles.darkBlue, styles.title]}>Choisi ton avatar</CustomText>
               </View>
               <CustomText style={[styles.darkBlue, style.text]}>
-                Ici à Numéria, on peut partir à l’aventure à tout âge ! Moi par exemple j’ai 10 ans et toi ?
+                Dans ce monde numérique, on peut prendre la forme que l’on veut. Quelle image te correspond le mieux ?
               </CustomText>
               <View style={[styles.center, styles.gap_20, styles.flexRow, styles.alignSelfStrech]}>
-                <Pressable onPress={() => handleChangeAge('minus')}>
+                <Pressable onPress={() => handleChangeAvatar('minus')}>
                   <Svg width="80" height="80" viewBox="0 0 111 111" fill="none">
                     <G filter="url(#filter0_d_2340_1371)">
                       <Circle cx="45.5" cy="43.9814" r="23" fill="white" />
@@ -57,10 +53,10 @@ const Age = ({ setStep }) => {
                     </G>
                   </Svg>
                 </Pressable>
-                <View style={[styles.center, styles.gap_10, styles.bg_white, style.inputAge, styles.flex_1]}>
-                  <CustomText style={[styles.darkBlue, style.textTypo]}>{age}</CustomText>
+                <View style={[styles.center, styles.bg_white, style.avatarContainer]}>
+                  {svgs[avatarKey]()}
                 </View>
-                <Pressable onPress={() => handleChangeAge('plus')}>
+                <Pressable onPress={() => handleChangeAvatar('plus')}>
                   <Svg width="80" height="80" viewBox="0 0 111 111" fill="none">
                     <G>
                       <Path d="M68.5 46.9814C68.5 59.684 58.2025 69.9814 45.5 69.9814C32.7975 69.9814 22.5 59.684 22.5 46.9814C22.5 34.2789 32.7975 23.9814 45.5 23.9814C58.2025 23.9814 68.5 34.2789 68.5 46.9814Z" fill="white" />
@@ -78,7 +74,7 @@ const Age = ({ setStep }) => {
   )
 }
 
-export default Age
+export default Avatar
 
 const style = StyleSheet.create({
   bg: {
@@ -138,19 +134,13 @@ const style = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'flex-end'
   },
-  inputAge: {
-    flexDirection: 'column',
-    paddingHorizontal: 50,
-    paddingVertical: 20,
-    borderRadius: 15,
+  avatarContainer: {
+    padding: 5,
+    borderRadius: 100,
     borderWidth: 1,
-  },
-  textTypo: {
-    fontSize: 36,
-    fontStyle: 'normal',
-    fontWeight: 700,
-    lineHeight: 48.6,
-    letterSpacing: 1.8
+    borderColor: darkBlue,
+    width: width * 0.13,
+    height: height * 0.20
   }
 })
 

@@ -9,6 +9,7 @@ import Confirm_register from '../components/createChildren/Confirm_register'
 import Typo from '../components/createChildren/Typo'
 import Name from '../components/createChildren/Name'
 import Age from '../components/createChildren/Age'
+import Avatar from '../components/createChildren/Avatar'
 
 const CreateChild = () => {
 
@@ -41,6 +42,9 @@ const CreateChild = () => {
         break
       case 'age':
         setView(<Age setStep={handleView} />)
+        break
+      case 'avatar':
+        setView(<Avatar setStep={handleView} />)
         break
       default:
         setView(<Confirm_register handleLogout={handleLogout} setStep={handleView} />)
