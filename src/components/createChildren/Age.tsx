@@ -5,37 +5,17 @@ import Button from '../form/Button'
 import CustomText from '../CustomText'
 import Input from '../form/Input'
 import Svg, { Circle, G, Path } from 'react-native-svg'
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 const bg = require('../../../assets/images/background/illustration-salle-de-jeu.png')
 const redd = require('../../../assets/images/character/t-shirt.png')
 
-const Age = ({ setStep }) => {
-
-  const [age, setAge] = useState('6')
-
-  const handleChangeAge = (opp) => {
-    const intAge = parseInt(age)
-    let updatedAge = intAge
-    switch (opp) {
-      case 'minus':
-        updatedAge -= 1
-        break
-      case 'plus':
-        updatedAge += 1
-        break
-    }
-    if (updatedAge < 6)
-      updatedAge = 12
-    if (updatedAge > 12)
-      updatedAge = 6
-    setAge(updatedAge.toString())
-  }
+const Age = ({ setStep, age, handleChangeAge }) => {
 
   return (
     <ImageBackground source={bg} style={[styles.justifyContentCenter, styles.alignItems, style.bg]}>
       <View style={[styles.full_h, styles.full_w, styles.justifyContentBetween, styles.padding_50]}>
-        <Button isStrech={false} text='Retour' isReturn action={() => setStep('typo')} />
+        <Button isStrech={false} text='Retour' isReturn action={() => setStep('name')} />
         <View style={[styles.alignSelfStrech, style.container]}>
           <View style={[styles.flexRow, styles.justifyContentCenter, styles.alignSelfStrech, styles.alignItemsStart]}>
             <View style={[styles.alignItems, styles.gap_20]}>

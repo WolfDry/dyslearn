@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Dimensions, Image, ImageBackground, Pressable, StyleSheet, View } from 'react-native'
+import React from 'react'
+import { Dimensions, Image, ImageBackground, StyleSheet, View } from 'react-native'
 import { darkBlue, styles } from '../../../assets/style/style'
 import Button from '../form/Button'
 import CustomText from '../CustomText'
@@ -9,9 +9,7 @@ const { width, height } = Dimensions.get('window');
 const bg = require('../../../assets/images/background/illustration-salle-de-jeu.png')
 const redd = require('../../../assets/images/character/t-shirt.png')
 
-const Name = ({ setStep }) => {
-
-  const [name, setName] = useState('')
+const Name = ({ setStep, name, handleNameChange }) => {
 
   return (
     <ImageBackground source={bg} style={[styles.justifyContentCenter, styles.alignItems, style.bg]}>
@@ -29,7 +27,7 @@ const Name = ({ setStep }) => {
               <CustomText style={[styles.darkBlue, style.text]}>
                 Au fait, je ne connais pas ton prénom ! Comment est-ce que tu t’appelles ?
               </CustomText>
-              <Input value={name} setValue={setName} placeholder='Exemple : Jean' password={false} />
+              <Input value={name} setValue={handleNameChange} placeholder='Exemple : Jean' password={false} />
             </View>
           </View>
           <Button isStrech={false} text="Ravi de faire ta connaissance" color='orange' action={() => setStep('age')} />

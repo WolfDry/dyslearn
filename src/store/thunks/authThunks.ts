@@ -68,7 +68,6 @@ export const register = (formData: FormData) => async (dispatch: any) => {
       dispatch(registerFailure(error.message))
       throw userData.error
     }
-    console.log('userData : ', userData.data[0])
     dispatch(registerSuccess(userData.data))
   } catch (error: any) {
     dispatch(registerFailure(error.message))

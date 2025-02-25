@@ -1,33 +1,15 @@
 import React from 'react'
 import { Dimensions, Image, ImageBackground, Pressable, StyleSheet, View } from 'react-native'
 import { darkBlue, styles } from '../../../assets/style/style'
-import Button from '../form/Button';
-import Svg, { Circle, G, Path } from 'react-native-svg';
-import CustomText from '../CustomText';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store/type';
-import { updateTypo } from '../../store/actions/typoActions';
-const { width, height } = Dimensions.get('window');
+import Button from '../form/Button'
+import Svg, { Circle, G, Path } from 'react-native-svg'
+import CustomText from '../CustomText'
+const { width, height } = Dimensions.get('window')
 
 const bg = require('../../../assets/images/background/illustration-salle-de-jeu.png')
 const redd = require('../../../assets/images/character/t-shirt.png')
 
-const Typo = ({ setStep }) => {
-
-  const dispatch: AppDispatch = useDispatch()
-  const typo = useSelector((state: RootState) => state.typo.typo)
-
-  const handleChangeTypo = () => {
-    switch (typo) {
-      case 'Verdana':
-        dispatch(updateTypo('OpenDyslexic'))
-        break
-      case 'OpenDyslexic':
-        dispatch(updateTypo('Verdana'))
-      default:
-        break
-    }
-  }
+const Typo = ({ setStep, handleChangeTypo }) => {
 
   return (
     <ImageBackground source={bg} style={[styles.justifyContentCenter, styles.alignItems, style.bg]}>

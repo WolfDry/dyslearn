@@ -1,9 +1,9 @@
 import React from 'react'
-import { Dimensions, Image, ImageBackground, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, Image, ImageBackground, StyleSheet, View } from 'react-native'
 import { black, styles } from '../../../assets/style/style'
-import Button from '../form/Button';
-import CustomText from '../CustomText';
-const { width, height } = Dimensions.get('window');
+import Button from '../form/Button'
+import CustomText from '../CustomText'
+const { width, height } = Dimensions.get('window')
 
 const bg = require('../../../assets/images/background/illustration-salle-de-jeu.png')
 const redd = require('../../../assets/images/character/t-shirt.png')

@@ -1,32 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Dimensions, Image, ImageBackground, Pressable, StyleSheet, View } from 'react-native'
 import { darkBlue, styles } from '../../../assets/style/style'
 import Button from '../form/Button'
 import CustomText from '../CustomText'
 import Svg, { Circle, G, Path } from 'react-native-svg'
 import { svgs } from '../../../assets/svg/Avatar'
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 const bg = require('../../../assets/images/background/illustration-salle-de-jeu.png')
 const redd = require('../../../assets/images/character/t-shirt.png')
 
-const Avatar = ({ setStep }) => {
-
-  const avatarKeys = Object.keys(svgs)
-  const [avatarKey, setAvatarKey] = useState(avatarKeys[0])
-
-
-  const handleChangeAvatar = (direction) => {
-    setAvatarKey((prevKey) => {
-      const currentIndex = avatarKeys.indexOf(prevKey)
-      let newIndex = direction === 'plus' ? currentIndex + 1 : currentIndex - 1
-
-      if (newIndex >= avatarKeys.length) newIndex = 0
-      if (newIndex < 0) newIndex = avatarKeys.length - 1
-
-      return avatarKeys[newIndex]
-    })
-  }
+const Avatar = ({ setStep, avatarKey, handleChangeAvatar }) => {
 
   return (
     <ImageBackground source={bg} style={[styles.justifyContentCenter, styles.alignItems, style.bg]}>
