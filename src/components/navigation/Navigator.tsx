@@ -4,6 +4,7 @@ import { RootState } from '../../store/type'
 import LoadingNavigator from './LoadingNavigator'
 import LoginNavigator from './LoginNavigator'
 import CreateUserNavigator from './CreateUserNavigator'
+import LogedNavigator from './LogedNavigator'
 
 const Navigator = () => {
 
@@ -19,10 +20,14 @@ const Navigator = () => {
       <LoginNavigator />
     )
 
-  if (user)
+  if (user.children.length < 1)
     return (
       <CreateUserNavigator />
     )
+
+  return (
+    <LogedNavigator />
+  )
 };
 
 export default Navigator;

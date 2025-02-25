@@ -10,7 +10,7 @@ const { width, height } = Dimensions.get('window')
 const bg = require('../../../assets/images/background/illustration-salle-de-jeu.png')
 const redd = require('../../../assets/images/character/t-shirt.png')
 
-const Avatar = ({ setStep, avatarKey, handleChangeAvatar }) => {
+const Avatar = ({ setStep, avatarKey, handleChangeAvatar, handleInsert }) => {
 
   return (
     <ImageBackground source={bg} style={[styles.justifyContentCenter, styles.alignItems, style.bg]}>
@@ -51,7 +51,7 @@ const Avatar = ({ setStep, avatarKey, handleChangeAvatar }) => {
               </View>
             </View>
           </View>
-          <Button isStrech={false} text="Je suis prêt à partir" color='orange' action={() => setStep('avatar')} />
+          <Button isStrech={false} text="Cet avatar me convient !" color='orange' action={() => handleInsert()} />
         </View>
       </View>
     </ImageBackground>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../store/type'
-import { logout } from '../store/thunks/authThunks'
+import { childrenRegister, logout } from '../store/thunks/authThunks'
 import Intro from '../components/createChildren/Intro'
 import Confirm_register from '../components/createChildren/Confirm_register'
 import Typo from '../components/createChildren/Typo'
@@ -15,6 +15,8 @@ const CreateChild = () => {
 
   const avatarKeys = Object.keys(svgs)
   const dispatch: AppDispatch = useDispatch()
+  const typo = useSelector((state: RootState) => state.typo.typo)
+  const user = useSelector((state: RootState) => state.auth.user)
   const [step, setStep] = useState('confirm_register')
   const [avatarKey, setAvatarKey] = useState(avatarKeys[0])
   const [age, setAge] = useState('6')
@@ -23,8 +25,6 @@ const CreateChild = () => {
   const handleLogout = () => {
     dispatch(logout())
   }
-
-  const typo = useSelector((state: RootState) => state.typo.typo)
 
   const handleChangeTypo = () => {
     switch (typo) {
@@ -72,6 +72,17 @@ const CreateChild = () => {
     })
   }
 
+  const handleInsert = () => {
+    const data = {
+      first_name: name,
+      avatar_id: avatarKey,
+      age,
+      parent_id: user.id,
+      typo
+    }
+    dispatch(childrenRegister(data))
+  }
+
   const handleView = (step) => {
     setStep(step)
   }
@@ -83,7 +94,7 @@ const CreateChild = () => {
       {step === 'typo' && <Typo setStep={handleView} handleChangeTypo={handleChangeTypo} />}
       {step === 'name' && <Name setStep={handleView} name={name} handleNameChange={handleChangeName} />}
       {step === 'age' && <Age setStep={handleView} age={age} handleChangeAge={handleChangeAge} />}
-      {step === 'avatar' && <Avatar setStep={handleView} avatarKey={avatarKey} handleChangeAvatar={handleChangeAvatar} />}
+      {step === 'avatar' && <Avatar setStep={handleView} avatarKey={avatarKey} handleChangeAvatar={handleChangeAvatar} handleInsert={handleInsert} />}
     </>
   )
 

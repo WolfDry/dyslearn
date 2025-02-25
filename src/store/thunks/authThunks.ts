@@ -2,7 +2,10 @@ import { supabase } from '../../../supabase'
 import {
   loginRequest, loginSuccess, loginFailure,
   registerRequest, registerSuccess, registerFailure,
-  logoutRequest, logoutSuccess, logoutFailure
+  logoutRequest, logoutSuccess, logoutFailure,
+  registerChildrenRequest,
+  registerChildrenFailure,
+  registerChildrenSuccess
 } from '../actions/authActions'
 
 type FormData = {
@@ -68,9 +71,29 @@ export const register = (formData: FormData) => async (dispatch: any) => {
       dispatch(registerFailure(error.message))
       throw userData.error
     }
-    dispatch(registerSuccess(userData.data))
+    dispatch(registerSuccess(userData.data[0]))
   } catch (error: any) {
     dispatch(registerFailure(error.message))
+    throw error
+  }
+}
+
+export const childrenRegister = (children) => async (dispatch: any, getState) => {
+  dispatch(registerChildrenRequest())
+  try {
+    const { data, error } = await supabase
+      .from('children')
+      .insert(children)
+      .select()
+    const { auth } = getState()
+    auth.user.children = data
+    if (error) {
+      dispatch(registerChildrenFailure(error.message))
+      throw error
+    }
+    dispatch(registerChildrenSuccess(auth.user))
+  } catch (error: any) {
+    dispatch(registerChildrenFailure(error.message))
     throw error
   }
 }
