@@ -90,7 +90,7 @@ const Card = ({ action, label }) => {
   }, [label])
 
   return (
-    <Pressable style={[styles.center, color ? color.background : null, color ? color.border : null, style.card]} onPress={() => action(label)}>
+    <Pressable style={[styles.center, styles.gap_10, styles.flex_1, styles.alignSelfStrech, color ? color.background : null, color ? color.border : null, style.card]} onPress={() => action(label)}>
       <View style={[styles.alignItems, style.cardContent]}>
         {
           icon
@@ -113,9 +113,7 @@ const style = StyleSheet.create({
     letterSpacing: 0.64
   },
   card: {
-    width: '100%',
-    gap: 10,
-    alignItems: 'stretch',
+    display: 'flex',
     borderRadius: 50,
     borderWidth: 10,
   },

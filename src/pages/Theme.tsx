@@ -3,11 +3,11 @@ import { useNavigation } from '@react-navigation/native'
 import { Image, StyleSheet, View } from 'react-native'
 import { styles } from '../../assets/style/style'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { RootStackParamList } from '../components/navigation/CreateUserNavigator'
 import Svg, { Path } from 'react-native-svg'
 import Card from '../components/Card'
 import { useSelector } from 'react-redux'
 import CustomText from '../components/CustomText'
+import { RootStackParamList } from '../components/navigation/LogedNavigator'
 
 type ThemeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Theme'>
 
@@ -38,13 +38,13 @@ const Theme = ({ route }) => {
         </View>
         <Image style={[styles.alignItems, style.reddContainer]} source={path.image} resizeMode='contain' />
       </View>
-      <View style={[styles.alignItems, styles.flexRow, style.buttonsContainer]}>
-        <View style={[styles.center, style.buttonContainer]}>
+      <View style={[styles.alignItems, styles.flexRow, styles.gap_50, styles.flex_1, styles.alignSelfStrech]}>
+        <View style={[styles.center, styles.gap_30, styles.flex_1, styles.alignSelfStrech]}>
           <Card action={handleNavigation} label={'addition'} />
           <Card action={handleNavigation} label={'subtraction'} />
           <Card action={handleNavigation} label={'writing'} />
         </View>
-        <View style={[styles.center, style.buttonContainer]}>
+        <View style={[styles.center, styles.gap_30, styles.flex_1, styles.alignSelfStrech]}>
           <Card action={handleNavigation} label={'multiplication'} />
           <Card action={handleNavigation} label={'division'} />
           <Card action={handleNavigation} label={'geometry'} />
@@ -78,30 +78,6 @@ const style = StyleSheet.create({
     height: 80,
     paddingHorizontal: 6,
     paddingVertical: 2,
-    gap: 10
-  },
-  reddImage: {
-    width: 372,
-    height: 595,
-    gap: 20,
-    flexShrink: 0
-  },
-  buttonsContainer: {
-    gap: 50,
-    alignSelf: 'stretch'
-  },
-  buttonContainer: {
-    gap: 30,
-    alignSelf: 'stretch'
-  },
-  card: {
-    width: '100%',
-    gap: 10,
-    alignItems: 'stretch',
-    borderRadius: 50,
-    borderWidth: 10,
-  },
-  cardContent: {
     gap: 10
   }
 })
