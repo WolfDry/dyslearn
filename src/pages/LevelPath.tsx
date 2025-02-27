@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
-import { Dimensions, FlatList, ImageBackground, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, FlatList, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native'
 import { RootStackParamList } from '../components/navigation/LogedNavigator'
 import { useNavigation } from '@react-navigation/native'
 import { useSelector } from 'react-redux'
@@ -52,6 +52,10 @@ const LevelPath = ({ route }) => {
   const { height } = Dimensions.get('window')
   const offset = height * 0.2
 
+  const handleNavigation = (game) => {
+    navigation.navigate('Game', game)
+  }
+
   return (
     <ImageBackground source={bg} style={[styles.flex_1, styles.center, styles.alignSelfStrech]}>
       <Progression image={path.image} />
@@ -99,11 +103,19 @@ const LevelPath = ({ route }) => {
                     <Path d="M21.3506 89.227H20.8574C19.3041 89.227 18.0449 87.9678 18.0449 86.4145V54.5527C18.0449 52.9994 19.3041 51.7402 20.8574 51.7402H21.3506C22.9039 51.7402 24.1631 52.9994 24.1631 54.5527V86.4145C24.1631 87.9678 22.9039 89.227 21.3506 89.227Z" fill="#FFD469" />
                   </Svg>
               }
-              <View style={[styles.center, styles.gap_10, !item.isUnlock ? styles.border_lock : styles.border_yellow, style.level, !item.isUnlock ? styles.bg_lock : item.isDone ? styles.bg_yellow : styles.bg_white]}>
+              <Pressable
+                style={[
+                  styles.center,
+                  styles.gap_10,
+                  !item.isUnlock ? styles.border_lock : styles.border_yellow, style.level,
+                  !item.isUnlock ? styles.bg_lock : item.isDone ? styles.bg_yellow : styles.bg_white
+                ]}
+                onPress={() => { item.isUnlock ? handleNavigation('duel') : null }}
+              >
                 <CustomText style={[!item.isUnlock ? styles.lockTypo : item.isDone ? styles.white : styles.yellow, styles.textAlign, style.text]}>
                   {item.index}
                 </CustomText>
-              </View>
+              </Pressable>
             </View>
           )}
         />
