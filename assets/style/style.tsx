@@ -10,6 +10,8 @@ export const pink = '#F493CC'
 export const green = '#34AD6A'
 export const white = '#fff'
 export const black = '#000'
+export const lockBackground = '#6C99AB'
+export const lockTypo = '#AECDE6'
 
 export const styles = StyleSheet.create({
   flex_025: {
@@ -195,6 +197,9 @@ export const styles = StyleSheet.create({
   black: {
     color: black,
   },
+  lockTypo: {
+    color: lockTypo,
+  },
 
   bg_lightBlue: {
     backgroundColor: lightBlue,
@@ -223,6 +228,9 @@ export const styles = StyleSheet.create({
   bg_white: {
     backgroundColor: white,
   },
+  bg_lock: {
+    backgroundColor: lockBackground,
+  },
 
   border_orange: {
     borderColor: orange
@@ -247,6 +255,9 @@ export const styles = StyleSheet.create({
   },
   border_green: {
     borderColor: green
+  },
+  border_lock: {
+    borderColor: lockBackground
   },
 
   debug: {

@@ -1,8 +1,6 @@
 import React from 'react'
 import Svg, { Path } from 'react-native-svg'
 
-const logo = require('../../assets/logo/logo.svg')
-
 const Logo = () => {
   return (
     <Svg width="360" height="211" viewBox="0 0 360 211" fill="none">

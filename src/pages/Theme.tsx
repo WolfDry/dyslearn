@@ -17,7 +17,7 @@ const Theme = ({ route }) => {
   const path = useSelector((state: any) => state.path.path)
 
   const handleNavigation = (direction) => {
-    navigation.navigate('Game', direction)
+    navigation.navigate('LevelPath', direction)
   }
 
   return (
@@ -40,14 +40,14 @@ const Theme = ({ route }) => {
       </View>
       <View style={[styles.alignItems, styles.flexRow, styles.gap_50, styles.flex_1, styles.alignSelfStrech]}>
         <View style={[styles.center, styles.gap_30, styles.flex_1, styles.alignSelfStrech]}>
-          <Card action={handleNavigation} label={'addition'} />
-          <Card action={handleNavigation} label={'subtraction'} />
-          <Card action={handleNavigation} label={'writing'} />
+          <Card action={() => handleNavigation('addition')} label={'addition'} />
+          <Card action={() => handleNavigation('subtraction')} label={'subtraction'} />
+          <Card action={() => handleNavigation('writing')} label={'writing'} />
         </View>
         <View style={[styles.center, styles.gap_30, styles.flex_1, styles.alignSelfStrech]}>
-          <Card action={handleNavigation} label={'multiplication'} />
-          <Card action={handleNavigation} label={'division'} />
-          <Card action={handleNavigation} label={'geometry'} />
+          <Card action={() => handleNavigation('multiplication')} label={'multiplication'} />
+          <Card action={() => handleNavigation('division')} label={'division'} />
+          <Card action={() => handleNavigation('geometry')} label={'geometry'} />
         </View>
       </View>
     </View>

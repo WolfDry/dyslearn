@@ -4,11 +4,13 @@ import { NavigationContainer } from '@react-navigation/native'
 import Home from '../../pages/Home'
 import Theme from '../../pages/Theme'
 import Game from '../../pages/Game'
+import LevelPath from '../../pages/LevelPath'
 
 export type RootStackParamList = {
   Home: undefined
   Theme: undefined
   Game: undefined
+  LevelPath: undefined
 }
 
 const Stack = createStackNavigator<RootStackParamList>()
@@ -21,6 +23,7 @@ const LogedNavigator = () => {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Theme" component={Theme} />
         <Stack.Screen name="Game" component={Game} />
+        <Stack.Screen name="LevelPath" component={LevelPath} />
       </Stack.Navigator>
     </NavigationContainer>
   )
