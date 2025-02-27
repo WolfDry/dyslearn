@@ -5,9 +5,10 @@ import { styles } from '../../assets/style/style'
 import { StackNavigationProp } from '@react-navigation/stack'
 import Svg, { Path } from 'react-native-svg'
 import Card from '../components/Card'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import CustomText from '../components/CustomText'
 import { RootStackParamList } from '../components/navigation/LogedNavigator'
+import { updatePath } from '../store/actions/pathActions'
 
 type ThemeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Theme'>
 
@@ -15,8 +16,10 @@ const Theme = ({ route }) => {
 
   const navigation = useNavigation<ThemeScreenNavigationProp>()
   const path = useSelector((state: any) => state.path.path)
+  const dispatch = useDispatch()
 
   const handleNavigation = (direction) => {
+    dispatch(updatePath({ ...path, theme: direction }))
     navigation.navigate('LevelPath', direction)
   }
 

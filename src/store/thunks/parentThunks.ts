@@ -26,12 +26,3 @@ export const getParentByEmail = (email: string) => async (dispatch: any) => {
     dispatch(getFailure(error.message))
   }
 }
-
-export const insertParent = (data: object) => async (dispatch: any) => {
-  dispatch(getRequest())
-  try {
-
-  } catch (error) {
-
-  }
-}
