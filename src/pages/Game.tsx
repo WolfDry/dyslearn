@@ -5,8 +5,20 @@ import Bubble from '../components/games/Bubble'
 import Duel from '../components/games/Duel'
 import Frieze from '../components/games/Frieze'
 import CustomText from '../components/CustomText'
+import { useDispatch } from 'react-redux'
+import { insertReport } from '../store/thunks/authThunks'
+import { AppDispatch } from '../store/type'
 
 const Game = ({ route }) => {
+
+  const dispatch: AppDispatch = useDispatch()
+
+  const addReport = (isWin) => {
+    const data = {
+      exercice: route.params, isWin
+    }
+    dispatch(insertReport(data))
+  }
 
   switch (route.params) {
     case 'bubble':
@@ -15,7 +27,7 @@ const Game = ({ route }) => {
       )
     case 'duel':
       return (
-        <Duel />
+        <Duel addReport={addReport} />
       )
     case 'frieze':
       return (

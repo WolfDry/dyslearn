@@ -10,6 +10,9 @@ export const REGISTER_CHILDREN_FAILURE = 'REGISTER_CHILDREN_FAILURE'
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'
+export const INSERT_REPORT_REQUEST = 'INSERT_REPORT_REQUEST'
+export const INSERT_REPORT_SUCCESS = 'INSERT_REPORT_SUCCESS'
+export const INSERT_REPORT_FAILURE = 'INSERT_REPORT_FAILURE'
 
 export const loginRequest = () => ({ type: LOGIN_REQUEST })
 export const loginSuccess = (user: any) => ({ type: LOGIN_SUCCESS, payload: user })
@@ -25,4 +28,8 @@ export const registerChildrenFailure = (error: string) => ({ type: REGISTER_CHIL
 
 export const logoutRequest = () => ({ type: LOGOUT_REQUEST })
 export const logoutSuccess = () => ({ type: LOGOUT_SUCCESS })
-export const logoutFailure = (error: string) => ({ type: LOGOUT_FAILURE })
+export const logoutFailure = (error: string) => ({ type: LOGOUT_FAILURE, payload: error })
+
+export const insertReportRequest = () => ({ type: INSERT_REPORT_REQUEST })
+export const insertReportSuccess = (user: any) => ({ type: INSERT_REPORT_SUCCESS, payload: user })
+export const insertReportFailure = (error: string) => ({ type: INSERT_REPORT_FAILURE, payload: error })

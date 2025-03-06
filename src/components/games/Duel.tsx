@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Pressable, Text, View } from 'react-native'
+import { Pressable, View } from 'react-native'
 
 import { styles } from '../../../assets/style/style'
 import CustomText from '../CustomText'
 
-const Duel = () => {
+const Duel = ({ addReport }) => {
 
   const [values, setValues] = React.useState<number[]>([1, 2])
   const [correctValue, setCorrectValue] = useState(1)
@@ -14,10 +14,14 @@ const Duel = () => {
   }, [])
 
   const handlePress = (value: number) => {
-    if (value === correctValue)
+    if (value === correctValue) {
       alert('Bravo tu as réussi')
-    else
+      addReport(true)
+    }
+    else {
       alert('Dommage tu as perdu')
+      addReport(false)
+    }
     setNumbers()
   }
 
@@ -29,14 +33,14 @@ const Duel = () => {
       secondNumber = Math.floor(Math.random() * 9) + 1
     } while (secondNumber === firstNumber)
 
-    const tempValues = [firstNumber, secondNumber];
-    setValues(tempValues);
-    setCorrectValue(getSmallestValue(tempValues));
-  };
+    const tempValues = [firstNumber, secondNumber]
+    setValues(tempValues)
+    setCorrectValue(getSmallestValue(tempValues))
+  }
 
   const getSmallestValue = (values: number[]): number => {
-    return Math.min(...values);
-  };
+    return Math.min(...values)
+  }
 
   return (
     <View style={styles.center}>

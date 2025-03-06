@@ -5,7 +5,10 @@ import {
   logoutRequest, logoutSuccess, logoutFailure,
   registerChildrenRequest,
   registerChildrenFailure,
-  registerChildrenSuccess
+  registerChildrenSuccess,
+  insertReportRequest,
+  insertReportFailure,
+  insertReportSuccess
 } from '../actions/authActions'
 
 type FormData = {
@@ -19,7 +22,7 @@ type FormData = {
   confirmSecurityPassword: string;
 }
 
-export const login = (email: string, password: string) => async (dispatch: any) => {
+export const login = (email: string, password: string) => async (dispatch) => {
   dispatch(loginRequest())
   try {
     const { data, error } = await supabase.auth.signInWithPassword({ email, password })
@@ -42,7 +45,7 @@ export const login = (email: string, password: string) => async (dispatch: any) 
   }
 }
 
-export const register = (formData: FormData) => async (dispatch: any) => {
+export const register = (formData: FormData) => async (dispatch) => {
   dispatch(registerRequest())
 
   const { email, password, firstName, lastName } = formData
@@ -78,7 +81,7 @@ export const register = (formData: FormData) => async (dispatch: any) => {
   }
 }
 
-export const childrenRegister = (children) => async (dispatch: any, getState) => {
+export const childrenRegister = (children) => async (dispatch, getState) => {
   dispatch(registerChildrenRequest())
   try {
     const { data, error } = await supabase
@@ -98,7 +101,29 @@ export const childrenRegister = (children) => async (dispatch: any, getState) =>
   }
 }
 
-export const logout = () => async (dispatch: any) => {
+export const insertReport = (report) => async (dispatch, getState) => {
+  dispatch(insertReportRequest())
+  try {
+    const { auth } = getState()
+    report.children_id = auth.user.children[0].id
+    const { data, error } = await supabase
+      .from('reports')
+      .insert(report)
+      .select()
+    console.log('return data', data)
+    auth.user.reports = data
+    dispatch(insertReportSuccess(auth.user))
+    if (error) {
+      dispatch(insertReportFailure(error.message))
+      throw error
+    }
+  } catch (error) {
+    dispatch(insertReportFailure(error.message))
+    throw error
+  }
+}
+
+export const logout = () => async (dispatch) => {
   dispatch(logoutRequest())
   try {
     await supabase.auth.signOut()
