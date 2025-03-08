@@ -7,27 +7,23 @@ import CreateUserNavigator from './CreateUserNavigator'
 import LogedNavigator from './LogedNavigator'
 
 const Navigator = () => {
-
   const { user, loading } = useSelector((state: RootState) => state.auth)
 
-  if (loading)
-    return (
-      <LoadingNavigator />
-    )
-
-  if (!user)
-    return (
-      <LoginNavigator />
-    )
-
-  if (user.children.length < 1)
-    return (
-      <CreateUserNavigator />
-    )
+  let screen;
+  if (!user) {
+    screen = <LoginNavigator />
+  } else if (user.children.length < 1) {
+    screen = <CreateUserNavigator />
+  } else {
+    screen = <LogedNavigator />
+  }
 
   return (
-    <LogedNavigator />
+    <>
+      {loading && <LoadingNavigator />}
+      {screen}
+    </>
   )
 };
 
-export default Navigator;
+export default Navigator
