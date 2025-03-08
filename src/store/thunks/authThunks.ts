@@ -12,14 +12,14 @@ import {
 } from '../actions/authActions'
 
 type FormData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  proName: string;
-  securityPassword: string;
-  confirmSecurityPassword: string;
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+  confirmPassword: string
+  proName: string
+  securityPassword: string
+  confirmSecurityPassword: string
 }
 
 export const login = (email: string, password: string) => async (dispatch) => {
@@ -32,7 +32,7 @@ export const login = (email: string, password: string) => async (dispatch) => {
     }
     const userData = await supabase
       .from('parents')
-      .select('*, children(*)')
+      .select('*, children(*, reports(*))')
       .eq('id', data.user.id)
     if (userData.error) {
       dispatch(registerFailure(error.message))
@@ -68,7 +68,7 @@ export const register = (formData: FormData) => async (dispatch) => {
     }
     const userData = await supabase
       .from('parents')
-      .select('*, children(*)')
+      .select('*, children(*, reports(*))')
       .eq('id', data.user.id)
     if (userData.error) {
       dispatch(registerFailure(error.message))
@@ -103,20 +103,19 @@ export const childrenRegister = (children) => async (dispatch, getState) => {
 
 export const insertReport = (report) => async (dispatch, getState) => {
   dispatch(insertReportRequest())
+
   try {
     const { auth } = getState()
     report.children_id = auth.user.children[0].id
-    const { data, error } = await supabase
-      .from('reports')
-      .insert(report)
-      .select()
-    console.log('return data', data)
-    auth.user.reports = data
-    dispatch(insertReportSuccess(auth.user))
+
+    const { data, error } = await supabase.from("reports").insert(report).select()
+
     if (error) {
       dispatch(insertReportFailure(error.message))
       throw error
     }
+
+    dispatch(insertReportSuccess(data[0]))
   } catch (error) {
     dispatch(insertReportFailure(error.message))
     throw error

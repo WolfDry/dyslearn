@@ -31,5 +31,5 @@ export const logoutSuccess = () => ({ type: LOGOUT_SUCCESS })
 export const logoutFailure = (error: string) => ({ type: LOGOUT_FAILURE, payload: error })
 
 export const insertReportRequest = () => ({ type: INSERT_REPORT_REQUEST })
-export const insertReportSuccess = (user: any) => ({ type: INSERT_REPORT_SUCCESS, payload: user })
+export const insertReportSuccess = (report: any) => ({ type: INSERT_REPORT_SUCCESS, payload: report })
 export const insertReportFailure = (error: string) => ({ type: INSERT_REPORT_FAILURE, payload: error })

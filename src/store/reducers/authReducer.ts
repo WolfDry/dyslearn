@@ -2,12 +2,14 @@ import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_REQUEST, REGISTER
 
 interface AuthState {
   user: any
+  reports: Array<Object>
   error: string | null
   loading: boolean
 }
 
 const initialState: AuthState = {
   user: null,
+  reports: [],
   error: null,
   loading: false,
 }
@@ -45,7 +47,7 @@ export const authReducer = (state = initialState, action: any) => {
     case INSERT_REPORT_REQUEST:
       return { ...state, loading: true, error: null }
     case INSERT_REPORT_SUCCESS:
-      return { ...state, user: action.payload, loading: false }
+      return { ...state, reports: [...state.reports, action.payload], loading: false }
     case INSERT_REPORT_FAILURE:
       return { ...state, error: action.payload, loading: false }
 
