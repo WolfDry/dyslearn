@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Pressable, View } from 'react-native'
+import { ImageBackground, Pressable, StyleSheet, View } from 'react-native'
 
-import { styles } from '../../../assets/style/style'
+import { styles, yellow } from '../../../assets/style/style'
 import CustomText from '../CustomText'
+import Header from './components/Header'
+import Progression from './components/Progression'
+
+const bg = require('../../../assets/images/background/illustration-fond-marin.png')
 
 const Duel = ({ addReport }) => {
 
@@ -43,19 +47,41 @@ const Duel = ({ addReport }) => {
   }
 
   return (
-    <View style={styles.center}>
-      <CustomText style={null}>Quel chiffre est le plus petit ?</CustomText>
-      <View style={[styles.center, styles.flexRow]}>
-        <Pressable onPress={() => handlePress(values[0])}>
-          <CustomText style={null}>{values[0]}</CustomText>
+    <ImageBackground source={bg} style={styles.flex_1}>
+      <Header />
+      <View style={[styles.alignItems, styles.justifyContentAround, styles.flexRow, style.container]}>
+        <Pressable style={[styles.center, styles.gap_10, styles.bg_cream, style.answers]} onPress={() => handlePress(values[0])}>
+          <CustomText style={[styles.yellow, style.text]}>{values[0]}</CustomText>
         </Pressable>
-        <CustomText style={null}> ou </CustomText>
-        <Pressable onPress={() => handlePress(values[1])}>
-          <CustomText style={null}>{values[1]}</CustomText>
+        <Pressable style={[styles.center, styles.gap_10, styles.bg_cream, style.answers]} onPress={() => handlePress(values[1])}>
+          <CustomText style={[styles.orange, style.text]}>{values[1]}</CustomText>
         </Pressable>
       </View>
-    </View>
+      <Progression />
+    </ImageBackground>
   )
 }
 
 export default Duel
+
+const style = StyleSheet.create({
+  container: {
+    height: '60%'
+  },
+  answers: {
+    width: 395,
+    height: 395,
+    paddingVertical: 75,
+    paddingHorizontal: 50,
+    flexShrink: 0,
+    borderWidth: 5,
+    borderColor: yellow,
+    borderRadius: 200
+  },
+  text: {
+    fontSize: 96,
+    fontStyle: 'normal',
+    fontWeight: 700,
+    letterSpacing: -0.96
+  }
+})

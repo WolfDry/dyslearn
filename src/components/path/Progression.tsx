@@ -1,7 +1,8 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View, Dimensions } from 'react-native';
+import { Image, StyleSheet, View, Dimensions } from 'react-native';
 import Svg, { Circle, Line } from 'react-native-svg';
 import { lightBlue } from '../../../assets/style/style';
+import CustomText from '../CustomText';
 
 const { width } = Dimensions.get('window');
 const treasure = require('../../../assets/images/tresor.png');
@@ -15,7 +16,7 @@ const Progression = ({ image, data }) => {
     <View style={[style.container]}>
       <View style={[style.themeContainer, { backgroundColor: data.color }]}>
         {data.icon}
-        <Text style={style.text}>{data.title}</Text>
+        <CustomText style={style.text}>{data.title}</CustomText>
       </View>
       <View style={[style.progressContainer]}>
         <Image style={style.image} source={image} />
