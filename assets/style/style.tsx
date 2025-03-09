@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native"
 
 export const lightBlue = '#34BDE8'
+export const blue = '#398FCD'
 export const darkBlue = '#201726'
 export const orange = '#FD9830'
 export const cream = '#FFFAEF'
@@ -170,6 +171,9 @@ export const styles = StyleSheet.create({
   lightBlue: {
     color: lightBlue,
   },
+  blue: {
+    color: blue,
+  },
   darkBlue: {
     color: darkBlue,
   },
@@ -204,6 +208,9 @@ export const styles = StyleSheet.create({
   bg_lightBlue: {
     backgroundColor: lightBlue,
   },
+  bg_blue: {
+    backgroundColor: blue,
+  },
   bg_darkBlue: {
     backgroundColor: darkBlue,
   },
@@ -237,6 +244,9 @@ export const styles = StyleSheet.create({
   },
   border_lightBlue: {
     borderColor: lightBlue
+  },
+  border_blue: {
+    borderColor: blue
   },
   border_darkBlue: {
     borderColor: darkBlue
