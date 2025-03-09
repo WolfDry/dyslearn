@@ -7,11 +7,25 @@ import Header from './components/Header'
 import Progression from './components/Progression'
 
 const bg = require('../../../assets/images/background/illustration-fond-marin.png')
+const fishs = [
+  require("../../../assets/images/fish/poisson-1.png"),
+  require("../../../assets/images/fish/poisson-2.png"),
+  require("../../../assets/images/fish/poisson-3.png"),
+  require("../../../assets/images/fish/poisson-4.png"),
+  require("../../../assets/images/fish/poisson-5.png"),
+]
 
 const Duel = ({ addReport }) => {
 
   const [values, setValues] = React.useState<number[]>([1, 2])
   const [correctValue, setCorrectValue] = useState(2)
+  const [progress, setProgress] = useState([
+    { id: 1, img: fishs[1], isDone: false },
+    { id: 2, img: fishs[2], isDone: false },
+    { id: 3, img: fishs[3], isDone: false },
+    { id: 4, img: fishs[4], isDone: false },
+    { id: 5, img: fishs[5], isDone: false },
+  ])
 
   useEffect(() => {
     setNumbers()
@@ -57,7 +71,7 @@ const Duel = ({ addReport }) => {
           <CustomText style={[styles.orange, style.text]}>{values[1]}</CustomText>
         </Pressable>
       </View>
-      <Progression />
+      <Progression imgs={fishs} />
     </ImageBackground>
   )
 }
