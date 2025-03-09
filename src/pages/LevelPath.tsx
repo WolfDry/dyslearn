@@ -8,6 +8,7 @@ import Progression from '../components/path/Progression'
 import { darkOrange, green, lightBlue, orange, pink, styles, white, yellow } from '../../assets/style/style'
 import CustomText from '../components/CustomText'
 import Svg, { Path } from 'react-native-svg'
+import BottomNavigator from '../components/navigation/BottomNavigator'
 
 type LevelPathScreenNavigationProp = StackNavigationProp<RootStackParamList, 'LevelPath'>
 
@@ -171,6 +172,7 @@ const LevelPath = ({ route }) => {
           )}
         />
       </View>
+      <BottomNavigator />
     </ImageBackground>
   )
 }

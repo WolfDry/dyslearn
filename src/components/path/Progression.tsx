@@ -1,28 +1,28 @@
-import React from 'react';
-import { Image, StyleSheet, View, Dimensions } from 'react-native';
-import Svg, { Circle, Line } from 'react-native-svg';
-import { lightBlue } from '../../../assets/style/style';
-import CustomText from '../CustomText';
+import React from 'react'
+import { Image, StyleSheet, View, Dimensions } from 'react-native'
+import Svg, { Circle, Line } from 'react-native-svg'
+import { lightBlue, styles } from '../../../assets/style/style'
+import CustomText from '../CustomText'
 
-const { width } = Dimensions.get('window');
-const treasure = require('../../../assets/images/tresor.png');
-const CIRCLE_RADIUS = 16;
-const NUM_CIRCLES = 7;
-const TOTAL_WIDTH = width - 450;
-const SPACING = (TOTAL_WIDTH - 2 * CIRCLE_RADIUS) / (NUM_CIRCLES - 1); // Ajustement pour éviter les coupures
+const { width } = Dimensions.get('window')
+const treasure = require('../../../assets/images/tresor.png')
+const CIRCLE_RADIUS = 16
+const NUM_CIRCLES = 7
+const TOTAL_WIDTH = width - 450
+const SPACING = (TOTAL_WIDTH - 2 * CIRCLE_RADIUS) / (NUM_CIRCLES - 1)
 
 const Progression = ({ image, data }) => {
   return (
-    <View style={[style.container]}>
-      <View style={[style.themeContainer, { backgroundColor: data.color }]}>
+    <View style={[styles.bg_blue, style.container]}>
+      <View style={[styles.flex_1, styles.center, styles.alignSelfStrech, styles.gap_20, styles.flexRow, style.themeContainer, { backgroundColor: data.color }]}>
         {data.icon}
-        <CustomText style={style.text}>{data.title}</CustomText>
+        <CustomText style={[styles.textAlign, style.text]}>{data.title}</CustomText>
       </View>
       <View style={[style.progressContainer]}>
         <Image style={style.image} source={image} />
         <Svg height="60" width={TOTAL_WIDTH + 2 * CIRCLE_RADIUS}>
           {[...Array(NUM_CIRCLES)].map((_, index) => {
-            const cx = index * SPACING + CIRCLE_RADIUS; // Décalage pour que les cercles restent dans le cadre
+            const cx = index * SPACING + CIRCLE_RADIUS
 
             return (
               <React.Fragment key={index}>
@@ -45,34 +45,30 @@ const Progression = ({ image, data }) => {
                   strokeWidth="5"
                 />
               </React.Fragment>
-            );
+            )
           })}
         </Svg>
         <Image source={treasure} />
       </View>
     </View>
-  );
-};
+  )
+}
 
-export default Progression;
+export default Progression
 
 const style = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#4DB6E9',
   },
   themeContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 10,
     borderBottomRightRadius: 50,
     borderTopRightRadius: 50,
   },
   text: {
-    color: '#003F7F',
-    marginLeft: 10,
+    fontSize: 25,
+    fontStyle: 'normal',
+    fontWeight: 700,
+    letterSpacing: 1.25,
   },
   progressContainer: {
     flexDirection: 'row',
@@ -83,4 +79,4 @@ const style = StyleSheet.create({
     width: 62,
     height: 100,
   },
-});
+})
