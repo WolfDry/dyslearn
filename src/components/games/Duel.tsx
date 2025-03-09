@@ -11,7 +11,7 @@ const bg = require('../../../assets/images/background/illustration-fond-marin.pn
 const Duel = ({ addReport }) => {
 
   const [values, setValues] = React.useState<number[]>([1, 2])
-  const [correctValue, setCorrectValue] = useState(1)
+  const [correctValue, setCorrectValue] = useState(2)
 
   useEffect(() => {
     setNumbers()
@@ -39,11 +39,11 @@ const Duel = ({ addReport }) => {
 
     const tempValues = [firstNumber, secondNumber]
     setValues(tempValues)
-    setCorrectValue(getSmallestValue(tempValues))
+    setCorrectValue(getMaxValue(tempValues))
   }
 
-  const getSmallestValue = (values: number[]): number => {
-    return Math.min(...values)
+  const getMaxValue = (values: number[]): number => {
+    return Math.max(...values)
   }
 
   return (
