@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimensions, Image, ImageBackground, Pressable, StyleSheet, View } from 'react-native'
+import { Dimensions, Image, ImageBackground, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, View } from 'react-native'
 import { darkBlue, styles } from '../../../assets/style/style'
 import Button from '../form/Button'
 import Svg, { Circle, G, Path } from 'react-native-svg'
@@ -27,7 +27,7 @@ const Typo = ({ setStep, handleChangeTypo }) => {
               <CustomText style={[styles.darkBlue, style.text]}>
                 Au cours de cette aventure, il y aura des textes pour savoir comment atteindre le trésor. Pour ton confort, quelle écriture te correspond le mieux ?
               </CustomText>
-              <View style={[styles.center, styles.gap_20, styles.flexRow]}>
+              <View style={[styles.center, styles.gap_10, styles.flexRow]}>
                 <Pressable onPress={() => handleChangeTypo()}>
                   <Svg width="80" height="80" viewBox="0 0 111 111" fill="none">
                     <G filter="url(#filter0_d_2340_1371)">
@@ -118,7 +118,7 @@ const style = StyleSheet.create({
     alignItems: 'flex-end'
   },
   inputTypo: {
-    paddingHorizontal: 50,
+    paddingHorizontal: 35,
     borderRadius: 15,
     borderWidth: 1
   },

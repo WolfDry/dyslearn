@@ -48,7 +48,7 @@ const Input = (props: InputProps) => {
 const style = StyleSheet.create({
   inputContainer: {
     paddingHorizontal: 50,
-    paddingVertical: 35.5,
+    paddingVertical: 15,
     alignSelf: 'stretch',
     borderRadius: 15,
     backgroundColor: white,
@@ -56,7 +56,6 @@ const style = StyleSheet.create({
     borderColor: 'rgba(32, 23, 38, 0.75)'
   },
   input: {
-    textAlign: 'center',
     fontSize: 24,
     fontStyle: 'normal',
     letterSpacing: 0.48
