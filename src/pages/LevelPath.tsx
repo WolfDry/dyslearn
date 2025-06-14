@@ -16,7 +16,6 @@ const bg = require('../../assets/images/background/illustration-plage.png')
 
 const LevelPath = ({ route }) => {
 
-  const theme = route.params
   const navigation = useNavigation<LevelPathScreenNavigationProp>()
   const path = useSelector((state: any) => state.path.path)
 

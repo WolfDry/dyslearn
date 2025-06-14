@@ -7,7 +7,7 @@ const Progression = ({ imgs }) => {
     <View style={[styles.alignItems, styles.justifyContentBetween, styles.bg_lightBlue, style.container]}>
       <View style={styles.flexRow}>
         {imgs.map((fish, index) => (
-          <Image key={index} source={fish} />
+          <Image style={!fish.isDone ? style.fishNotDone : null} key={index} source={fish.img} />
         ))}
       </View>
     </View>
@@ -21,5 +21,8 @@ const style = StyleSheet.create({
     height: 158,
     paddingHorizontal: 50,
     flexShrink: 0
-  }
+  },
+  fishNotDone: {
+    opacity: .4
+  },
 })
